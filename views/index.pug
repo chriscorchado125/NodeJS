@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Homepage #{title}
+  hr
+
+  if error
+    p Error getting dynamic content.
+  else
+    p Empty

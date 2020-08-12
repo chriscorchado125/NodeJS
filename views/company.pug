@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 title
+  hr
+
+  if error
+    p Error getting dynamic content.
+  else
+    p The library has the following record counts:
+
+    ul
+      li #[strong Company:] !{data.company_count}

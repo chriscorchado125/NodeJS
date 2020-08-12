@@ -1,0 +1,39 @@
+extends layout
+
+block content
+
+  //name description screenshots job_title start_date end_date'
+  
+  <div class="container row">    
+
+      each company in company_list
+
+        <div class="company-container col shadow">
+
+          <div class="company-name">#{company.name}</div>
+          <div class="company-job-title">#{company.job_title}</div>
+
+          - var desc = company.description.replace('<ul>', '').replace('</ul>', '').replace(/\<\/li\>/g, '')
+          - desc = desc.split('<li>')
+          
+
+          <div class="body-container">
+            ul
+              each item in desc
+                if item
+                  li= item
+          </div>
+
+            <div class="screenshot-container">
+              <img loading=lazy src=#{company.screenshots} class="company-screenshot" />
+            </div>
+
+            <div class="employment-dates">#{company.start_date} - #{company.end_date}</div>
+        
+
+          //-<div class="employment-type">${itemWorkType}</div>`;
+        </div>
+      else
+        li There are no companies.
+    
+  </div>

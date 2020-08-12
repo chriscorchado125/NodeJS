@@ -1,0 +1,58 @@
+<nav class="navbar navbar-light bg-light fixed-top navbar-fixed-top shadow">
+  <div class="navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav show" id="navbar-nav">
+      <a href="index.html" class="navbar-brand" id="logo"
+        ><img
+          src="https://chriscorchado.com/images/chriscorchado-initials-logo.png"
+          title="Home"
+          alt="Chris Corchado Logo"
+      /></a>
+      <a
+        href="companies.html"
+        class="nav-item nav-link"
+        title="History"
+        id="companies-link"
+        >History</a
+      >
+      <a href="courses.html" class="nav-item nav-link" title="Courses" id="courses-link"
+        >Courses</a
+      >
+      <a
+        href="projects.html"
+        class="nav-item nav-link"
+        title="Projects"
+        id="projects-link"
+        >Projects</a
+      >
+
+      <a href="contact.html" class="nav-item nav-link" title="Contact" id="contact-link"
+        >Contact</a
+      >
+    </div>
+
+    <div id="profiles"></div>
+  </div>
+
+  <div id="search-container">
+    <span id="searchCount">Loading...</span>
+    <input
+      type="text"
+      id="searchSite"
+      placeholder="Search items"
+      onkeyup="debounceMe()"
+      onkeypress="return searchFilter(event)"
+      class="ccBtn"
+      title="Enter something to search for"
+    />
+    <button
+      id="searchBtn"
+      class="searchBtn"
+      onclick="searchClear(SITE_SEARCH_ID)"
+      title="Clear the search"
+    >
+      clear
+    </button>
+
+    <div id="pagination"></div>
+  </div>
+</nav>
