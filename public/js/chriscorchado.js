@@ -746,18 +746,6 @@ const updateMenuPages = (currentPage, targetContainer) => __awaiter(void 0, void
         alert(`Sorry an error has occurred: ${error}`);
     });
 });
-const getCurrentPage = () => {
-    let thisPage = window.location.pathname
-        .split('/')
-        .filter(function (pathnamePieces) {
-        return pathnamePieces.length;
-    })
-        .pop();
-    let pageName = thisPage.split('.')[0];
-    if (pageName == 'index' || pageName == 'html5')
-        pageName = 'about';
-    return pageName;
-};
 const debounce = (func, wait) => {
     let timeout;
     return function executedFunction(...args) {
@@ -776,3 +764,50 @@ const debounceMe = debounce(() => {
 }, 500);
 window.onload = () => {
 };
+const getCurrentPage = () => {
+    let thisPage = window.location.pathname
+        .split('/')
+        .filter(function (pathnamePieces) {
+        return pathnamePieces.length;
+    })
+        .pop();
+    let pageName = thisPage.split('.')[0];
+    if (pageName == 'index' || pageName == 'html5')
+        pageName = 'about';
+    return pageName;
+};
+function nodePage() {
+    let currentNavItem = '';
+    let pageIsSearchable = false;
+    let pageHasGallery = false;
+    setTimeout(function () {
+        switch (getCurrentPage()) {
+            case 'about':
+                currentNavItem = 'about-link';
+                document.getElementById('logo').getElementsByTagName('img')[0].style.border =
+                    '1px dashed #7399EA';
+                break;
+            case 'companies':
+                currentNavItem = 'companies-link';
+                pageIsSearchable = true;
+                break;
+            case 'courses':
+                currentNavItem = 'courses-link';
+                pageIsSearchable = true;
+                pageHasGallery = true;
+                break;
+            case 'projects':
+                currentNavItem = 'projects-link';
+                pageIsSearchable = true;
+                pageHasGallery = true;
+                break;
+            case 'contact':
+                break;
+        }
+        if (getCurrentPage() !== 'about') {
+            document.getElementById(currentNavItem).className += ' nav-item-active';
+            document.getElementById('profiles').style.display = 'none';
+        }
+    }, 50);
+}
+window.onload = nodePage;

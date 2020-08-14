@@ -2,15 +2,23 @@ extends layout
 
 block content
 
+  - function test(a) {  alert(a) }
+
   div.container.about
 
     each item in data
 
       h1= titlePage
 
-      p !{item.description}
+      span !{item.description}
 
+      //- let aboutData = #{item.description}
+      //p hey #{aboutData}
  
-      p #{utility.pageSetup('about')}
+      //p #{utility.pageSetup('about')}
+
+      //p #{utility.getCurrentPage()}
+
+      //- document.getElementById('logo').getElementsByTagName('img')[0].style.border =  '1px dashed #7399EA';
 
         

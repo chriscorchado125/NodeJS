@@ -8,7 +8,6 @@ var company_controller = require('../controllers/companyController');
 router.get('/', home_controller.index);
 router.get('/index', home_controller.index);
 router.get('/companies', company_controller.index);
-
 router.get('/recordcount', record_controller.record_count);
 
 module.exports = router;
