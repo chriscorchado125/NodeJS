@@ -1,26 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var siteRoutes = require('./routes/routerlist');
-var compression = require('compression');
-var helmet = require('helmet');
+let siteRoutes = require('./routes/routerlist');
+let compression = require('compression');
+let helmet = require('helmet');
 
-var app = express();
+let app = express();
 
 app.use(helmet());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'default-src': ["'self'", 'stackpath.bootstrapcdn.com'],
+      'default-src': ["'self'"],
+      'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
       'script-src': [
         "'self'",
         'code.jquery.com',
         'cdn.jsdelivr.net',
         'cdnjs.cloudflare.com',
-        'chriscorchado.com',
       ],
       'img-src': ["'self'", 'chriscorchado.com'],
     },
@@ -28,13 +28,13 @@ app.use(
 );
 
 //Set up mongoose connection
-var mongoose = require('mongoose');
-var dev_db_url =
-  'mongodb+srv://mongoDBuser:m0ng0WE3409@parker.d2xy4.mongodb.net/nodejs?retryWrites=true&w=majority';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+let mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-var db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup

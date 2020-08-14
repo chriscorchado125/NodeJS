@@ -167,6 +167,9 @@ body {
 #logo > img:hover {
   border: 1px dashed #7399ea; }
 
+.home {
+  border: 1px dashed #7399ea; }
+
 .preloadAnimation {
   text-align: center;
   font-size: 34px;
@@ -231,7 +234,8 @@ h1 {
   margin-top: 90px;
   text-align: center;
   padding: 20px 5px 100px 5px;
-  background-color: #fff; }
+  background-color: #fff;
+  border-radius: 0 0 15px 15px; }
 
 #noRecords {
   font-size: 36px;
@@ -268,6 +272,9 @@ a:link {
 .featherlight-previous span {
   font-size: 34px;
   width: 35px; }
+
+#recordCounts {
+  text-align: center; }
 
 #footer {
   display: flex;

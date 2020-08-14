@@ -25,23 +25,6 @@ fetch('./includes/footer.html')
     .then((data) => {
     document.getElementById('footer').innerHTML = data;
 });
-const setLoading = (loadingStatus) => {
-    if (loadingStatus) {
-        let preloader = document.createElement('div');
-        preloader.innerHTML = `
-      <div class="preloadAnimation" id="preloadAnimation">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-        <br />Loading
-      </div>`;
-        document.body.append(preloader);
-    }
-    else {
-        document.getElementById('preloadAnimation').remove();
-        fadeIn(document.getElementsByClassName('container')[0]);
-    }
-};
 const getPage = (page, search, pagingURL) => __awaiter(void 0, void 0, void 0, function* () {
     let data = null;
     setLoading(true);
@@ -258,12 +241,6 @@ const formSubmitted = (seconds) => {
             window.location.replace(location.href.substring(0, location.href.lastIndexOf('/') + 1));
         }
     }, 1000);
-};
-const getMonthYear = (dateString) => {
-    let newDate = new Date(dateString);
-    return (newDate.toLocaleString('default', { month: 'long' }) +
-        ' ' +
-        newDate.getFullYear().toString());
 };
 const setPageHTML = (values) => {
     let item = '';
@@ -797,26 +774,5 @@ const debounceMe = debounce(() => {
     getPage(getCurrentPage(), inputSearchBox.value);
     updateInterface();
 }, 500);
-const fadeOut = (el) => {
-    el.style.opacity = 1;
-    (function fade() {
-        if ((el.style.opacity -= 0.1) < 0) {
-            el.style.display = 'none';
-        }
-        else {
-            requestAnimationFrame(fade);
-        }
-    })();
-};
-const fadeIn = (el) => {
-    el.style.opacity = 0;
-    (function fade() {
-        var val = parseFloat(el.style.opacity);
-        if (!((val += 0.1) > 1)) {
-            el.style.opacity = val;
-            requestAnimationFrame(fade);
-        }
-    })();
-};
 window.onload = () => {
 };

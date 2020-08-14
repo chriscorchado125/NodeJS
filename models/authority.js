@@ -10,5 +10,4 @@ var AuthoritySchema = new Schema({
   url: { type: String },
 });
 
-//Export model
 module.exports = mongoose.model('Authority', AuthoritySchema);

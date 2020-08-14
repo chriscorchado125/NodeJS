@@ -36,4 +36,4 @@ const setLoading = (loadingStatus) => {
         fadeIn(document.getElementsByClassName('container')[0]);
     }
 };
-export { fadeOut, fadeIn, setLoading };
+module.exports = { fadeOut, fadeIn, setLoading };

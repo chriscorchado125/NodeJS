@@ -21,29 +21,6 @@ fetch('./includes/footer.html')
   });
 
 /**
- * Toggle content and preloader
- * @param {boolean} loadingStatus
- */
-const setLoading = (loadingStatus: boolean) => {
-  if (loadingStatus) {
-    let preloader = document.createElement('div');
-
-    preloader.innerHTML = `
-      <div class="preloadAnimation" id="preloadAnimation">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-        <br />Loading
-      </div>`;
-
-    document.body.append(preloader);
-  } else {
-    document.getElementById('preloadAnimation').remove();
-    fadeIn(document.getElementsByClassName('container')[0]);
-  }
-};
-
-/**
  * Load page
  * @param {string} page - page name
  * @param {string=} search - (optional) - search string
@@ -364,21 +341,6 @@ const formSubmitted = (seconds: number) => {
       );
     }
   }, 1000);
-};
-
-/**
- * Change date to name of the month plus the 4 digit year
- * @param {string} dateString - date value
- * @return {string} - month and year - example: January 2020
- */
-const getMonthYear = (dateString: string) => {
-  let newDate = new Date(dateString);
-
-  return (
-    newDate.toLocaleString('default', { month: 'long' }) +
-    ' ' +
-    newDate.getFullYear().toString()
-  );
 };
 
 /**
@@ -1209,40 +1171,7 @@ const debounceMe = debounce(() => {
   updateInterface();
 }, 500);
 
-// https://gist.github.com/alirezas/c4f9f43e9fe1abba9a4824dd6fc60a55
-/**
- * Pure JS fade in using opacity
- * @param {any} HTML element
- */
-const fadeOut = (el: any) => {
-  el.style.opacity = 1;
-
-  (function fade() {
-    if ((el.style.opacity -= 0.1) < 0) {
-      el.style.display = 'none';
-    } else {
-      requestAnimationFrame(fade);
-    }
-  })();
-};
-
-/**
- * Pure JS fade out using opacity
- * @param {any} HTML element
- */
-const fadeIn = (el: any) => {
-  el.style.opacity = 0;
-
-  (function fade() {
-    var val = parseFloat(el.style.opacity);
-
-    if (!((val += 0.1) > 1)) {
-      el.style.opacity = val;
-      requestAnimationFrame(fade);
-    }
-  })();
-};
-
 window.onload = () => {
   //getPage(getCurrentPage());
+  //pageSetup(getCurrentPage());
 };

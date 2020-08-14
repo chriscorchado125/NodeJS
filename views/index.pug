@@ -1,10 +1,16 @@
 extends layout
 
 block content
-  h1 Homepage #{title}
-  hr
 
-  if error
-    p Error getting dynamic content.
-  else
-    p Empty
+  div.container.about
+
+    each item in data
+
+      h1= titlePage
+
+      p !{item.description}
+
+ 
+      p #{utility.pageSetup('about')}
+
+        

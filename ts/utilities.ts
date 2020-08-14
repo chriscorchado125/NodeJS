@@ -56,4 +56,4 @@ const setLoading = (loadingStatus: boolean) => {
   }
 };
 
-export { fadeOut, fadeIn, setLoading };
+module.exports = { fadeOut, fadeIn, setLoading };

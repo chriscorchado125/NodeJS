@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
 var CourseSchema = new Schema({
@@ -15,5 +14,4 @@ var CourseSchema = new Schema({
   course_date: { type: Date },
 });
 
-//Export model
 module.exports = mongoose.model('Course', CourseSchema);

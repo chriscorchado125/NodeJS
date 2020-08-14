@@ -3,7 +3,7 @@ var router = express.Router();
 
 var company_controller = require('../controllers/companyController');
 
-router.get('/company', function (req, res, next) {
+router.get('/companies', function (req, res, next) {
   res.render('company', { title: company_controller.index });
 });
 

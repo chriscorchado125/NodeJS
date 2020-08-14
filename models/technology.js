@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
 var TechnologySchema = new Schema({
@@ -10,5 +9,4 @@ var TechnologySchema = new Schema({
   url: { type: String },
 });
 
-//Export model
 module.exports = mongoose.model('Technology', TechnologySchema);

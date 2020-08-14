@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
 var CompanySchema = new Schema({
@@ -18,5 +17,4 @@ var CompanySchema = new Schema({
   //project_reference: { type: Schema.Types.ObjectId, ref: 'Technology', required: true },
 });
 
-//Export model
 module.exports = mongoose.model('Company', CompanySchema);
