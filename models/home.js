@@ -7,6 +7,8 @@ var HomeSchema = new Schema({
   resume: { type: String },
   linkedin: { type: String },
   azure: { type: String },
+  created: { type: Date },
+  modified: { type: Date },
   // technology_reference: {
   //   type: Schema.Types.ObjectId,
   //   ref: 'Technology',

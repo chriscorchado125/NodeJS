@@ -2,19 +2,19 @@ extends layout
 
 block content
 
-  div.container.row    
+  div.container.row
 
-      each company in data
+    each company in data
 
-        div.company-container.col.shadow
+      div.company-container.col.shadow
 
-          div.company-name #{company.name}
-          div.company-job-title #{company.job_title}
+        div.company-name #{company.name}
+        div.company-job-title #{company.job_title}
 
-          div.body-container
-            p !{company.description}
+        div.body-container
+          p !{company.description}
 
-          div.screenshot-container
-            <img loading=lazy src=#{company.screenshots} class="company-screenshot" />
+        div.screenshot-container
+          img(loading=lazy src=company.screenshots class="company-screenshot")
 
-          div.employment-dates #{utility.getMonthYear(company.start_date)} - #{utility.getMonthYear(company.end_date)}
+        div.employment-dates #{utility.getMonthYear(company.start_date)} - #{utility.getMonthYear(company.end_date)}

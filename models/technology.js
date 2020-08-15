@@ -7,6 +7,8 @@ var TechnologySchema = new Schema({
   logo: { type: String },
   icon: { type: String },
   url: { type: String },
+  created: { type: Date },
+  modified: { type: Date },
 });
 
 module.exports = mongoose.model('Technology', TechnologySchema);

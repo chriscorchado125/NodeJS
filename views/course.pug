@@ -2,6 +2,34 @@ extends layout
 
 block content
 
-  div.container.about
+  div.container.courses-container
 
-    h1= titlePage  
+    each course in data
+      
+      div.course-box.box
+
+        h2 #{course.name}
+
+        div
+          - var cleanCourseName = course.name.replace(/(<([^>]+)>)/gi, '')
+
+          <img loading=lazy src=#{course.certificate_image} alt="#{cleanCourseName}" title="#{cleanCourseName}" />
+
+        div.course-wrapper
+
+          span.course-date 
+          #{utility.getMonthYear(course.course_date)}
+
+          span.course-links
+
+            a(href=course.certificate_pdf target='_blank')
+              img(loading=lazy src="https://chriscorchado.com/images/pdfIcon.jpg" height="25" title="View the PDF Certificate" alt="View the PDF Certificate")
+            
+          span.course-links
+
+            if course.track_image
+            
+              a(href=course.track_image target='_blank')
+                img(loading=lazy src="https://chriscorchado.com/images/linkedIn-track.png" height="25" title="View the Courses in the Track" alt="View the Courses in the Track")
+          
+

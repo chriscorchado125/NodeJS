@@ -937,33 +937,7 @@ const renderPage = (
   setLoading(false);
 };
 
-/**
- * Create absolute link
- * @param {string} linkToFix - relative url
- * @param {string} page - page name
- * @return {string} - absolute url
- */
-const getFullUrlByPage = (linkToFix: string, page: string) => {
-  let pathToResource = 'No Path Found';
 
-  switch (page) {
-    case 'companies':
-      pathToResource = 'company-screenshot';
-      break;
-    case 'courses':
-      if (linkToFix.indexOf('.pdf') !== -1) {
-        pathToResource = 'award-pdf';
-      } else {
-        pathToResource = 'award-images';
-      }
-      break;
-    case 'projects':
-      pathToResource = 'project-screenshot';
-      break;
-  }
-
-  return `${API_BASE}/sites/default/files/${pathToResource}/${linkToFix}`;
-};
 
 /**
  * Get the current search count

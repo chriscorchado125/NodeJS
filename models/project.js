@@ -17,6 +17,8 @@ var ProjectSchema = new Schema({
     ref: 'Technology',
     required: true,
   },
+  created: { type: Date },
+  modified: { type: Date },
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

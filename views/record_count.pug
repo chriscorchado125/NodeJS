@@ -2,8 +2,8 @@ extends layout
 
 block content
 
-  div.container
+  div.container.about
 
     h1 !{title}
-    
-    p#recordCounts #[strong About:] !{data.home_count} | #[strong History:] !{data.company_count}
+    p
+    p#recordCounts #[strong About:] !{data.home_count} | #[strong History:] !{data.company_count} | #[strong Courses:] !{data.course_count}

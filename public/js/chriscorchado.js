@@ -627,26 +627,6 @@ const renderPage = (data, page, searchedFor, next, prev) => {
     setPagination(itemCount, data.passedInCount.currentCount, prev, next);
     setLoading(false);
 };
-const getFullUrlByPage = (linkToFix, page) => {
-    let pathToResource = 'No Path Found';
-    switch (page) {
-        case 'companies':
-            pathToResource = 'company-screenshot';
-            break;
-        case 'courses':
-            if (linkToFix.indexOf('.pdf') !== -1) {
-                pathToResource = 'award-pdf';
-            }
-            else {
-                pathToResource = 'award-images';
-            }
-            break;
-        case 'projects':
-            pathToResource = 'project-screenshot';
-            break;
-    }
-    return `${API_BASE}/sites/default/files/${pathToResource}/${linkToFix}`;
-};
 const getSearchCount = (count, searchCountID) => {
     let searchElement = document.getElementById(SITE_SEARCH_ID);
     if (searchElement.value) {
