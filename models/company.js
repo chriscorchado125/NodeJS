@@ -14,7 +14,7 @@ var CompanySchema = new Schema({
   job_type: { type: String },
   start_date: { type: Date },
   end_date: { type: Date },
-  created: { type: Date },
+  created: { type: Date, default: Date.now },
   modified: { type: Date },
   //project_reference: { type: Schema.Types.ObjectId, ref: 'Technology', required: true },
 });

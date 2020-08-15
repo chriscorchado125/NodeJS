@@ -7,7 +7,7 @@ var TechnologySchema = new Schema({
   logo: { type: String },
   icon: { type: String },
   url: { type: String },
-  created: { type: Date },
+  created: { type: Date, default: Date.now },
   modified: { type: Date },
 });
 

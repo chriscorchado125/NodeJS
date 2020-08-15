@@ -13,7 +13,7 @@ var CourseSchema = new Schema({
   certificate_image: { type: String, required: true },
   track_image: { type: String },
   course_date: { type: Date },
-  created: { type: Date },
+  created: { type: Date, default: Date.now },
   modified: { type: Date },
 });
 
