@@ -2,6 +2,28 @@ extends layout
 
 block content
 
-  div.container.about
+  div.container.project-container
 
-    h1= titlePage  
+    each project in data
+
+      div.project.col
+
+        div.project-title #{project.name}
+        
+        div.project-company #{project.company_name} #[span.project-date (#{project.project_date.getFullYear()})] 
+
+        div.body-container !{project.description}
+
+          - var cleanProjectName = project.name.replace(/(<([^>]+)>)/gi, '')
+          section(class=`project-item-grid project-items${project.screenshots.length}` data-featherlight-gallery="" data-featherlight-filter="a")
+
+            each screenshot in project.screenshots
+              - var screens = screenshot.split(',')
+
+                div.project-item.shadow(title=cleanProjectName)
+                  
+                  a.gallery(href=screens[1])
+                    div.project-item-desc #{screens[0]}
+                      img(loading="lazy" src=screens[1] alt=screens[0] title=screens[0])
+
+        div.project-technology #{project.technology}
