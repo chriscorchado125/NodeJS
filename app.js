@@ -10,17 +10,22 @@ let helmet = require('helmet');
 
 let app = express();
 
-app.use(helmet());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'default-src': ["'self'"],
-      'style-src': ["'self'", 'stackpath.bootstrapcdn.com', 'cdn.jsdelivr.net'],
+      'default-src': ["'self'", 'chriscorchado.com'],
+      'style-src': [
+        "'self'",
+        'stackpath.bootstrapcdn.com',
+        'cdn.jsdelivr.net',
+        'chriscorchado.com',
+      ],
       'script-src': [
         "'self'",
         'code.jquery.com',
         'cdn.jsdelivr.net',
         'cdnjs.cloudflare.com',
+        'chriscorchado.com',
       ],
       'img-src': ["'self'", 'chriscorchado.com'],
     },
