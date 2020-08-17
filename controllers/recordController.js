@@ -1,6 +1,6 @@
-var Home = require('../models/home');
 var Company = require('../models/company');
 var Course = require('../models/course');
+var Project = require('../models/project');
 
 var async = require('async');
 
@@ -11,12 +11,12 @@ exports.record_count = function (req, res) {
         Company.countDocuments({}, callback);
       },
 
-      home_count: function (callback) {
-        Home.countDocuments({}, callback);
-      },
-
       course_count: function (callback) {
         Course.countDocuments({}, callback);
+      },
+
+      project_count: function (callback) {
+        Project.countDocuments({}, callback);
       },
     },
 
