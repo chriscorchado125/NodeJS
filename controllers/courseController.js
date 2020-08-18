@@ -11,6 +11,7 @@ exports.index = function (req, res, next) {
       res.render('course', {
         title: 'Chris Corchado - Courses - Online Portfolio and Resume',
         data: data,
+        count: data.length,
         utility: { getMonthYear },
       });
     }

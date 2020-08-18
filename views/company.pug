@@ -6,9 +6,13 @@ block content
 
     each company in data
 
+      div#page-item-count #{count}
+      div#searchText
+
       div.company-container.col.shadow
 
         div.company-name #{company.name}
+        
         div.company-job-title #{company.job_title}
 
         div.body-container

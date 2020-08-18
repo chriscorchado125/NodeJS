@@ -15,6 +15,26 @@ html(lang='en')
     link(rel='stylesheet', href='/css/contact.css')
   body
     header(id='navigation')
+      nav.navbar.navbar-light.bg-light.fixed-top.navbar-fixed-top.shadow
+        div#navbarCollapse.navbar-collapse
+          div#navbar-nav.navbar-nav.show
+            
+            a#logo.navbar-brand(href="index")
+              img#logo-image(src="https://chriscorchado.com/images/chriscorchado-initials-logo.png" title="Home" alt="Chris Corchado Logo")
+            
+            a#companies-link.nav-item.nav-link(href="companies" title="History") History
+            a#courses-link.nav-item.nav-link(href="courses" title="Courses") Courses
+            a#projects-link.nav-item.nav-link(href="projects" title="Projects") Projects
+            a#contact-link.nav-item.nav-link(href="contact" title="Contact") Contact
+
+        div#profiles        
+
+        div#search-container
+          span#searchCount Loading...
+          input#searchSite.ccBtn(type="text" placeholder="Search items"   title="Enter something to search for")
+          button#searchBtn.searchBtn(onclick="searchClear(SITE_SEARCH_ID)" title="Clear the search") clear
+
+          div#pagination
 
     block content
 
@@ -25,3 +45,8 @@ html(lang='en')
     script(src='/js/chriscorchado.js')
 
     footer(id='footer')
+      div#html.site-version Current Site 
+        div 
+          img(alt="HTML Website" src="https://chriscorchado.com/drupal8/sites/default/files/inline-images/nodejs.png")
+          a(href="https://github.com/chriscorchado125/NodeJS" target="_blank")
+            img(alt="HTML Github" src="https://chriscorchado.com/drupal8/sites/default/files/inline-images/github.jpg")

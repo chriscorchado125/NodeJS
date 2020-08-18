@@ -228,6 +228,9 @@ h1 {
     #profiles .icon img {
       height: 30px; }
 
+#page-item-count {
+  display: none; }
+
 /* space for top navigation */
 .container {
   margin: auto;

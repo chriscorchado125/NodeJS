@@ -1,21 +1,5 @@
 'use strict';
 
-fetch('./includes/nav.html')
-  .then((response) => {
-    return response.text();
-  })
-  .then((data) => {
-    document.getElementById('navigation').innerHTML = data;
-  });
-
-fetch('./includes/footer.html')
-  .then((response) => {
-    return response.text();
-  })
-  .then((data) => {
-    document.getElementById('footer').innerHTML = data;
-  });
-
 /**
  * Get the current page name
  * @return {string} - page name
@@ -75,6 +59,28 @@ function nodePage() {
         currentNavItem = 'about-link';
         document.getElementById('logo').getElementsByTagName('img')[0].style.border =
           '1px dashed #7399EA';
+
+        document.getElementById('profiles').innerHTML = `
+          <div class="icon" id="pdf-resume">
+            <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank">
+              <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
+              <span>Resume</span>
+            </a>
+          </div>
+
+          <div class="icon" id="profile-linkedin">
+            <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank">
+              <img alt="Link to LinkedIn Profile" title="Link to LinkedIn Profile" src="https://chriscorchado.com/images/linkedInIcon.jpg" />
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+          <div class="icon" id="profile-azure">
+            <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank">
+              <img alt="Link to Azure Profile" title="Link to Azure Profile" src="https://chriscorchado.com/images/azureIcon.png" />
+              <span>Azure</span>
+            </a>
+          </div>`;
         break;
       case 'companies':
         currentNavItem = 'companies-link';
@@ -92,8 +98,6 @@ function nodePage() {
         break;
       case 'contact':
         currentNavItem = 'contact-link';
-        pageIsSearchable = false;
-        pageHasGallery = false;
 
         const params = new URLSearchParams(window.location.search);
 
@@ -114,9 +118,37 @@ function nodePage() {
 
     if (getCurrentPage() !== 'about') {
       document.getElementById(currentNavItem).className += ' nav-item-active';
-      document.getElementById('profiles').style.display = 'none';
     }
-  }, 50);
+
+    if (pageIsSearchable) {
+      document.getElementById('search-container').style.display = 'block';
+
+      const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
+      searchBox.addEventListener('keyup', (event) => {
+        searchBox.value = searchBox.value.replace(/[^\w\s]/gi, '');
+        document.getElementById('searchText').innerText = searchBox.value;
+
+        window.location.href =
+          window.location.href.split('?')[0] + '?q=' + searchBox.value;
+
+        //debounceMe()
+      });
+
+      let currentRecordCount = document.getElementById('page-item-count').innerText;
+      let recordText = 'Items';
+
+      if (parseInt(currentRecordCount) === 1) recordText = 'Item';
+
+      document.getElementById(
+        'searchCount'
+      ).innerHTML = `${currentRecordCount} ${recordText}`;
+
+      if (window.location.href.split('?')[1]) {
+        searchBox.value = window.location.href.split('?')[1].slice(2);
+        searchBox.focus();
+      }
+    }
+  }, 100);
 }
 
 window.onload = nodePage;
