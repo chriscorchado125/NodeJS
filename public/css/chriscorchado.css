@@ -292,13 +292,14 @@ a:link {
   border-top: 2px solid #7399ea; }
 
 .site-version {
-  display: inline-block;
-  max-width: 120px;
   text-align: center;
-  padding: 0 5px 0 5px;
+  padding: 10px 0;
   font-size: 10px; }
-  .site-version img {
-    width: 30px; }
+  .site-version div {
+    display: inline-block;
+    margin: 0 10px; }
+    .site-version div img {
+      width: 50px; }
 
 .about h1 {
   color: #7399ea;

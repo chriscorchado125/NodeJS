@@ -58,6 +58,7 @@ const formSubmitted = (seconds: number) => {
  * @return {function} - as long as it continues to be invoked the function will not be triggered.
  */
 const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
+const searchBtn = document.getElementById('searchBtn')! as HTMLInputElement;
 
 const debounce = (func: any, wait: number) => {
   let timeout: any;
@@ -82,6 +83,13 @@ const debounceMe = debounce(() => {
   window.location.href =
     window.location.href.split('?')[0] + '?q=' + searchBox.value.replace(/[^\w\s]/gi, '');
 }, 500);
+
+/**
+ * Clear current search by removing the querysting
+ */
+const searchClear = () => {
+  window.location.href = window.location.href.split('?')[0];
+};
 
 // TODO check attributes inside pug = div([innerHtml]="example")
 function nodePage() {
@@ -161,16 +169,17 @@ function nodePage() {
     if (pageIsSearchable) {
       document.getElementById('search-container').style.display = 'block';
 
-      searchBox.addEventListener('keyup', (event) => {
-        debounceMe();
-      });
+      // wait for user to pause typing before initiating a search
+      searchBox.addEventListener('keyup', (event) => debounceMe());
+      searchBtn.addEventListener('click', (event) => searchClear());
 
       // setup record counts
       let currentRecordCount = document.getElementById('page-item-count').innerText;
-      let recordText = 'Items';
 
+      let recordText = 'Items';
       if (parseInt(currentRecordCount) === 1) recordText = 'Item';
 
+      // update header with the record count
       document.getElementById(
         'searchCount'
       ).innerHTML = `${currentRecordCount} ${recordText}`;
@@ -182,6 +191,10 @@ function nodePage() {
           .slice(2)
           .replace(/[^\w\s]/gi, '')
           .replace('20', ' ');
+
+        //show the clear search button
+        document.getElementById('searchBtn').style.visibility = 'visible';
+
         searchBox.focus();
       }
     }

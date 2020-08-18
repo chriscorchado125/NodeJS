@@ -31,6 +31,7 @@ const formSubmitted = (seconds) => {
     }, 1000);
 };
 const searchBox = document.getElementById('searchSite');
+const searchBtn = document.getElementById('searchBtn');
 const debounce = (func, wait) => {
     let timeout;
     return function executedFunction(...args) {
@@ -46,6 +47,9 @@ const debounceMe = debounce(() => {
     window.location.href =
         window.location.href.split('?')[0] + '?q=' + searchBox.value.replace(/[^\w\s]/gi, '');
 }, 500);
+const searchClear = () => {
+    window.location.href = window.location.href.split('?')[0];
+};
 function nodePage() {
     let currentNavItem = '';
     let pageIsSearchable = false;
@@ -111,9 +115,8 @@ function nodePage() {
         }
         if (pageIsSearchable) {
             document.getElementById('search-container').style.display = 'block';
-            searchBox.addEventListener('keyup', (event) => {
-                debounceMe();
-            });
+            searchBox.addEventListener('keyup', (event) => debounceMe());
+            searchBtn.addEventListener('click', (event) => searchClear());
             let currentRecordCount = document.getElementById('page-item-count').innerText;
             let recordText = 'Items';
             if (parseInt(currentRecordCount) === 1)
@@ -125,6 +128,7 @@ function nodePage() {
                     .slice(2)
                     .replace(/[^\w\s]/gi, '')
                     .replace('20', ' ');
+                document.getElementById('searchBtn').style.visibility = 'visible';
                 searchBox.focus();
             }
         }

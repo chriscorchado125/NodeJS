@@ -32,7 +32,7 @@ html(lang='en')
         div#search-container
           span#searchCount Loading...
           input#searchSite.ccBtn(type="text" placeholder="Search items"   title="Enter something to search for")
-          button#searchBtn.searchBtn(onclick="searchClear(SITE_SEARCH_ID)" title="Clear the search") clear
+          button#searchBtn.searchBtn(title="Clear the search") clear
 
           div#pagination
 
@@ -45,8 +45,19 @@ html(lang='en')
     script(src='/js/chriscorchado.js')
 
     footer(id='footer')
-      div#html.site-version Current Site 
+      div#html.site-version
         div 
-          img(alt="HTML Website" src="https://chriscorchado.com/drupal8/sites/default/files/inline-images/nodejs.png")
+          img(alt="nodeJS" title="nodeJS"  src="https://chriscorchado.com/images/nodejs.png")
+
+        div 
+          img(alt="mongoDB" title="mongoDB"  src="https://chriscorchado.com/images/mongodb.png")
+        
+        div 
+          img(alt="mongoose" title="mongoose"  src="https://chriscorchado.com/images/mongoose.png")
+        
+        div 
+          img(alt="pugjs" title="pugjs"  src="https://chriscorchado.com/images/pugjs.png")
+        
+        div
           a(href="https://github.com/chriscorchado125/NodeJS" target="_blank")
-            img(alt="HTML Github" src="https://chriscorchado.com/drupal8/sites/default/files/inline-images/github.jpg")
+            img(alt="View the code on GitHub" title="View the code on GitHub"  src="https://chriscorchado.com/images/github.jpg")

@@ -173,14 +173,15 @@ a:link {
 }
 
 .site-version {
-  display: inline-block;
-  max-width: 120px;
   text-align: center;
-  padding: 0 5px 0 5px;
+  padding: 10px 0;
   font-size: 10px;
-
-  img {
-    width: 30px;
+  div {
+    display: inline-block;
+    margin: 0 10px;
+    img {
+      width: 50px;
+    }
   }
 }
 
