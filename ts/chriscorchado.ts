@@ -12,7 +12,11 @@ const getCurrentPage = () => {
     })
     .pop();
 
-  let pageName = thisPage.split('.')[0];
+  let pageName = 'about';
+
+  if (thisPage) {
+    pageName = thisPage.split('.')[0];
+  }
   if (pageName == 'index' || pageName == 'nodejs') pageName = 'about';
 
   return pageName;
@@ -47,6 +51,38 @@ const formSubmitted = (seconds: number) => {
   }, 1000);
 };
 
+/**
+ * Debounce search requests in order to improve performance
+ * @param {any} function
+ * @param {number} wait - time to wait in milliseconds before invoking search
+ * @return {function} - as long as it continues to be invoked the function will not be triggered.
+ */
+const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
+
+const debounce = (func: any, wait: number) => {
+  let timeout: any;
+
+  return function executedFunction(...args: any) {
+    // callback to be executed
+    const later = () => {
+      timeout = null; // indicate the debounce ended
+      func(...args); // execute the callback
+    };
+
+    clearTimeout(timeout); // on every function execution
+    timeout = setTimeout(later, wait); // restart the waiting period timeout
+  };
+};
+
+/**
+ * Triggered on the keyup event within search input box
+ */
+const debounceMe = debounce(() => {
+  // filter search values and update the URL to fire off the search
+  window.location.href =
+    window.location.href.split('?')[0] + '?q=' + searchBox.value.replace(/[^\w\s]/gi, '');
+}, 500);
+
 // TODO check attributes inside pug = div([innerHtml]="example")
 function nodePage() {
   let currentNavItem = '';
@@ -55,6 +91,7 @@ function nodePage() {
 
   setTimeout(function () {
     switch (getCurrentPage()) {
+      case '/':
       case 'about': // homepage
         currentNavItem = 'about-link';
         document.getElementById('logo').getElementsByTagName('img')[0].style.border =
@@ -116,6 +153,7 @@ function nodePage() {
         break;
     }
 
+    // the home/about link is an image and not text
     if (getCurrentPage() !== 'about') {
       document.getElementById(currentNavItem).className += ' nav-item-active';
     }
@@ -123,17 +161,11 @@ function nodePage() {
     if (pageIsSearchable) {
       document.getElementById('search-container').style.display = 'block';
 
-      const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
       searchBox.addEventListener('keyup', (event) => {
-        searchBox.value = searchBox.value.replace(/[^\w\s]/gi, '');
-        document.getElementById('searchText').innerText = searchBox.value;
-
-        window.location.href =
-          window.location.href.split('?')[0] + '?q=' + searchBox.value;
-
-        //debounceMe()
+        debounceMe();
       });
 
+      // setup record counts
       let currentRecordCount = document.getElementById('page-item-count').innerText;
       let recordText = 'Items';
 
@@ -143,12 +175,17 @@ function nodePage() {
         'searchCount'
       ).innerHTML = `${currentRecordCount} ${recordText}`;
 
+      // if searching keep the querystring and search input box values synced
       if (window.location.href.split('?')[1]) {
-        searchBox.value = window.location.href.split('?')[1].slice(2);
+        searchBox.value = window.location.href
+          .split('?')[1]
+          .slice(2)
+          .replace(/[^\w\s]/gi, '')
+          .replace('20', ' ');
         searchBox.focus();
       }
     }
-  }, 100);
+  }, 125);
 }
 
 window.onload = nodePage;

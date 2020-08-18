@@ -6,7 +6,10 @@ const getCurrentPage = () => {
         return pathnamePieces.length;
     })
         .pop();
-    let pageName = thisPage.split('.')[0];
+    let pageName = 'about';
+    if (thisPage) {
+        pageName = thisPage.split('.')[0];
+    }
     if (pageName == 'index' || pageName == 'nodejs')
         pageName = 'about';
     return pageName;
@@ -27,12 +30,29 @@ const formSubmitted = (seconds) => {
         }
     }, 1000);
 };
+const searchBox = document.getElementById('searchSite');
+const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            timeout = null;
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
+const debounceMe = debounce(() => {
+    window.location.href =
+        window.location.href.split('?')[0] + '?q=' + searchBox.value.replace(/[^\w\s]/gi, '');
+}, 500);
 function nodePage() {
     let currentNavItem = '';
     let pageIsSearchable = false;
     let pageHasGallery = false;
     setTimeout(function () {
         switch (getCurrentPage()) {
+            case '/':
             case 'about':
                 currentNavItem = 'about-link';
                 document.getElementById('logo').getElementsByTagName('img')[0].style.border =
@@ -91,12 +111,8 @@ function nodePage() {
         }
         if (pageIsSearchable) {
             document.getElementById('search-container').style.display = 'block';
-            const searchBox = document.getElementById('searchSite');
             searchBox.addEventListener('keyup', (event) => {
-                searchBox.value = searchBox.value.replace(/[^\w\s]/gi, '');
-                document.getElementById('searchText').innerText = searchBox.value;
-                window.location.href =
-                    window.location.href.split('?')[0] + '?q=' + searchBox.value;
+                debounceMe();
             });
             let currentRecordCount = document.getElementById('page-item-count').innerText;
             let recordText = 'Items';
@@ -104,10 +120,14 @@ function nodePage() {
                 recordText = 'Item';
             document.getElementById('searchCount').innerHTML = `${currentRecordCount} ${recordText}`;
             if (window.location.href.split('?')[1]) {
-                searchBox.value = window.location.href.split('?')[1].slice(2);
+                searchBox.value = window.location.href
+                    .split('?')[1]
+                    .slice(2)
+                    .replace(/[^\w\s]/gi, '')
+                    .replace('20', ' ');
                 searchBox.focus();
             }
         }
-    }, 100);
+    }, 125);
 }
 window.onload = nodePage;

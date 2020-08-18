@@ -7,16 +7,15 @@ block content
     each company in data
 
       div#page-item-count #{count}
-      div#searchText
 
       div.company-container.col.shadow
 
-        div.company-name #{company.name}
+        div.company-name !{utility.highlightSearch(company.name, searchValue)}
         
-        div.company-job-title #{company.job_title}
+        div.company-job-title !{utility.highlightSearch(company.job_title, searchValue)}
 
         div.body-container
-          p !{company.description}
+          p !{utility.highlightSearch(company.description, searchValue)}
 
         div.screenshot-container
           img(loading=lazy src=company.screenshots class="company-screenshot")

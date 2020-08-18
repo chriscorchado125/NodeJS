@@ -3,10 +3,27 @@ var async = require('async');
 
 exports.index = function (req, res, next) {
   const getMonthYear = require('../public/js/getMonthYear');
+  const highlightSearch = require('../public/js/highlightSearch');
 
-  let search = { $regex: new RegExp(req.query.q, 'i') };
+  if (!req.query.q) {
+    Company.find({}, 'name description screenshots job_title start_date end_date').exec(
+      function (err, data) {
+        if (err) return next(err);
 
-  if (req.query.q) {
+        res.render('company', {
+          title: 'Chris Corchado - History - Online Portfolio and Resume',
+          data: data,
+          count: data.length,
+          utility: {
+            getMonthYear,
+            highlightSearch,
+          },
+        });
+      }
+    );
+  } else {
+    let search = { $regex: new RegExp(req.query.q, 'i') };
+
     Company.find(
       {
         $or: [
@@ -29,21 +46,12 @@ exports.index = function (req, res, next) {
         title: 'Chris Corchado - History - Online Portfolio and Resume',
         data: data,
         count: data.length,
-        utility: { getMonthYear },
+        utility: {
+          getMonthYear,
+          highlightSearch,
+        },
+        searchValue: req.query.q,
       });
     });
-  } else {
-    Company.find({}, 'name description screenshots job_title start_date end_date').exec(
-      function (err, data) {
-        if (err) return next(err);
-
-        res.render('company', {
-          title: 'Chris Corchado - History - Online Portfolio and Resume',
-          data: data,
-          count: data.length,
-          utility: { getMonthYear },
-        });
-      }
-    );
   }
 };
