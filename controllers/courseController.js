@@ -1,7 +1,7 @@
 var Course = require('../models/course');
 var async = require('async');
 
-const MAX_ITEMS_PER_PAGE = 4;
+const MAX_ITEMS_PER_PAGE = 50;
 
 ObjectID = require('mongodb').ObjectID;
 

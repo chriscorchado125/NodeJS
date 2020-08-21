@@ -1,6 +1,6 @@
 'use strict';
 
-const MAX_ITEMS_PER_PAGE = 4;
+const MAX_ITEMS_PER_PAGE = 50;
 
 const params = new URLSearchParams(window.location.search);
 const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
