@@ -2,15 +2,13 @@ extends layout
 
 block content
 
-  div#page-item-count #{count}
-
   div.container.courses-container
 
     each course in data
       
       div.course-box.box
 
-        h2 !{utility.highlightSearch(course.name, searchValue)}
+        h2 !{utility.highlightSearch(course.name, searched)}
 
         div
           - var cleanCourseName = course.name.replace(/(<([^>]+)>)/gi, '')

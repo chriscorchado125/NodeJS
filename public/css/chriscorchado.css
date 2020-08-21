@@ -34,9 +34,11 @@
   #search-container #searchCount {
     font-size: 12px;
     text-align: right;
-    margin-right: 5px;
+    margin-right: 10px;
     display: inline-block;
     width: 85px; }
+  #search-container #recordCount {
+    display: none; }
   #search-container #searchSite {
     width: 130px; }
   #search-container ::-ms-clear {
@@ -227,9 +229,6 @@ h1 {
     margin: 0 5px; }
     #profiles .icon img {
       height: 30px; }
-
-#page-item-count {
-  display: none; }
 
 /* space for top navigation */
 .container {

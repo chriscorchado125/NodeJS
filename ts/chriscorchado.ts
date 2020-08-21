@@ -1,5 +1,11 @@
 'use strict';
 
+const MAX_ITEMS_PER_PAGE = 4;
+
+const params = new URLSearchParams(window.location.search);
+const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
+const searchBtn = document.getElementById('searchBtn')! as HTMLInputElement;
+
 /**
  * Get the current page name
  * @return {string} - page name
@@ -57,9 +63,6 @@ const formSubmitted = (seconds: number) => {
  * @param {number} wait - time to wait in milliseconds before invoking search
  * @return {function} - as long as it continues to be invoked the function will not be triggered.
  */
-const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
-const searchBtn = document.getElementById('searchBtn')! as HTMLInputElement;
-
 const debounce = (func: any, wait: number) => {
   let timeout: any;
 
@@ -79,23 +82,68 @@ const debounce = (func: any, wait: number) => {
  * Triggered on the keyup event within search input box
  */
 const debounceMe = debounce(() => {
-  // filter search values and update the URL to fire off the search
   window.location.href =
     window.location.href.split('?')[0] + '?q=' + searchBox.value.replace(/[^\w\s]/gi, '');
 }, 500);
 
 /**
- * Clear current search by removing the querysting
+ * Manage the URL for search and paging
+ * @param {string} action - to take
  */
-const searchClear = () => {
-  window.location.href = window.location.href.split('?')[0];
+const manageURL = (action: string, value?: string) => {
+  let thisURL = window.location.href.split('?');
+
+  switch (action) {
+    case 'clearSearch':
+      window.location.href = thisURL[0];
+      break;
+    case 'sync':
+      // sync querystring and search input box values while searching
+      if (params.get('q')) {
+        searchBox.value = params
+          .get('q')
+          .replace(/[^\w\s]/gi, '')
+          .replace('20', ' ');
+
+        searchBox.focus();
+
+        searchBtn.style.visibility = 'visible';
+      }
+      break;
+    case 'paging':
+      let searched = '';
+      if (params.get('q')) searched = 'q=' + params.get('q') + '&';
+
+      // hidden field which holds the first and last record ids
+      let pageID = document.querySelector('#paging')! as HTMLElement;
+
+      let pageNumber = 2;
+      if (params.get('page')) pageNumber = parseInt(params.get('page')) - 1;
+
+      if (value === 'next') {
+        if (params.get('page')) pageNumber = parseInt(params.get('page')) + 1;
+      }
+
+      window.location.href =
+        thisURL[0].replace('#', '') +
+        '?' +
+        searched +
+        'first=' +
+        pageID.dataset.first +
+        '&last=' +
+        pageID.dataset.last +
+        '&dir=' +
+        value +
+        '&page=' +
+        pageNumber;
+      break;
+  }
 };
 
 // TODO check attributes inside pug = div([innerHtml]="example")
 function nodePage() {
   let currentNavItem = '';
   let pageIsSearchable = false;
-  let pageHasGallery = false;
 
   setTimeout(function () {
     switch (getCurrentPage()) {
@@ -134,17 +182,13 @@ function nodePage() {
       case 'courses':
         currentNavItem = 'courses-link';
         pageIsSearchable = true;
-        pageHasGallery = true;
         break;
       case 'projects':
         currentNavItem = 'projects-link';
         pageIsSearchable = true;
-        pageHasGallery = true;
         break;
       case 'contact':
         currentNavItem = 'contact-link';
-
-        const params = new URLSearchParams(window.location.search);
 
         if (params.get('submitted') === 'true') {
           formSubmitted(5); // set 5 second countdown
@@ -171,32 +215,71 @@ function nodePage() {
 
       // wait for user to pause typing before initiating a search
       searchBox.addEventListener('keyup', (event) => debounceMe());
-      searchBtn.addEventListener('click', (event) => searchClear());
+      searchBtn.addEventListener('click', (event) => manageURL('clearSearch'));
 
       // setup record counts
-      let currentRecordCount = document.getElementById('page-item-count').innerText;
+      let recordCount;
+
+      if (document.getElementById('recordCount')) {
+        recordCount = parseInt(document.getElementById('recordCount').innerText);
+      } else {
+        recordCount = 0;
+      }
+
+      let currentPageNumber = parseInt(params.get('page')) || 1;
 
       let recordText = 'Items';
-      if (parseInt(currentRecordCount) === 1) recordText = 'Item';
+      if (recordCount === 1) recordText = 'Item';
 
-      // update header with the record count
-      document.getElementById(
-        'searchCount'
-      ).innerHTML = `${currentRecordCount} ${recordText}`;
+      let firstNumberRange;
 
-      // if searching keep the querystring and search input box values synced
-      if (window.location.href.split('?')[1]) {
-        searchBox.value = window.location.href
-          .split('?')[1]
-          .slice(2)
-          .replace(/[^\w\s]/gi, '')
-          .replace('20', ' ');
-
-        //show the clear search button
-        document.getElementById('searchBtn').style.visibility = 'visible';
-
-        searchBox.focus();
+      if (currentPageNumber > 1) {
+        firstNumberRange = (currentPageNumber - 1) * MAX_ITEMS_PER_PAGE;
+      } else {
+        firstNumberRange = 1;
       }
+
+      let currentRecords = currentPageNumber * recordCount;
+      let pagingText = document.getElementById('paging-info');
+
+      // paging with prev and next
+      if (
+        document.getElementById('nextLink') ||
+        currentRecords >= MAX_ITEMS_PER_PAGE ||
+        currentPageNumber > 1
+      ) {
+        if (recordCount < currentRecords) {
+          // handle the last page counts
+          if (recordCount === 1) {
+            pagingText.innerHTML = `Item ${firstNumberRange + recordCount} - ${
+              firstNumberRange + recordCount
+            }`;
+          } else {
+            pagingText.innerHTML = `Items ${firstNumberRange} - ${
+              firstNumberRange + recordCount
+            }`;
+          }
+        } else {
+          pagingText.innerHTML = `Items ${firstNumberRange} - ${currentRecords}`;
+        }
+      } else {
+        // no paging
+        pagingText.innerHTML = `${recordCount} ${recordText}`;
+      }
+
+      if (document.getElementById('prevLink')) {
+        document
+          .getElementById('prevLink')
+          .addEventListener('click', (event) => manageURL('paging', 'prev'));
+      }
+
+      if (document.getElementById('nextLink')) {
+        document
+          .getElementById('nextLink')
+          .addEventListener('click', (event) => manageURL('paging', 'next'));
+      }
+
+      manageURL('sync');
     }
   }, 125);
 }

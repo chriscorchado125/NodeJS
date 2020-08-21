@@ -2,7 +2,6 @@
   display: grid;
   grid-gap: 5px;
   justify-items: center;
-  margin-top: 90px !important;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   /* course title */ }
   .courses-container h2 {

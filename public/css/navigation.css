@@ -34,9 +34,11 @@
   #search-container #searchCount {
     font-size: 12px;
     text-align: right;
-    margin-right: 5px;
+    margin-right: 10px;
     display: inline-block;
     width: 85px; }
+  #search-container #recordCount {
+    display: none; }
   #search-container #searchSite {
     width: 130px; }
   #search-container ::-ms-clear {

@@ -8,6 +8,7 @@ exports.index = function (req, res, next) {
     res.render('index', {
       title: 'Chris Corchado - Homepage',
       titlePage: 'About Me',
+      count: 1,
       data: data,
     });
   });

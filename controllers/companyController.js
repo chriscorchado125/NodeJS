@@ -46,11 +46,11 @@ exports.index = function (req, res, next) {
         title: 'Chris Corchado - History - Online Portfolio and Resume',
         data: data,
         count: data.length,
+        searched: req.query.q,
         utility: {
           getMonthYear,
           highlightSearch,
         },
-        searchValue: req.query.q,
       });
     });
   }

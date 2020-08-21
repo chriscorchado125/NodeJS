@@ -51,7 +51,7 @@ exports.index = function (req, res, next) {
         title: 'Chris Corchado - Projects - Online Portfolio and Resume',
         data: data,
         count: data.length,
-        searchValue: req.query.q,
+        searched: req.query.q,
         utility: {
           highlightSearch,
         },

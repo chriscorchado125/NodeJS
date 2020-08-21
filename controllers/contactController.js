@@ -7,6 +7,7 @@ exports.index = function (req, res, next) {
     res.render('contact', {
       title: ' Chris Corchado - Contact - Online Portfolio and Resume',
       titlePage: 'Contact',
+      count: 1,
       data: data,
       submitted: req.query.submitted,
     });

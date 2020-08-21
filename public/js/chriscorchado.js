@@ -1,4 +1,8 @@
 'use strict';
+const MAX_ITEMS_PER_PAGE = 4;
+const params = new URLSearchParams(window.location.search);
+const searchBox = document.getElementById('searchSite');
+const searchBtn = document.getElementById('searchBtn');
 const getCurrentPage = () => {
     let thisPage = window.location.pathname
         .split('/')
@@ -30,8 +34,6 @@ const formSubmitted = (seconds) => {
         }
     }, 1000);
 };
-const searchBox = document.getElementById('searchSite');
-const searchBtn = document.getElementById('searchBtn');
 const debounce = (func, wait) => {
     let timeout;
     return function executedFunction(...args) {
@@ -47,13 +49,52 @@ const debounceMe = debounce(() => {
     window.location.href =
         window.location.href.split('?')[0] + '?q=' + searchBox.value.replace(/[^\w\s]/gi, '');
 }, 500);
-const searchClear = () => {
-    window.location.href = window.location.href.split('?')[0];
+const manageURL = (action, value) => {
+    let thisURL = window.location.href.split('?');
+    switch (action) {
+        case 'clearSearch':
+            window.location.href = thisURL[0];
+            break;
+        case 'sync':
+            if (params.get('q')) {
+                searchBox.value = params
+                    .get('q')
+                    .replace(/[^\w\s]/gi, '')
+                    .replace('20', ' ');
+                searchBox.focus();
+                searchBtn.style.visibility = 'visible';
+            }
+            break;
+        case 'paging':
+            let searched = '';
+            if (params.get('q'))
+                searched = 'q=' + params.get('q') + '&';
+            let pageID = document.querySelector('#paging');
+            let pageNumber = 2;
+            if (params.get('page'))
+                pageNumber = parseInt(params.get('page')) - 1;
+            if (value === 'next') {
+                if (params.get('page'))
+                    pageNumber = parseInt(params.get('page')) + 1;
+            }
+            window.location.href =
+                thisURL[0].replace('#', '') +
+                    '?' +
+                    searched +
+                    'first=' +
+                    pageID.dataset.first +
+                    '&last=' +
+                    pageID.dataset.last +
+                    '&dir=' +
+                    value +
+                    '&page=' +
+                    pageNumber;
+            break;
+    }
 };
 function nodePage() {
     let currentNavItem = '';
     let pageIsSearchable = false;
-    let pageHasGallery = false;
     setTimeout(function () {
         switch (getCurrentPage()) {
             case '/':
@@ -90,16 +131,13 @@ function nodePage() {
             case 'courses':
                 currentNavItem = 'courses-link';
                 pageIsSearchable = true;
-                pageHasGallery = true;
                 break;
             case 'projects':
                 currentNavItem = 'projects-link';
                 pageIsSearchable = true;
-                pageHasGallery = true;
                 break;
             case 'contact':
                 currentNavItem = 'contact-link';
-                const params = new URLSearchParams(window.location.search);
                 if (params.get('submitted') === 'true') {
                     formSubmitted(5);
                 }
@@ -116,21 +154,56 @@ function nodePage() {
         if (pageIsSearchable) {
             document.getElementById('search-container').style.display = 'block';
             searchBox.addEventListener('keyup', (event) => debounceMe());
-            searchBtn.addEventListener('click', (event) => searchClear());
-            let currentRecordCount = document.getElementById('page-item-count').innerText;
-            let recordText = 'Items';
-            if (parseInt(currentRecordCount) === 1)
-                recordText = 'Item';
-            document.getElementById('searchCount').innerHTML = `${currentRecordCount} ${recordText}`;
-            if (window.location.href.split('?')[1]) {
-                searchBox.value = window.location.href
-                    .split('?')[1]
-                    .slice(2)
-                    .replace(/[^\w\s]/gi, '')
-                    .replace('20', ' ');
-                document.getElementById('searchBtn').style.visibility = 'visible';
-                searchBox.focus();
+            searchBtn.addEventListener('click', (event) => manageURL('clearSearch'));
+            let recordCount;
+            if (document.getElementById('recordCount')) {
+                recordCount = parseInt(document.getElementById('recordCount').innerText);
             }
+            else {
+                recordCount = 0;
+            }
+            let currentPageNumber = parseInt(params.get('page')) || 1;
+            let recordText = 'Items';
+            if (recordCount === 1)
+                recordText = 'Item';
+            let firstNumberRange;
+            if (currentPageNumber > 1) {
+                firstNumberRange = (currentPageNumber - 1) * MAX_ITEMS_PER_PAGE;
+            }
+            else {
+                firstNumberRange = 1;
+            }
+            let currentRecords = currentPageNumber * recordCount;
+            let pagingText = document.getElementById('paging-info');
+            if (document.getElementById('nextLink') ||
+                currentRecords >= MAX_ITEMS_PER_PAGE ||
+                currentPageNumber > 1) {
+                if (recordCount < currentRecords) {
+                    if (recordCount === 1) {
+                        pagingText.innerHTML = `Item ${firstNumberRange + recordCount} - ${firstNumberRange + recordCount}`;
+                    }
+                    else {
+                        pagingText.innerHTML = `Items ${firstNumberRange} - ${firstNumberRange + recordCount}`;
+                    }
+                }
+                else {
+                    pagingText.innerHTML = `Items ${firstNumberRange} - ${currentRecords}`;
+                }
+            }
+            else {
+                pagingText.innerHTML = `${recordCount} ${recordText}`;
+            }
+            if (document.getElementById('prevLink')) {
+                document
+                    .getElementById('prevLink')
+                    .addEventListener('click', (event) => manageURL('paging', 'prev'));
+            }
+            if (document.getElementById('nextLink')) {
+                document
+                    .getElementById('nextLink')
+                    .addEventListener('click', (event) => manageURL('paging', 'next'));
+            }
+            manageURL('sync');
         }
     }, 125);
 }

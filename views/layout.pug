@@ -15,6 +15,7 @@ html(lang='en')
     link(rel='stylesheet', href='/css/contact.css')
   body
     header(id='navigation')
+
       nav.navbar.navbar-light.bg-light.fixed-top.navbar-fixed-top.shadow
         div#navbarCollapse.navbar-collapse
           div#navbar-nav.navbar-nav.show
@@ -27,16 +28,40 @@ html(lang='en')
             a#projects-link.nav-item.nav-link(href="projects" title="Projects") Projects
             a#contact-link.nav-item.nav-link(href="contact" title="Contact") Contact
 
-        div#profiles        
+        div#profiles
 
         div#search-container
-          span#searchCount Loading...
+
+          span#searchCount
+            span#paging-info
+
           input#searchSite.ccBtn(type="text" placeholder="Search items"   title="Enter something to search for")
           button#searchBtn.searchBtn(title="Clear the search") clear
+          
+          span#paging(data-first=first data-last=last) 
+          span#recordCount #{count}
 
-          div#pagination
+          - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
+          if checkPager
 
-    block content
+            div#pagination
+
+              if page > 1 
+                a.pager-navigation(href="#" id="prevLink" title="View the previous page") Prev
+              else
+                span.pager-navigation.disabled(title="There is no previous page available") Prev
+
+              if  ((count == maxItemsPerPage) && (page > 0))
+                a.pager-navigation(href="#" id="nextLink" title="View the next page") Next
+              else
+                span.pager-navigation.disabled(title="There is no previous page available") Next
+
+    // CONTENT            
+    if count > 0
+      block content
+    else
+      div#noRecords No matches found for '#{searched}'
+
 
     script(src='https://code.jquery.com/jquery-3.5.0.min.js')
     script(src='//cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.min.js')
@@ -48,6 +73,9 @@ html(lang='en')
       div.site-version 
         div 
           img(alt="nodeJS" title="nodeJS"  src="https://chriscorchado.com/images/nodejs.png")
+        
+        div 
+          img(alt="Express" title="Express"  src="https://chriscorchado.com/images/express.png")
 
         div 
           img(alt="mongoDB" title="mongoDB"  src="https://chriscorchado.com/images/mongodb.png")
@@ -66,7 +94,6 @@ html(lang='en')
 
         div 
           img(alt="HTML5" title="HTML5"  src="https://chriscorchado.com/images/html5.png")
-
 
         div
           a(href="https://github.com/chriscorchado125/NodeJS" target="_blank")
