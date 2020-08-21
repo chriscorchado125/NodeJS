@@ -251,16 +251,16 @@ function nodePage() {
         if (recordCount < currentRecords) {
           // handle the last page counts
           if (recordCount === 1) {
-            pagingText.innerHTML = `Item ${firstNumberRange + recordCount} - ${
+            pagingText.innerHTML = `Item ${firstNumberRange + recordCount}-${
               firstNumberRange + recordCount
             }`;
           } else {
-            pagingText.innerHTML = `Items ${firstNumberRange} - ${
+            pagingText.innerHTML = `Items ${firstNumberRange}-${
               firstNumberRange + recordCount
             }`;
           }
         } else {
-          pagingText.innerHTML = `Items ${firstNumberRange} - ${currentRecords}`;
+          pagingText.innerHTML = `Items ${firstNumberRange}-${currentRecords}`;
         }
       } else {
         // no paging
