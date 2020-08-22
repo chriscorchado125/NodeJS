@@ -18,4 +18,7 @@ block content
         div.screenshot-container
           img(loading=lazy src=company.screenshots class="company-screenshot")
 
-        div.employment-dates #{utility.getMonthYear(company.start_date)} - #{utility.getMonthYear(company.end_date)}
+        if company.end_date
+          div.employment-dates #{utility.getMonthYear(company.start_date)} - #{utility.getMonthYear(company.end_date)}
+        else
+          div.employment-dates #{utility.getMonthYear(company.start_date)} - null
