@@ -60,7 +60,10 @@ html(lang='en')
     if count > 0
       block content
     else
-      div#noRecords No matches found for '#{searched}'
+      if searched
+        div#noRecords No matches found for '#{searched}'
+      else
+        div#noRecords No Records Found
 
 
     script(src='https://code.jquery.com/jquery-3.5.0.min.js')
