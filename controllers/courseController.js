@@ -68,7 +68,7 @@ exports.index = function (req, res, next) {
       }
 
       res.render('course', {
-        title: 'Chris Corchado - Courses - Online Portfolio and Resume',
+        title: 'Chris Corchado - Courses - Portfolio and Resume',
         data: data,
         count: data.length,
         first: firstID,
@@ -77,6 +77,8 @@ exports.index = function (req, res, next) {
         maxItemsPerPage: MAX_ITEMS_PER_PAGE,
         searched: req.query.q,
         showPager: nextLink || (pageCount > 1 && data.length == MAX_ITEMS_PER_PAGE),
+        page_name: 'course',
+        needs_lighbox: true,
         utility: {
           getMonthYear,
           highlightSearch,

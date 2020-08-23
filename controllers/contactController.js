@@ -5,10 +5,12 @@ exports.index = function (req, res, next) {
 
   getContactForm('https://chriscorchado.com/drupal8/contact/feedback').then((data) => {
     res.render('contact', {
-      title: ' Chris Corchado - Contact - Online Portfolio and Resume',
+      title: ' Chris Corchado - Contact - Portfolio and Resume',
       titlePage: 'Contact',
       count: 1,
       data: data,
+      page_name: 'contact',
+      needs_lighbox: false,
       submitted: req.query.submitted,
     });
   });

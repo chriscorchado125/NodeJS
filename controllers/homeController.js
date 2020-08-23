@@ -6,10 +6,12 @@ exports.index = function (req, res, next) {
     if (err) return next(err);
 
     res.render('index', {
-      title: 'Chris Corchado - Homepage',
+      title: 'Chris Corchado - Homepage - Portfolio and Resume',
       titlePage: 'About Me',
       count: 1,
       data: data,
+      page_name: 'home',
+      needs_lighbox: false,
     });
   });
 };

@@ -35,10 +35,12 @@ exports.index = function (req, res, next) {
       if (err) return next(err);
 
       res.render('project', {
-        title: 'Chris Corchado - Projects - Online Portfolio and Resume',
+        title: 'Chris Corchado - Projects - Portfolio and Resume',
         data: data,
         count: data.length,
         searched: req.query.q,
+        page_name: 'project',
+        needs_lighbox: true,
         utility: {
           highlightSearch,
         },
