@@ -170,7 +170,10 @@ function nodePage() {
         }
         if (pageIsSearchable) {
             document.getElementById('search-container').style.display = 'block';
-            searchBox.addEventListener('keyup', (event) => debounceMe());
+            searchBox.addEventListener('keyup', (event) => {
+                if (event.key !== 'Tab')
+                    debounceMe();
+            });
             searchBtn.addEventListener('click', (event) => manageURL('clearSearch'));
             let recordCount;
             if (document.getElementById('recordCount')) {

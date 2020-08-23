@@ -232,7 +232,9 @@ function nodePage() {
       document.getElementById('search-container').style.display = 'block';
 
       // wait for user to pause typing before initiating a search
-      searchBox.addEventListener('keyup', (event) => debounceMe());
+      searchBox.addEventListener('keyup', (event) => {
+        if (event.key !== 'Tab') debounceMe();
+      });
       searchBtn.addEventListener('click', (event) => manageURL('clearSearch'));
 
       // setup record counts
