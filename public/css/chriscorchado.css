@@ -262,8 +262,31 @@ a:link {
   font-size: 34px;
   width: 35px; }
 
-#recordCounts {
-  text-align: center; }
+.about {
+  padding: 20px 50px; }
+  .about h1 {
+    color: #7399ea; }
+  .about p {
+    text-align: center;
+    padding: 5px 60px; }
+
+.site-versions {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  margin-top: 40px; }
+  .site-versions .here-hand {
+    display: none; }
+  .site-versions .noLink {
+    pointer-events: none; }
+  .site-versions .shadow-version {
+    padding-top: 25px;
+    box-shadow: 5px 5px 15px 2px #888888;
+    margin-bottom: 20px; }
+  .site-versions .homepage-icon {
+    max-width: 70%;
+    min-width: 50px; }
 
 #footer {
   display: flex;
@@ -285,36 +308,6 @@ a:link {
     margin: 0 5px; }
     .site-version div img {
       width: 45px; }
-
-.site-versions {
-  display: grid;
-  justify-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  text-align: center;
-  margin-top: 40px; }
-  .site-versions .here-hand {
-    display: none; }
-  .site-versions .noLink {
-    pointer-events: none; }
-  .site-versions .shadow-version {
-    padding-top: 25px;
-    box-shadow: 5px 5px 15px 2px #888888;
-    margin-bottom: 20px; }
-  .site-versions .homepage-icon {
-    max-width: 70%;
-    min-width: 50px; }
-
-.homeSiteLinks {
-  font-size: 24px;
-  padding: 20px; }
-
-.about {
-  padding: 20px 50px; }
-  .about h1 {
-    color: #7399ea; }
-  .about p {
-    text-align: center;
-    padding: 5px 60px; }
 
 @media (max-width: 990px) {
   .site-versions {
@@ -338,8 +331,17 @@ a:link {
     padding: 20px 10px;
     margin-top: 120px; }
     .about p {
-      padding: 5px 30px; } }
+      padding: 5px 20px; } }
 @media (max-width: 600px) {
+  .site-versions div {
+    padding: 0; }
+
+  .shadow-version {
+    box-shadow: 1px 1px 10px 2px #888888 !important; }
+
+  .here-hand {
+    height: 50px; }
+
   #footer {
     display: none; } }
 
