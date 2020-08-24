@@ -27,6 +27,7 @@ html(lang='en')
       link(rel='stylesheet', href='/css/contact.css')
 
   body
+    a#skip-links.screen-reader(href='#content')
     header(id='navigation')
 
       nav.navbar.navbar-light.bg-light.fixed-top.navbar-fixed-top.shadow
@@ -70,6 +71,7 @@ html(lang='en')
 
     // CONTENT        
     if count > 0
+      span#content
       block content
       span#paging(data-first=first data-last=last) 
       span#recordCount #{count}
