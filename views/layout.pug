@@ -72,9 +72,10 @@ html(lang='en')
     // CONTENT        
     if count > 0
       span#content
-      block content
-      span#paging(data-first=first data-last=last) 
-      span#recordCount #{count}
+      main(role="main")
+        block content
+        span#paging(data-first=first data-last=last) 
+        span#recordCount #{count}
     else
       if searched
         div#noRecords No matches found for '#{searched}'
