@@ -4,6 +4,10 @@
   height: 60px;
 }
 
+#recordCount {
+  display: none;
+}
+
 .navbar {
   border-bottom: 2px solid $main_color;
   display: block;
@@ -42,10 +46,6 @@
     margin-right: 10px;
     display: inline-block;
     width: 85px;
-  }
-
-  #recordCount {
-    display: none;
   }
 
   /* search textbox */

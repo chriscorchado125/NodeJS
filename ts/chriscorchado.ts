@@ -4,7 +4,7 @@ const MAX_ITEMS_PER_PAGE = 50;
 
 const params = new URLSearchParams(window.location.search);
 const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
-const searchBtn = document.getElementById('searchBtn')! as HTMLInputElement;
+const searchBtn = document.getElementById('searchBtn')! as HTMLElement;
 
 /**
  * Get the current page name
@@ -232,8 +232,9 @@ function nodePage() {
       document.getElementById('search-container').style.display = 'block';
 
       // wait for user to pause typing before initiating a search
+
       searchBox.addEventListener('keyup', (event) => {
-        if (event.key !== 'Tab') debounceMe();
+        if (event.key !== 'Tab' && event.key !== 'Enter') debounceMe();
       });
       searchBtn.addEventListener('click', (event) => manageURL('clearSearch'));
 

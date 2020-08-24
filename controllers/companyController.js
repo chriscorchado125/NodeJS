@@ -22,7 +22,7 @@ exports.index = function (req, res, next) {
   };
 
   Company.find(queryParams, 'name description screenshots job_title start_date end_date')
-    .sort({ _id: 1, end_date: 1, name: 1, created: 1 })
+    .sort({ _id: 1, end_date: 1, name: -1, created: 1 })
     .exec(function (err, data) {
       if (err) return next(err);
 
