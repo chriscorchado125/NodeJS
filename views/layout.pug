@@ -47,10 +47,10 @@ html(lang='en')
         div#search-container
 
           span#searchCount
-            span#paging-info
+            span#paging-info(aria-label="Record Counts")
 
-          input#searchSite.ccBtn(type="text" placeholder="Search items"   title="Enter something to search for")
-          button#searchBtn.searchBtn(title="Clear the search") clear
+          input#searchSite.ccBtn(type="text" placeholder="Search items"   title="Enter something to search for" aria-label="Search")
+          button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search") clear
           
 
           - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
