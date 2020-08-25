@@ -11,6 +11,7 @@
 .navbar {
   border-bottom: 2px solid $main_color;
   display: block;
+  min-height: 100px;
 
   /* force nav to stay horizontal */
   .navbar-nav {
@@ -80,6 +81,7 @@
 
     a {
       color: #ffffff;
+      text-shadow: 1px 1px #000;
     }
     /* next / prev text */
     .pager-navigation {

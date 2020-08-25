@@ -2,30 +2,32 @@ extends layout
 
 block content
 
-  div.container.courses-container
+  div.container.courses-container.row
+
+    - let counter = 20
 
     each course in data
       
       div.course-box.box
 
-        h2 !{utility.highlightSearch(course.name, searched)}
+        h2(tabindex=counter++)  !{utility.highlightSearch(course.name, searched)}
 
         div
           - var cleanCourseName = course.name.replace(/(<([^>]+)>)/gi, '')
 
-          <img loading=lazy src=#{course.certificate_image} alt="#{cleanCourseName}" title="#{cleanCourseName}" />
+          img(loading=lazy tabindex=counter++ src=course.certificate_image alt=cleanCourseName title=cleanCourseName + ' certificate')
 
         div.course-wrapper
 
-          span.course-date #{utility.getMonthYear(course.course_date)}
+          span.course-date(tabindex=counter++) #{utility.getMonthYear(course.course_date)}
 
           span.course-links
 
-            a(href=course.certificate_pdf target='_blank')
-              img(loading=lazy src="https://chriscorchado.com/images/pdfIcon.jpg" height="25" title="View the PDF Certificate" alt="View the PDF Certificate")
+            a(href=course.certificate_pdf target='_blank' tabindex=counter++)
+              img(loading=lazy src="https://chriscorchado.com/images/pdfIcon.jpg" height="25" title="View the PDF Certificate" alt="PDF Icon")
             
           if course.track_image
             span.course-links
             
-              a(href=course.track_image target='_blank' data-featherlight="image")
-                img(loading=lazy src="https://chriscorchado.com/images/linkedIn-track.png" height="25" title="View the Courses in the Track" alt="View the Courses in the Track")
+              a(href=course.track_image target='_blank' tabindex=counter++ data-featherlight="image")
+                img(loading=lazy src="https://chriscorchado.com/images/linkedIn-track.png" height="25" title="View the Courses in the Track" alt="Trophy Icon")

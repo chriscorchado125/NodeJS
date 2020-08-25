@@ -10,6 +10,7 @@ exports.index = function (req, res, next) {
       count: 1,
       data: data,
       page_name: 'contact',
+      page_title: 'Contact',
       needs_lighbox: false,
       submitted: req.query.submitted,
     });

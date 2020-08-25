@@ -40,6 +40,7 @@ exports.index = function (req, res, next) {
         count: data.length,
         searched: req.query.q,
         page_name: 'project',
+        page_title: 'Projects',
         needs_lighbox: true,
         utility: {
           highlightSearch,

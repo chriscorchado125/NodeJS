@@ -78,6 +78,7 @@ exports.index = function (req, res, next) {
         searched: req.query.q,
         showPager: nextLink || (pageCount > 1 && data.length == MAX_ITEMS_PER_PAGE),
         page_name: 'course',
+        page_title: 'Courses',
         needs_lighbox: true,
         utility: {
           getMonthYear,

@@ -32,6 +32,7 @@ exports.index = function (req, res, next) {
         count: data.length,
         searched: req.query.q,
         page_name: 'company',
+        page_title: 'History',
         needs_lighbox: false,
         utility: {
           getMonthYear,

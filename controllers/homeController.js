@@ -8,6 +8,7 @@ exports.index = function (req, res, next) {
     res.render('index', {
       title: 'Chris Corchado - Homepage - Portfolio and Resume',
       titlePage: 'About Me',
+      page_title: 'About Me',
       count: 1,
       data: data,
       page_name: 'home',
