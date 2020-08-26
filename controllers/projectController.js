@@ -34,10 +34,56 @@ exports.index = function (req, res, next) {
     .exec(function (err, data) {
       if (err) return next(err);
 
+      const checkSearch = RegExp(req.query.q, 'i');
+      let newData = {};
+      let objArr = [];
+      let screenshotText = '';
+      let addRecord;
+      let screenshotArr;
+
+      data.forEach((item, count) => {
+        addRecord = false;
+        screenshotArr = [];
+
+        // need to filter the data for records which match a screenshot image path including the name
+        if (item.screenshots.length > 0) {
+          item.screenshots.forEach((item, count) => {
+            screenshotText = item.split(',');
+
+            if (checkSearch.test(screenshotText[0])) addRecord = true;
+
+            screenshotArr.push(`${screenshotText[0]}, ${screenshotText[1]}`);
+          });
+
+          if (
+            checkSearch.test(item.name) ||
+            checkSearch.test(item.description) ||
+            checkSearch.test(item.company_name) ||
+            checkSearch.test(item.technology)
+          ) {
+            addRecord = true;
+          }
+
+          if (addRecord) {
+            newData = {
+              screenshots: screenshotArr,
+              _id: item.id,
+              name: item.name,
+              description: item.description,
+              company_name: item.company_name,
+              video: item.video || '',
+              technology: item.technology,
+              project_date: item.project_date,
+            };
+            objArr.push(newData);
+          }
+        }
+      });
+
       res.render('project', {
         title: 'Chris Corchado - Projects - Portfolio and Resume',
-        data: data,
-        count: data.length,
+        data: objArr,
+        count: objArr.length,
         searched: req.query.q,
         page_name: 'project',
         page_title: 'Projects',
