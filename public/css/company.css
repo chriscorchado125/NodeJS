@@ -79,5 +79,11 @@
     padding: 10px; }
     .company p {
       padding: 5px 20px; } }
+@media (max-width: 500px) {
+  .company-screenshot {
+    max-width: 250px; } }
+@media (max-width: 400px) {
+  .company-screenshot {
+    max-width: 200px; } }
 
 /*# sourceMappingURL=company.css.map */

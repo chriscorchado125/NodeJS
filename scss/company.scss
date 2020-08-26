@@ -100,3 +100,15 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .company-screenshot {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  .company-screenshot {
+    max-width: 200px;
+  }
+}
