@@ -71,7 +71,7 @@ exports.index = function (req, res, next) {
               name: item.name,
               description: item.description,
               company_name: item.company_name,
-              video: item.video || '',
+              video: item.videos || '',
               technology: item.technology,
               project_date: item.project_date,
             };

@@ -27,11 +27,11 @@ block content
                 a.gallery(href=screens[1] tabindex=counter++)
                   div.project-item-desc !{utility.highlightSearch(screens[0], searched)}
                   img(loading="lazy" tabindex=counter++ src=screens[1] alt=project.company_name + ' ' + screens[0] title=screens[0])
-              
-        if project.videos
+ 
+        if project.video
           span(title="Play Video")
             - let encodedName = encodeURIComponent(project.name);
-            a.play-video(href=`https://chriscorchado.com/video.html?url=${project.videos}&name=${encodedName}` target="_blank" tabindex=counter++) Play Video 
+            a.play-video(href=`https://chriscorchado.com/video.html?url=${project.video}&name=${encodedName}` target="_blank" tabindex=counter++) Play Video 
               img(loading="lazy" src="https://chriscorchado.com/images/play_video_new_window_icon.png" alt="Play Video Icon" width="20")
 
 
