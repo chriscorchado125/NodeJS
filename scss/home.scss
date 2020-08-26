@@ -96,3 +96,13 @@
     }
   }
 }
+
+@media (max-width: 400px) {
+  #profiles {
+    .icon {
+      img {
+        height: 15px;
+      }
+    }
+  }
+}
