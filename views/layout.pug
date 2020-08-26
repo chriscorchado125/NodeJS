@@ -78,15 +78,16 @@ html(lang='en')
               else
                 span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Next
 
-
     // CONTENT        
     if count > 0
            
-      main.container(role="main")
+      main.container(role="main")           
 
         h1(id='content' tabindex="12") #{page_title}
 
         block content
+
+
 
         span#paging(data-first=first data-last=last) 
         span#recordCount #{count}
@@ -95,6 +96,14 @@ html(lang='en')
         div#noRecords No matches found for '#{searched}'
       else
         div#noRecords No Records Found
+
+
+    div#preloadContainer
+      div#preloadAnimation.preloadAnimation
+        div.bounce1
+        div.bounce1
+        div.bounce1
+      div.preloadAnimation Loading
 
     if needs_lighbox
       script(src='https://code.jquery.com/jquery-3.5.0.min.js')

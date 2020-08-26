@@ -225,6 +225,7 @@ function nodePage() {
             }
             manageURL('sync');
         }
+        document.getElementById('preloadContainer').style.display = 'none';
     }, 125);
 }
 window.onload = nodePage;
