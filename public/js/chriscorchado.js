@@ -1,36 +1,36 @@
-'use strict';
+"use strict";
 const MAX_ITEMS_PER_PAGE = 50;
 const params = new URLSearchParams(window.location.search);
-const searchBox = document.getElementById('searchSite');
-const searchBtn = document.getElementById('searchBtn');
+const searchBox = document.getElementById("searchSite");
+const searchBtn = document.getElementById("searchBtn");
 const getCurrentPage = () => {
     let thisPage = window.location.pathname
-        .split('/')
+        .split("/")
         .filter(function (pathnamePieces) {
         return pathnamePieces.length;
     })
         .pop();
-    let pageName = 'about';
+    let pageName = "about";
     if (thisPage) {
-        pageName = thisPage.split('.')[0];
+        pageName = thisPage.split(".")[0];
     }
-    if (pageName == 'index' || pageName == 'nodejs')
-        pageName = 'about';
+    if (pageName == "index" || pageName == "nodejs")
+        pageName = "about";
     return pageName;
 };
 const formSubmitted = (seconds) => {
-    let countDown = document.createElement('div');
-    countDown.style.padding = '50px';
+    let countDown = document.createElement("div");
+    countDown.style.padding = "50px";
     countDown.innerHTML = `<h2>Thanks For Your Submission</h2>
     <h4>Redirecting to the homepage in <span id="secondCountDown">${seconds}</span> seconds</h4>
     <img id="timer" src="https://chriscorchado.com/images/timer.gif" />`;
-    document.getElementsByClassName('container')[0].append(countDown);
+    document.getElementsByClassName("container")[0].append(countDown);
     let updateCountDown = setInterval(function () {
         seconds--;
-        document.getElementById('secondCountDown').innerHTML = seconds.toString();
+        document.getElementById("secondCountDown").innerHTML = seconds.toString();
         if (seconds === 0) {
             clearInterval(updateCountDown);
-            window.location.replace(location.href.substring(0, location.href.lastIndexOf('/') + 1));
+            window.location.replace(location.href.substring(0, location.href.lastIndexOf("/") + 1));
         }
     }, 1000);
 };
@@ -47,62 +47,63 @@ const debounce = (func, wait) => {
 };
 const debounceMe = debounce(() => {
     window.location.href =
-        window.location.href.split('?')[0] + '?q=' + searchBox.value.replace(/[^\w\s]/gi, '');
+        window.location.href.split("?")[0] + "?q=" + searchBox.value.replace(/[^\w\s]/gi, "");
 }, 500);
 const manageURL = (action, value) => {
-    let thisURL = window.location.href.split('?');
+    let thisURL = window.location.href.split("?");
     switch (action) {
-        case 'clearSearch':
+        case "clearSearch":
             window.location.href = thisURL[0];
             break;
-        case 'sync':
-            if (params.get('q')) {
+        case "sync":
+            console.log(params.get("q"));
+            if (params.get("q") !== null) {
                 searchBox.value = params
-                    .get('q')
-                    .replace(/[^\w\s]/gi, '')
-                    .replace('20', ' ');
+                    .get("q")
+                    .replace(/[^\w\s]/gi, "")
+                    .replace("20", " ");
                 searchBox.focus();
-                searchBtn.style.visibility = 'visible';
+                searchBtn.style.visibility = "visible";
             }
             break;
-        case 'paging':
-            let searched = '';
-            if (params.get('q'))
-                searched = 'q=' + params.get('q') + '&';
-            let pageID = document.querySelector('#paging');
+        case "paging":
+            let searched = "";
+            if (params.get("q"))
+                searched = "q=" + params.get("q") + "&";
+            let pageID = document.querySelector("#paging");
             let pageNumber = 2;
-            if (params.get('page'))
-                pageNumber = parseInt(params.get('page')) - 1;
-            if (value === 'next') {
-                if (params.get('page'))
-                    pageNumber = parseInt(params.get('page')) + 1;
+            if (params.get("page"))
+                pageNumber = parseInt(params.get("page")) - 1;
+            if (value === "next") {
+                if (params.get("page"))
+                    pageNumber = parseInt(params.get("page")) + 1;
             }
             window.location.href =
-                thisURL[0].replace('#', '') +
-                    '?' +
+                thisURL[0].replace("#", "") +
+                    "?" +
                     searched +
-                    'first=' +
+                    "first=" +
                     pageID.dataset.first +
-                    '&last=' +
+                    "&last=" +
                     pageID.dataset.last +
-                    '&dir=' +
+                    "&dir=" +
                     value +
-                    '&page=' +
+                    "&page=" +
                     pageNumber;
             break;
     }
 };
 function nodePage() {
-    let currentNavItem = '';
+    let currentNavItem = "";
     let pageIsSearchable = false;
     setTimeout(function () {
         switch (getCurrentPage()) {
-            case '/':
-            case 'about':
-                currentNavItem = 'about-link';
-                document.getElementById('logo').getElementsByTagName('img')[0].style.border =
-                    '1px dashed #7399EA';
-                document.getElementById('profiles').innerHTML = `
+            case "/":
+            case "about":
+                currentNavItem = "about-link";
+                document.getElementById("logo").getElementsByTagName("img")[0].style.border =
+                    "1px dashed #7399EA";
+                document.getElementById("profiles").innerHTML = `
           <div class="icon" id="pdf-resume">
             <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" tabindex="7">
               <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
@@ -124,68 +125,68 @@ function nodePage() {
             </a>
           </div>`;
                 let currentURL = window.location.toString();
-                if (currentURL.indexOf('/html5/') !== -1) {
-                    document.getElementById('html5').setAttribute('class', 'shadow-version noLink');
-                    document.getElementById('html5-here').style.display = 'block';
+                if (currentURL.indexOf("/html5/") !== -1) {
+                    document.getElementById("html5").setAttribute("class", "shadow-version noLink");
+                    document.getElementById("html5-here").style.display = "block";
                 }
-                else if (currentURL.indexOf('/drupal8/') !== -1) {
+                else if (currentURL.indexOf("/drupal8/") !== -1) {
                     document
-                        .getElementById('drupal8')
-                        .setAttribute('class', 'shadow-version noLink');
-                    document.getElementById('drupal8-here').style.display = 'block';
+                        .getElementById("drupal8")
+                        .setAttribute("class", "shadow-version noLink");
+                    document.getElementById("drupal8-here").style.display = "block";
                 }
                 else {
                     document
-                        .getElementById('nodeJS')
-                        .setAttribute('class', 'shadow-version noLink');
-                    document.getElementById('nodeJS-here').style.display = 'block';
+                        .getElementById("nodeJS")
+                        .setAttribute("class", "shadow-version noLink");
+                    document.getElementById("nodeJS-here").style.display = "block";
                 }
                 break;
-            case 'companies':
-                currentNavItem = 'companies-link';
+            case "companies":
+                currentNavItem = "companies-link";
                 pageIsSearchable = true;
                 break;
-            case 'courses':
-                currentNavItem = 'courses-link';
+            case "courses":
+                currentNavItem = "courses-link";
                 pageIsSearchable = true;
                 break;
-            case 'projects':
-                currentNavItem = 'projects-link';
+            case "projects":
+                currentNavItem = "projects-link";
                 pageIsSearchable = true;
                 break;
-            case 'contact':
-                currentNavItem = 'contact-link';
-                if (params.get('submitted') === 'true') {
+            case "contact":
+                currentNavItem = "contact-link";
+                if (params.get("submitted") === "true") {
                     formSubmitted(5);
                 }
                 else {
-                    const webLocation = document.getElementById('edit-field-site-0-value');
+                    const webLocation = document.getElementById("edit-field-site-0-value");
                     webLocation.value = location.toString();
-                    document.getElementById('edit-mail').focus();
+                    document.getElementById("edit-mail").focus();
                 }
                 break;
         }
-        if (getCurrentPage() !== 'about') {
-            document.getElementById(currentNavItem).className += ' nav-item-active';
+        if (getCurrentPage() !== "about") {
+            document.getElementById(currentNavItem).className += " nav-item-active";
         }
         if (pageIsSearchable) {
-            document.getElementById('search-container').style.display = 'block';
-            searchBox.addEventListener('keyup', (event) => {
-                if (event.key !== 'Tab' && event.key !== 'Enter')
+            document.getElementById("search-container").style.display = "block";
+            searchBox.addEventListener("keyup", (event) => {
+                if (event.key !== "Tab" && event.key !== "Enter")
                     debounceMe();
             });
-            searchBtn.addEventListener('click', (event) => manageURL('clearSearch'));
+            searchBtn.addEventListener("click", (event) => manageURL("clearSearch"));
             let recordCount;
-            if (document.getElementById('recordCount')) {
-                recordCount = parseInt(document.getElementById('recordCount').innerText);
+            if (document.getElementById("recordCount")) {
+                recordCount = parseInt(document.getElementById("recordCount").innerText);
             }
             else {
                 recordCount = 0;
             }
-            let currentPageNumber = parseInt(params.get('page')) || 1;
-            let recordText = 'Items';
+            let currentPageNumber = parseInt(params.get("page")) || 1;
+            let recordText = "Items";
             if (recordCount === 1)
-                recordText = 'Item';
+                recordText = "Item";
             let firstNumberRange;
             if (currentPageNumber > 1) {
                 firstNumberRange = (currentPageNumber - 1) * MAX_ITEMS_PER_PAGE;
@@ -194,8 +195,8 @@ function nodePage() {
                 firstNumberRange = 1;
             }
             let currentRecords = currentPageNumber * recordCount;
-            let pagingText = document.getElementById('paging-info');
-            if (document.getElementById('nextLink') ||
+            let pagingText = document.getElementById("paging-info");
+            if (document.getElementById("nextLink") ||
                 currentRecords >= MAX_ITEMS_PER_PAGE ||
                 currentPageNumber > 1) {
                 if (recordCount < currentRecords) {
@@ -213,19 +214,19 @@ function nodePage() {
             else {
                 pagingText.innerHTML = `${recordCount} ${recordText}`;
             }
-            if (document.getElementById('prevLink')) {
+            if (document.getElementById("prevLink")) {
                 document
-                    .getElementById('prevLink')
-                    .addEventListener('click', (event) => manageURL('paging', 'prev'));
+                    .getElementById("prevLink")
+                    .addEventListener("click", (event) => manageURL("paging", "prev"));
             }
-            if (document.getElementById('nextLink')) {
+            if (document.getElementById("nextLink")) {
                 document
-                    .getElementById('nextLink')
-                    .addEventListener('click', (event) => manageURL('paging', 'next'));
+                    .getElementById("nextLink")
+                    .addEventListener("click", (event) => manageURL("paging", "next"));
             }
-            manageURL('sync');
+            manageURL("sync");
         }
-        document.getElementById('preloadContainer').style.display = 'none';
+        document.getElementById("preloadContainer").style.display = "none";
     }, 125);
 }
 window.onload = nodePage;

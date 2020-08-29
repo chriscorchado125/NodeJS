@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 const MAX_ITEMS_PER_PAGE = 50;
 
 const params = new URLSearchParams(window.location.search);
-const searchBox = document.getElementById('searchSite')! as HTMLInputElement;
-const searchBtn = document.getElementById('searchBtn')! as HTMLElement;
+const searchBox = document.getElementById("searchSite")! as HTMLInputElement;
+const searchBtn = document.getElementById("searchBtn")! as HTMLElement;
 
 /**
  * Get the current page name
@@ -12,18 +12,18 @@ const searchBtn = document.getElementById('searchBtn')! as HTMLElement;
  */
 const getCurrentPage = () => {
   let thisPage = window.location.pathname
-    .split('/')
+    .split("/")
     .filter(function (pathnamePieces) {
       return pathnamePieces.length;
     })
     .pop();
 
-  let pageName = 'about';
+  let pageName = "about";
 
   if (thisPage) {
-    pageName = thisPage.split('.')[0];
+    pageName = thisPage.split(".")[0];
   }
-  if (pageName == 'index' || pageName == 'nodejs') pageName = 'about';
+  if (pageName == "index" || pageName == "nodejs") pageName = "about";
 
   return pageName;
 };
@@ -34,24 +34,24 @@ const getCurrentPage = () => {
  * @param {number} second - number of seconds to count down
  */
 const formSubmitted = (seconds: number) => {
-  let countDown = document.createElement('div');
-  countDown.style.padding = '50px';
+  let countDown = document.createElement("div");
+  countDown.style.padding = "50px";
 
   countDown.innerHTML = `<h2>Thanks For Your Submission</h2>
     <h4>Redirecting to the homepage in <span id="secondCountDown">${seconds}</span> seconds</h4>
     <img id="timer" src="https://chriscorchado.com/images/timer.gif" />`;
 
-  document.getElementsByClassName('container')[0].append(countDown);
+  document.getElementsByClassName("container")[0].append(countDown);
 
   let updateCountDown = setInterval(function () {
     seconds--;
-    document.getElementById('secondCountDown').innerHTML = seconds.toString();
+    document.getElementById("secondCountDown").innerHTML = seconds.toString();
 
     if (seconds === 0) {
       clearInterval(updateCountDown);
       window.location.replace(
         // use replace instead of assign for the sake of history
-        location.href.substring(0, location.href.lastIndexOf('/') + 1) // get the base site URL including sub-folder
+        location.href.substring(0, location.href.lastIndexOf("/") + 1) // get the base site URL including sub-folder
       );
     }
   }, 1000);
@@ -83,7 +83,7 @@ const debounce = (func: any, wait: number) => {
  */
 const debounceMe = debounce(() => {
   window.location.href =
-    window.location.href.split('?')[0] + '?q=' + searchBox.value.replace(/[^\w\s]/gi, '');
+    window.location.href.split("?")[0] + "?q=" + searchBox.value.replace(/[^\w\s]/gi, "");
 }, 500);
 
 /**
@@ -91,50 +91,51 @@ const debounceMe = debounce(() => {
  * @param {string} action - to take
  */
 const manageURL = (action: string, value?: string) => {
-  let thisURL = window.location.href.split('?');
+  let thisURL = window.location.href.split("?");
 
   switch (action) {
-    case 'clearSearch':
+    case "clearSearch":
       window.location.href = thisURL[0];
       break;
-    case 'sync':
+    case "sync":
+      console.log(params.get("q"));
       // sync querystring and search input box values while searching
-      if (params.get('q')) {
+      if (params.get("q") !== null) {
         searchBox.value = params
-          .get('q')
-          .replace(/[^\w\s]/gi, '')
-          .replace('20', ' ');
+          .get("q")
+          .replace(/[^\w\s]/gi, "")
+          .replace("20", " ");
 
         searchBox.focus();
 
-        searchBtn.style.visibility = 'visible';
+        searchBtn.style.visibility = "visible";
       }
       break;
-    case 'paging':
-      let searched = '';
-      if (params.get('q')) searched = 'q=' + params.get('q') + '&';
+    case "paging":
+      let searched = "";
+      if (params.get("q")) searched = "q=" + params.get("q") + "&";
 
       // hidden field which holds the first and last record ids
-      let pageID = document.querySelector('#paging')! as HTMLElement;
+      let pageID = document.querySelector("#paging")! as HTMLElement;
 
       let pageNumber = 2;
-      if (params.get('page')) pageNumber = parseInt(params.get('page')) - 1;
+      if (params.get("page")) pageNumber = parseInt(params.get("page")) - 1;
 
-      if (value === 'next') {
-        if (params.get('page')) pageNumber = parseInt(params.get('page')) + 1;
+      if (value === "next") {
+        if (params.get("page")) pageNumber = parseInt(params.get("page")) + 1;
       }
 
       window.location.href =
-        thisURL[0].replace('#', '') +
-        '?' +
+        thisURL[0].replace("#", "") +
+        "?" +
         searched +
-        'first=' +
+        "first=" +
         pageID.dataset.first +
-        '&last=' +
+        "&last=" +
         pageID.dataset.last +
-        '&dir=' +
+        "&dir=" +
         value +
-        '&page=' +
+        "&page=" +
         pageNumber;
       break;
   }
@@ -142,18 +143,18 @@ const manageURL = (action: string, value?: string) => {
 
 // TODO check attributes inside pug = div([innerHtml]="example")
 function nodePage() {
-  let currentNavItem = '';
+  let currentNavItem = "";
   let pageIsSearchable = false;
 
   setTimeout(function () {
     switch (getCurrentPage()) {
-      case '/':
-      case 'about': // homepage
-        currentNavItem = 'about-link';
-        document.getElementById('logo').getElementsByTagName('img')[0].style.border =
-          '1px dashed #7399EA';
+      case "/":
+      case "about": // homepage
+        currentNavItem = "about-link";
+        document.getElementById("logo").getElementsByTagName("img")[0].style.border =
+          "1px dashed #7399EA";
 
-        document.getElementById('profiles').innerHTML = `
+        document.getElementById("profiles").innerHTML = `
           <div class="icon" id="pdf-resume">
             <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" tabindex="7">
               <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
@@ -178,79 +179,79 @@ function nodePage() {
         // set current site version
         let currentURL = window.location.toString();
 
-        if (currentURL.indexOf('/html5/') !== -1) {
-          document.getElementById('html5').setAttribute('class', 'shadow-version noLink');
-          document.getElementById('html5-here').style.display = 'block';
-        } else if (currentURL.indexOf('/drupal8/') !== -1) {
+        if (currentURL.indexOf("/html5/") !== -1) {
+          document.getElementById("html5").setAttribute("class", "shadow-version noLink");
+          document.getElementById("html5-here").style.display = "block";
+        } else if (currentURL.indexOf("/drupal8/") !== -1) {
           document
-            .getElementById('drupal8')
-            .setAttribute('class', 'shadow-version noLink');
-          document.getElementById('drupal8-here').style.display = 'block';
+            .getElementById("drupal8")
+            .setAttribute("class", "shadow-version noLink");
+          document.getElementById("drupal8-here").style.display = "block";
         } else {
           document
-            .getElementById('nodeJS')
-            .setAttribute('class', 'shadow-version noLink');
-          document.getElementById('nodeJS-here').style.display = 'block';
+            .getElementById("nodeJS")
+            .setAttribute("class", "shadow-version noLink");
+          document.getElementById("nodeJS-here").style.display = "block";
         }
         break;
-      case 'companies':
-        currentNavItem = 'companies-link';
+      case "companies":
+        currentNavItem = "companies-link";
         pageIsSearchable = true;
         break;
-      case 'courses':
-        currentNavItem = 'courses-link';
+      case "courses":
+        currentNavItem = "courses-link";
         pageIsSearchable = true;
         break;
-      case 'projects':
-        currentNavItem = 'projects-link';
+      case "projects":
+        currentNavItem = "projects-link";
         pageIsSearchable = true;
         break;
-      case 'contact':
-        currentNavItem = 'contact-link';
+      case "contact":
+        currentNavItem = "contact-link";
 
-        if (params.get('submitted') === 'true') {
+        if (params.get("submitted") === "true") {
           formSubmitted(5); // set 5 second countdown
         } else {
           // show the form and capture the current site URL
           const webLocation = document.getElementById(
-            'edit-field-site-0-value'
+            "edit-field-site-0-value"
           )! as HTMLInputElement;
 
           webLocation.value = location.toString();
 
-          document.getElementById('edit-mail').focus();
+          document.getElementById("edit-mail").focus();
         }
         break;
     }
 
     // the home/about link is an image and not text
-    if (getCurrentPage() !== 'about') {
-      document.getElementById(currentNavItem).className += ' nav-item-active';
+    if (getCurrentPage() !== "about") {
+      document.getElementById(currentNavItem).className += " nav-item-active";
     }
 
     if (pageIsSearchable) {
-      document.getElementById('search-container').style.display = 'block';
+      document.getElementById("search-container").style.display = "block";
 
       // wait for user to pause typing before initiating a search
 
-      searchBox.addEventListener('keyup', (event) => {
-        if (event.key !== 'Tab' && event.key !== 'Enter') debounceMe();
+      searchBox.addEventListener("keyup", (event) => {
+        if (event.key !== "Tab" && event.key !== "Enter") debounceMe();
       });
-      searchBtn.addEventListener('click', (event) => manageURL('clearSearch'));
+      searchBtn.addEventListener("click", (event) => manageURL("clearSearch"));
 
       // setup record counts
       let recordCount;
 
-      if (document.getElementById('recordCount')) {
-        recordCount = parseInt(document.getElementById('recordCount').innerText);
+      if (document.getElementById("recordCount")) {
+        recordCount = parseInt(document.getElementById("recordCount").innerText);
       } else {
         recordCount = 0;
       }
 
-      let currentPageNumber = parseInt(params.get('page')) || 1;
+      let currentPageNumber = parseInt(params.get("page")) || 1;
 
-      let recordText = 'Items';
-      if (recordCount === 1) recordText = 'Item';
+      let recordText = "Items";
+      if (recordCount === 1) recordText = "Item";
 
       let firstNumberRange;
 
@@ -261,11 +262,11 @@ function nodePage() {
       }
 
       let currentRecords = currentPageNumber * recordCount;
-      let pagingText = document.getElementById('paging-info');
+      let pagingText = document.getElementById("paging-info");
 
       // paging with prev and next
       if (
-        document.getElementById('nextLink') ||
+        document.getElementById("nextLink") ||
         currentRecords >= MAX_ITEMS_PER_PAGE ||
         currentPageNumber > 1
       ) {
@@ -288,22 +289,22 @@ function nodePage() {
         pagingText.innerHTML = `${recordCount} ${recordText}`;
       }
 
-      if (document.getElementById('prevLink')) {
+      if (document.getElementById("prevLink")) {
         document
-          .getElementById('prevLink')
-          .addEventListener('click', (event) => manageURL('paging', 'prev'));
+          .getElementById("prevLink")
+          .addEventListener("click", (event) => manageURL("paging", "prev"));
       }
 
-      if (document.getElementById('nextLink')) {
+      if (document.getElementById("nextLink")) {
         document
-          .getElementById('nextLink')
-          .addEventListener('click', (event) => manageURL('paging', 'next'));
+          .getElementById("nextLink")
+          .addEventListener("click", (event) => manageURL("paging", "next"));
       }
 
-      manageURL('sync');
+      manageURL("sync");
     }
 
-    document.getElementById('preloadContainer').style.display = 'none';
+    document.getElementById("preloadContainer").style.display = "none";
   }, 125);
 }
 
