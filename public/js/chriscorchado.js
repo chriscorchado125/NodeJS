@@ -53,10 +53,9 @@ const manageURL = (action, value) => {
     let thisURL = window.location.href.split("?");
     switch (action) {
         case "clearSearch":
-            window.location.href = thisURL[0];
+            window.location.href = thisURL[0] + "?clear";
             break;
         case "sync":
-            console.log(params.get("q"));
             if (params.get("q") !== null) {
                 searchBox.value = params
                     .get("q")
@@ -171,6 +170,8 @@ function nodePage() {
         }
         if (pageIsSearchable) {
             document.getElementById("search-container").style.display = "block";
+            if (params.get("clear") !== null)
+                searchBox.focus();
             searchBox.addEventListener("keyup", (event) => {
                 if (event.key !== "Tab" && event.key !== "Enter")
                     debounceMe();

@@ -95,10 +95,9 @@ const manageURL = (action: string, value?: string) => {
 
   switch (action) {
     case "clearSearch":
-      window.location.href = thisURL[0];
+      window.location.href = thisURL[0] + "?clear";
       break;
     case "sync":
-      console.log(params.get("q"));
       // sync querystring and search input box values while searching
       if (params.get("q") !== null) {
         searchBox.value = params
@@ -232,8 +231,9 @@ function nodePage() {
     if (pageIsSearchable) {
       document.getElementById("search-container").style.display = "block";
 
-      // wait for user to pause typing before initiating a search
+      if (params.get("clear") !== null) searchBox.focus();
 
+      // wait for user to pause typing before initiating a search
       searchBox.addEventListener("keyup", (event) => {
         if (event.key !== "Tab" && event.key !== "Enter") debounceMe();
       });
