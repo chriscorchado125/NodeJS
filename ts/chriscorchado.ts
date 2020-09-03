@@ -89,6 +89,7 @@ const debounceMe = debounce(() => {
 /**
  * Manage the URL for search and paging
  * @param {string} action - to take
+ * @param {string} [value] - next or prev
  */
 const manageURL = (action: string, value?: string) => {
   let thisURL = window.location.href.split("?");
