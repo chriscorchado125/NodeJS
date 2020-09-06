@@ -52,31 +52,31 @@ html(lang='en')
 
           div#search-container(role="search")
 
-          span#searchCount
-            span#paging-info(aria-label="Record Counts" tabindex=counter++)
+            span#searchCount
+              span#paging-info(aria-label="Record Counts" tabindex=counter++)
 
-          label(for=searchSite) 
-            span.screen-reader Search
-            input#searchSite.ccBtn(type="text" placeholder="Search items" title="Enter something to search for" aria-label="Search" tabindex=counter++)
-          
-          label(for=searchBtn) 
-            span.screen-reader Clear Search
-            button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search" tabindex=counter++  role='button') clear          
+            label(for=searchSite) 
+              span.screen-reader Search
+              input#searchSite.ccBtn(type="text" placeholder="Search items" title="Enter something to search for" aria-label="Search" tabindex=counter++)
+            
+            label(for=searchBtn) 
+              span.screen-reader Clear Search
+              button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search" tabindex=counter++  role='button') clear          
 
-          - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
-          if checkPager
+            - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
+            if checkPager
 
-            div#pagination
+              div#pagination
 
-              if page > 1 
-                a.pager-navigation(href="#" id="prevLink" title="View the previous page" tabindex=counter++ role='button') Prev
-              else
-                span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Prev
+                if page > 1 
+                  a.pager-navigation(href="#" id="prevLink" title="View the previous page" tabindex=counter++ role='button') Prev
+                else
+                  span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Prev
 
-              if  ((count == maxItemsPerPage) && (page > 0))
-                a.pager-navigation(href="#" id="nextLink" title="View the next page" tabindex=counter++  role='button') Next
-              else
-                span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Next
+                if  ((count == maxItemsPerPage) && (page > 0))
+                  a.pager-navigation(href="#" id="nextLink" title="View the next page" tabindex=counter++  role='button') Next
+                else
+                  span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Next
 
     // CONTENT        
     if count > 0
