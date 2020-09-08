@@ -15,19 +15,26 @@ html(lang='en')
     link(rel='stylesheet', href='/css/chriscorchado.css')
 
     if page_name == 'home'
-      link(rel='stylesheet', href='/css/home.css')
-
-    if page_name == 'company'
-      link(rel='stylesheet', href='/css/company.css')
-    
-    if page_name == 'course'
-      link(rel='stylesheet', href='/css/course.css')
-
-    if page_name == 'project'
-      link(rel='stylesheet', href='/css/project.css')
+      link(rel='stylesheet', href='/css/pages/home.css')
+      link(rel='stylesheet', href='/css/header/profile.css')
 
     if page_name == 'contact'
-      link(rel='stylesheet', href='/css/contact.css')
+      link(rel='stylesheet', href='/css/pages/contact.css')
+
+    if page_name == 'company'
+      link(rel='stylesheet', href='/css/pages/company.css')
+    
+    if page_name == 'course'
+      link(rel='stylesheet', href='/css/pages/course.css')
+
+    if page_name == 'project'
+      link(rel='stylesheet', href='/css/pages/project.css')
+
+    if page_name !== 'home' && page_name !== 'contact'
+      link(rel='stylesheet', href='/css/header/search.css')
+      link(rel='stylesheet', href='/css/header/pagination.css')
+
+
 
   body
     - let counter = 2
@@ -48,35 +55,38 @@ html(lang='en')
             a#projects-link.nav-item.nav-link(href="projects" tabindex=counter++) Projects
             a#contact-link.nav-item.nav-link(href="contact" tabindex=counter++) Contact
 
+
+        
           div#profiles
 
-          div#search-container(role="search")
+          if page_name !== 'home' && page_name !== 'contact'
+            div#search-container(role="search")
 
-            span#searchCount
-              span#paging-info(aria-label="Record Counts" tabindex=counter++)
+              span#searchCount
+                span#paging-info(aria-label="Record Counts" tabindex=counter++)
 
-            label(for=searchSite) 
-              span.screen-reader Search
-              input#searchSite.ccBtn(type="text" placeholder="Search items" title="Enter something to search for" aria-label="Search" tabindex=counter++)
-            
-            label(for=searchBtn) 
-              span.screen-reader Clear Search
-              button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search" tabindex=counter++  role='button') clear          
+              label(for=searchSite) 
+                span.screen-reader Search
+                input#searchSite.ccBtn(type="text" placeholder="Search items" title="Enter something to search for" aria-label="Search" tabindex=counter++)
+              
+              label(for=searchBtn) 
+                span.screen-reader Clear Search
+                button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search" tabindex=counter++  role='button') clear          
 
-            - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
-            if checkPager
+              - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
+              if checkPager
 
-              div#pagination
+                div#pagination
 
-                if page > 1 
-                  a.pager-navigation(href="#" id="prevLink" title="View the previous page" tabindex=counter++ role='button') Prev
-                else
-                  span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Prev
+                  if page > 1 
+                    a.pager-navigation(href="#" id="prevLink" title="View the previous page" tabindex=counter++ role='button') Prev
+                  else
+                    span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Prev
 
-                if  ((count == maxItemsPerPage) && (page > 0))
-                  a.pager-navigation(href="#" id="nextLink" title="View the next page" tabindex=counter++  role='button') Next
-                else
-                  span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Next
+                  if  ((count == maxItemsPerPage) && (page > 0))
+                    a.pager-navigation(href="#" id="nextLink" title="View the next page" tabindex=counter++  role='button') Next
+                  else
+                    span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Next
 
     // CONTENT        
     if count > 0
@@ -86,8 +96,6 @@ html(lang='en')
         h1(id='content' tabindex="12") #{page_title}
 
         block content
-
-
 
         span#paging(data-first=first data-last=last) 
         span#recordCount #{count}

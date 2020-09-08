@@ -1,4 +1,4 @@
-@import "variables.scss";
+@import "./../variables.scss";
 
 .home {
   border: 1px dashed $main_color;
@@ -16,26 +16,6 @@
   }
 }
 
-#profiles {
-  margin-top: -50px;
-  margin-bottom: 10px;
-  float: right;
-  max-width: 380px;
-  text-align: center;
-  font-size: 12px;
-
-  .icon {
-    display: inline-block;
-    width: 50px;
-    padding: 0 5px;
-    margin: 0 5px;
-
-    img {
-      height: 30px;
-    }
-  }
-}
-
 @media (max-width: 700px) {
   .about {
     padding: 10px;
@@ -47,28 +27,6 @@
 
   .container > h1 {
     margin-top: 130px;
-  }
-
-  #profiles {
-    margin: 0;
-    float: none;
-    max-width: 100%;
-
-    .icon {
-      img {
-        height: 25px;
-      }
-    }
-  }
-}
-
-@media (max-width: 400px) {
-  #profiles {
-    .icon {
-      img {
-        height: 15px;
-      }
-    }
   }
 }
 
@@ -138,5 +96,11 @@
 
   .here-hand {
     height: 50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container > h1 {
+    margin-top: 105px;
   }
 }

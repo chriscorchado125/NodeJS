@@ -1,6 +1,6 @@
 @import "variables.scss";
-@import "navigation.scss";
-@import "hover-animation.scss";
+@import "header/navigation.scss";
+@import "animation/hover-animation.scss";
 
 html {
   overflow-y: scroll;
@@ -13,14 +13,6 @@ body {
   scrollbar-color: $main_color $main_color_light;
   background-image: url(https://chriscorchado.com/images/cclogobg.jpg);
   background-attachment: fixed;
-}
-
-#logo > img {
-  padding: 5px;
-}
-
-#logo > img:hover {
-  border: 1px dashed $main_color;
 }
 
 .preloadAnimation {
@@ -101,6 +93,10 @@ h1 {
   padding: 20px 5px 20px 5px;
   background-color: #fff;
   border-radius: 0 0 15px 15px;
+}
+
+#recordCount {
+  display: none;
 }
 
 #noRecords {
