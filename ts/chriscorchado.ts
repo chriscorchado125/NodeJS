@@ -176,23 +176,9 @@ function nodePage() {
             </a>
           </div>`;
 
-        // set current site version
-        let currentURL = window.location.toString();
+        document.getElementById("nodeJS").setAttribute("class", "shadow-version noLink");
+        document.getElementById("nodeJS-here").style.display = "block";
 
-        if (currentURL.indexOf("/html5/") !== -1) {
-          document.getElementById("html5").setAttribute("class", "shadow-version noLink");
-          document.getElementById("html5-here").style.display = "block";
-        } else if (currentURL.indexOf("/drupal8/") !== -1) {
-          document
-            .getElementById("drupal8")
-            .setAttribute("class", "shadow-version noLink");
-          document.getElementById("drupal8-here").style.display = "block";
-        } else {
-          document
-            .getElementById("nodeJS")
-            .setAttribute("class", "shadow-version noLink");
-          document.getElementById("nodeJS-here").style.display = "block";
-        }
         break;
       case "companies":
         currentNavItem = "companies-link";
