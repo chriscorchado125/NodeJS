@@ -3,7 +3,7 @@
   float: right;
   margin: -65px 0 0 0;
   padding: 0px;
-  width: 280px;
+  width: 300px;
   text-align: center;
   /* search textbox */
   /* remove IE “clear field or cross” X button from inputs field */
@@ -15,7 +15,7 @@
     display: inline-block;
     width: 85px; }
   #search-container #searchSite {
-    width: 130px; }
+    width: 150px; }
   #search-container ::-ms-clear {
     display: none; }
   #search-container .searchBtn {
