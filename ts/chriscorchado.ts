@@ -20,9 +20,8 @@ const getCurrentPage = () => {
 
   let pageName = "about";
 
-  if (thisPage) {
-    pageName = thisPage.split(".")[0];
-  }
+  if (thisPage) pageName = thisPage.split(".")[0];
+
   if (pageName == "index" || pageName == "nodejs") pageName = "about";
 
   return pageName;
@@ -126,17 +125,7 @@ const manageURL = (action: string, value?: string) => {
       }
 
       window.location.href =
-        thisURL[0].replace("#", "") +
-        "?" +
-        searched +
-        "first=" +
-        pageID.dataset.first +
-        "&last=" +
-        pageID.dataset.last +
-        "&dir=" +
-        value +
-        "&page=" +
-        pageNumber;
+        thisURL[0].replace("#", "") + "?page=" + pageNumber + searched + "&dir=" + value;
       break;
   }
 };

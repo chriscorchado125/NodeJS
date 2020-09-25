@@ -6,6 +6,9 @@
   background-color: black;
   height: 2px; }
 
+.homepage-wrapper {
+  padding: 0 40px; }
+
 .container h1 {
   margin-top: 100px;
   text-align: center; }
@@ -21,14 +24,10 @@
   text-align: center;
   font-size: 20px;
   font-weight: bold; }
-
-.about {
-  padding: 20px 50px; }
-  .about p {
-    padding: 5px 30px; }
-
-.site-versions-text-wrapper p {
-  text-align: center !important; }
+.container .homepage-wrapper h4 {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center; }
 
 .site-versions-text-wrapper i {
   display: block;
@@ -38,14 +37,14 @@
 .how-it-works-text-wrapper p {
   text-align: left; }
 
-@media (max-width: 700px) {
-  .about {
-    padding: 10px; }
-    .about p {
-      padding: 5px 20px; }
+.target-site-versions {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+  max-width: 400px;
+  text-align: center;
+  margin: 20px auto; }
 
-  .container > h1 {
-    margin-top: 130px; } }
 .site-versions {
   display: grid;
   justify-items: center;
@@ -61,6 +60,14 @@
 
 .site-versions i {
   font-size: 10px; }
+
+.site-type {
+  margin-top: 5px;
+  font-weight: bold;
+  text-align: center; }
+
+.target-sites {
+  font-size: 12px; }
 
 .here-hand {
   display: none;
@@ -87,6 +94,16 @@
 @media (max-width: 800px) {
   .site-versions {
     grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) {
+  .homepage-wrapper {
+    padding: 0 5px; }
+
+  p {
+    text-align: left;
+    padding: 0 5px; }
+
+  .container > h1 {
+    margin-top: 130px; } }
 @media (max-width: 600px) {
   .site-versions div {
     padding: 0; }
@@ -96,7 +113,7 @@
 
   .here-hand {
     height: 50px; } }
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .container > h1 {
     margin-top: 105px; } }
 
