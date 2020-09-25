@@ -20,6 +20,7 @@ html(lang='en')
 
     if page_name == 'contact'
       link(rel='stylesheet', href='/css/pages/contact.css')
+      link(rel='stylesheet', href='/css/header/profile.css')
 
     if page_name == 'company'
       link(rel='stylesheet', href='/css/pages/company.css')
@@ -33,8 +34,6 @@ html(lang='en')
     if page_name !== 'home' && page_name !== 'contact'
       link(rel='stylesheet', href='/css/header/search.css')
       link(rel='stylesheet', href='/css/header/pagination.css')
-
-
 
   body
     - let counter = 2
@@ -54,8 +53,6 @@ html(lang='en')
             a#courses-link.nav-item.nav-link(href="courses" tabindex=counter++) Courses
             a#projects-link.nav-item.nav-link(href="projects" tabindex=counter++) Projects
             a#contact-link.nav-item.nav-link(href="contact" tabindex=counter++) Contact
-
-
         
           div#profiles
 

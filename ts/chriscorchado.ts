@@ -130,6 +130,34 @@ const manageURL = (action: string, value?: string) => {
   }
 };
 
+/**
+ * Add profile links
+ * @param {string} id - ID of element to insert into
+ */
+const addProfiles = (id: string) => {
+  document.getElementById(id).innerHTML = `
+  <div class="icon" id="pdf-resume">
+    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" tabindex="7">
+      <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
+      <span>Resume</span>
+    </a>
+  </div>
+
+  <div class="icon" id="profile-linkedin">
+    <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank" tabindex="8">
+      <img alt="Link to LinkedIn Profile" title="Link to LinkedIn Profile" src="https://chriscorchado.com/images/linkedInIcon.jpg" />
+      <span>LinkedIn</span>
+    </a>
+  </div>
+
+  <div class="icon" id="profile-azure">
+    <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank" tabindex="9">
+      <img alt="Link to Azure Profile" title="Link to Azure Profile" src="https://chriscorchado.com/images/azureIcon.png" />
+      <span>Azure</span>
+    </a>
+  </div>`;
+};
+
 // TODO check attributes inside pug = div([innerHtml]="example")
 function nodePage() {
   let currentNavItem = "";
@@ -143,27 +171,7 @@ function nodePage() {
         document.getElementById("logo").getElementsByTagName("img")[0].style.border =
           "1px dashed #7399EA";
 
-        document.getElementById("profiles").innerHTML = `
-          <div class="icon" id="pdf-resume">
-            <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" tabindex="7">
-              <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
-              <span>Resume</span>
-            </a>
-          </div>
-
-          <div class="icon" id="profile-linkedin">
-            <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank" tabindex="8">
-              <img alt="Link to LinkedIn Profile" title="Link to LinkedIn Profile" src="https://chriscorchado.com/images/linkedInIcon.jpg" />
-              <span>LinkedIn</span>
-            </a>
-          </div>
-
-          <div class="icon" id="profile-azure">
-            <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank" tabindex="9">
-              <img alt="Link to Azure Profile" title="Link to Azure Profile" src="https://chriscorchado.com/images/azureIcon.png" />
-              <span>Azure</span>
-            </a>
-          </div>`;
+        addProfiles("profiles");
 
         document.getElementById("nodeJS").setAttribute("class", "shadow-version noLink");
         document.getElementById("nodeJS-here").style.display = "block";
@@ -183,6 +191,8 @@ function nodePage() {
         break;
       case "contact":
         currentNavItem = "contact-link";
+
+        addProfiles("profiles");
 
         if (params.get("submitted") === "true") {
           formSubmitted(5); // set 5 second countdown
