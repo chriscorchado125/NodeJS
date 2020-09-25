@@ -60,7 +60,13 @@ html(lang='en')
           div#profiles
 
           if page_name !== 'home' && page_name !== 'contact'
-            div#search-container(role="search")
+            - let showMe = count == 50
+            - let paginationClass = 'paginationNo'
+
+            if showMe || page > 1
+              - paginationClass = 'paginationYes'
+
+            div#search-container(role="search" class=paginationClass)
 
               span#searchCount
                 span#paging-info(aria-label="Record Counts" tabindex=counter++)

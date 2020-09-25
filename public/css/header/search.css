@@ -19,9 +19,8 @@
   #search-container ::-ms-clear {
     display: none; }
   #search-container .searchBtn {
-    padding: 3px;
-    font-size: 14px;
-    border-radius: 5px;
+    padding: 2px;
+    font-size: 12px;
     margin-left: 10px; }
   #search-container .searchBtn:hover {
     color: #fff;
@@ -38,7 +37,6 @@
   #search-container #searchSite {
     width: 105px; }
   #search-container #searchBtn {
-    padding: 0 2px;
     margin-left: 5px; }
   #search-container #searchCount {
     width: 80px; } }

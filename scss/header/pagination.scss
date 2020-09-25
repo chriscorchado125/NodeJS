@@ -1,8 +1,16 @@
 @import "./../variables.scss";
 
+.paginationYes {
+  margin: -65px 0 0 0 !important;
+}
+
+.paginationNo {
+  margin: -53px 0 0 0 !important;
+}
+
 #pagination {
   text-align: center;
-  padding-left: 55px;
+  padding-left: 45px;
   margin-top: 0;
   display: inline-block;
   a {
@@ -27,6 +35,14 @@
 }
 
 @media (max-width: 700px) {
+  .paginationYes {
+    margin: 0 0 0 0 !important;
+  }
+
+  .paginationNo {
+    margin: 0 0 0 0 !important;
+  }
+
   #pagination {
     padding-left: 30px;
   }
