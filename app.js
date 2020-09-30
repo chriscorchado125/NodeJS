@@ -4,6 +4,8 @@ let path = require("path");
 let cookieParser = require("cookie-parser");
 let logger = require("morgan");
 
+require("dotenv").config();
+
 let siteRoutes = require("./routes/routerlist");
 let compression = require("compression");
 let helmet = require("helmet");
@@ -32,7 +34,7 @@ app.use(
   })
 );
 
-//Set up mongoose connection = process.env.MONGODB_URI
+//Set up mongoose connection
 let mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
