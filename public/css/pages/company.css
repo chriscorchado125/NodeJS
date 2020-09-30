@@ -70,21 +70,22 @@
     max-width: 300px; } }
 @media (max-width: 900px) {
   .company {
-    grid-template-columns: 80%; } }
+    grid-template-columns: 90%; } }
 @media (max-width: 700px) {
   .container > h1 {
-    margin-top: 130px; }
+    margin-top: 140px; }
 
-  .company {
-    padding: 10px; }
-    .company p {
-      padding: 5px 20px; } }
+  .company p {
+    padding: 5px 20px; } }
 @media (max-width: 500px) {
+  .container > h1 {
+    margin: 130px 0 10px 0; }
+
   .company-screenshot {
     max-width: 250px; } }
 @media (max-width: 400px) {
   .container > h1 {
-    margin-top: 110px; }
+    margin: 105px 0 0 0; }
 
   .company-screenshot {
     max-width: 200px; } }

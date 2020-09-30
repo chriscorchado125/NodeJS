@@ -96,11 +96,11 @@
     grid-template-columns: 1fr 1fr; } }
 @media (max-width: 700px) {
   .homepage-wrapper {
-    padding: 0 5px; }
+    padding: 0; }
 
   p {
     text-align: left;
-    padding: 0 5px; }
+    padding: 0; }
 
   .container h1 {
     margin-top: 140px; } }
@@ -113,8 +113,11 @@
 
   .here-hand {
     height: 50px; } }
+@media (max-width: 500px) {
+  .container > h1 {
+    margin-top: 130px; } }
 @media (max-width: 400px) {
   .container > h1 {
-    margin-top: 105px; } }
+    margin: 105px 0 0 0; } }
 
 /*# sourceMappingURL=home.css.map */

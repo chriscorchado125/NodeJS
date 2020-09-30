@@ -38,6 +38,15 @@
 
 @media (max-width: 700px) {
   .container > h1 {
-    margin-top: 135px; } }
+    margin: 140px 0 20px 0; } }
+@media (max-width: 500px) {
+  .container > h1 {
+    margin: 130px 0 10px 0; }
+
+  #edit-message-0-value {
+    height: 150px; } }
+@media (max-width: 400px) {
+  .container > h1 {
+    margin: 105px 0 0 0; } }
 
 /*# sourceMappingURL=contact.css.map */

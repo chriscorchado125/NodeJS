@@ -51,15 +51,17 @@
     display: inline; }
 
   .container > h1 {
-    margin-top: 130px; } }
+    margin-top: 140px; } }
 @media (max-width: 600px) {
   .courses-container {
     grid-template-columns: 1fr; } }
 @media (max-width: 500px) {
+  .container h1 {
+    margin: 130px 0 10px 0; }
   .container .course-box {
     padding: 10px !important; } }
 @media (max-width: 400px) {
   .container > h1 {
-    margin-top: 110px; } }
+    margin: 105px 0 0 0; } }
 
 /*# sourceMappingURL=course.css.map */
