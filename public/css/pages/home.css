@@ -29,6 +29,9 @@
   font-weight: bold;
   text-align: center; }
 
+.how-it-works-text-wrapper {
+  text-align: left; }
+
 .site-versions-text-wrapper i {
   display: block;
   font-size: 14px;
