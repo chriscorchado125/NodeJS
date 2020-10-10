@@ -52,7 +52,7 @@
   display: grid;
   justify-items: center;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-top: 40px; }
+  margin-top: 10px; }
 
 .site-versions > div {
   margin-top: 10px; }
@@ -139,10 +139,16 @@
 .homepage-wrapper ul li {
   padding: 5px; }
 
-#html5-text, #nodejs-text, #vuejs-text, #drupal8-text {
+#html5-text,
+#nodejs-text,
+#vuejs-text,
+#drupal8-text {
   display: none; }
 
 #nodejs-text {
   display: inline-block; }
+
+ul li {
+  text-align: left; }
 
 /*# sourceMappingURL=home.css.map */
