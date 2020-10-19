@@ -1,4 +1,4 @@
-@import "./../variables.scss";
+@import './../variables.scss';
 
 .home {
   border: 1px dashed $main_color;
@@ -11,7 +11,7 @@
 }
 
 .homepage-wrapper {
-  padding: 0 40px;
+  padding: 0 25px;
 }
 
 .container {
@@ -133,15 +133,20 @@
 }
 
 @media (max-width: 700px) {
-  .homepage-wrapper {
-    padding: 0;
+  .container {
+    max-width: 540px;
+    h1 {
+      margin-top: 140px;
+    }
   }
+
+  .homepage-wrapper {
+    padding: 0 25px;
+  }
+
   p {
     text-align: left;
     padding: 0;
-  }
-  .container h1 {
-    margin-top: 140px;
   }
 }
 
