@@ -4,7 +4,7 @@ html(lang='en')
     title= title
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    
+
     link(rel='shortcut icon', type="image/x-icon", href='https://chriscorchado.com/images/chrisCorchado.ico')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
 
@@ -24,7 +24,7 @@ html(lang='en')
 
     if page_name == 'company'
       link(rel='stylesheet', href='/css/pages/company.css')
-    
+
     if page_name == 'course'
       link(rel='stylesheet', href='/css/pages/course.css')
 
@@ -39,21 +39,21 @@ html(lang='en')
     - let counter = 2
 
     a#skip-links.screen-reader(href='#content' tabindex=1 style="position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;") Skip Navigation
-    
+
     header#navigation
 
       nav.navbar.navbar-light.bg-light.fixed-top.navbar-fixed-top.shadow
         div#navbarCollapse.navbar-collapse
-          div#navbar-nav.navbar-nav.show
-            
+          div#navbar-nav.navbar-nav.show(role="navigation" aria-label="Main")
+
             a#logo.navbar-brand(href="index" tabindex=counter++)
               img#logo-image(loading='lazy' src="https://chriscorchado.com/images/chriscorchado-initials-logo.png" title="Home" alt="Chris Corchado Logo")
-            
+
             a#companies-link.nav-item.nav-link(href="companies" tabindex=counter++) History
             a#courses-link.nav-item.nav-link(href="courses" tabindex=counter++) Courses
             a#projects-link.nav-item.nav-link(href="projects" tabindex=counter++) Projects
             a#contact-link.nav-item.nav-link(href="contact" tabindex=counter++) Contact
-        
+
           div#profiles
 
           if page_name !== 'home' && page_name !== 'contact'
@@ -63,25 +63,25 @@ html(lang='en')
             if showMe || page > 1
               - paginationClass = 'paginationYes'
 
-            div#search-container(role="search" class=paginationClass)
+            form#search-container(role="search" class=paginationClass)
 
               span#searchCount
                 span#paging-info(aria-label="Record Counts" tabindex=counter++)
 
-              label(for=searchSite) 
+              label(for=searchSite)
                 span.screen-reader Search
                 input#searchSite.ccBtn(type="text" placeholder="Search items" title="Enter something to search for" aria-label="Search" tabindex=counter++)
-              
-              label(for=searchBtn) 
+
+              label(for=searchBtn)
                 span.screen-reader Clear Search
-                button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search" tabindex=counter++  role='button') clear          
+                button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search" tabindex=counter++  role='button') clear
 
               - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
               if checkPager
 
                 div#pagination
 
-                  if page > 1 
+                  if page > 1
                     a.pager-navigation(href="#" id="prevLink" title="View the previous page" tabindex=counter++ role='button') Prev
                   else
                     span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Prev
@@ -91,16 +91,16 @@ html(lang='en')
                   else
                     span.pager-navigation.disabled(title="There is no next page available" tabindex=counter++  role='button') Next
 
-    // CONTENT        
+    // CONTENT
     if count > 0
-           
-      main.container(role="main")           
+
+      main.container(role="main")
 
         h1(id='content' tabindex="12") #{page_title}
 
         block content
 
-        span#paging(data-first=first data-last=last) 
+        span#paging(data-first=first data-last=last)
         span#recordCount #{count}
     else
       if searched
@@ -126,29 +126,29 @@ html(lang='en')
 
     footer(id='footer')
       div.site-version(aria-label="Icons of the technology used on this site and link to Github")
-      
-        div 
+
+        div
           img(loading='lazy' alt="nodeJS Icon" title="nodeJS for the platform"  src="https://chriscorchado.com/images/nodejs.png")
-        
-        div 
+
+        div
           img(loading='lazy' alt="Express Icon" title="Express for the backend framework"  src="https://chriscorchado.com/images/express.png")
 
-        div 
+        div
           img(loading='lazy' alt="mongoDB Icon" title="mongoDB for the database"  src="https://chriscorchado.com/images/mongodb.png")
-        
-        div 
-          img(loading='lazy' alt="mongoose Icon" title="mongoose to connect to the mongoDB database"  src="https://chriscorchado.com/images/mongoose.png")
-        
-        div 
-          img(loading='lazy' alt="TypeScript Icon" title="TypeScript for Javascript functionality"  src="https://chriscorchado.com/images/typescript.png")    
 
-        div 
+        div
+          img(loading='lazy' alt="mongoose Icon" title="mongoose to connect to the mongoDB database"  src="https://chriscorchado.com/images/mongoose.png")
+
+        div
+          img(loading='lazy' alt="TypeScript Icon" title="TypeScript for Javascript functionality"  src="https://chriscorchado.com/images/typescript.png")
+
+        div
           img(loading='lazy' alt="Sass Icon" title="SASS for the CSS look and feel styles"  src="https://chriscorchado.com/images/sass.png")
 
-        div 
-          img(loading='lazy' alt="pugjs Icon" title="Pug for the HTML content templates"  src="https://chriscorchado.com/images/pugjs.png")        
+        div
+          img(loading='lazy' alt="pugjs Icon" title="Pug for the HTML content templates"  src="https://chriscorchado.com/images/pugjs.png")
 
-        div 
+        div
           img(loading='lazy' alt="HTML5 Icon" title="HTML5 for overall structure"  src="https://chriscorchado.com/images/html5.png")
 
         div
