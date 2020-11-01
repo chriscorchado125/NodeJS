@@ -12,7 +12,7 @@ const getContactForm = (url) => __awaiter(this, void 0, void 0, function* () {
     try {
         const response = yield axios.get(url);
         let data = response.data.replace(/\/drupal8/g, 'https://chriscorchado.com/drupal8');
-        let form = data.substr(data.indexOf('<form'), data.indexOf('</form>'));
+        let form = data.substr(data.indexOf('<form class='), data.indexOf('</form>'));
         form = form.substr(0, form.indexOf('</form>') + 8);
         form = form.replace('Your email address', 'Email');
         let script = data.substr(data.indexOf('<script type="application/json" data-drupal-selector="drupal-settings-json">'), data.indexOf('></script>'));
