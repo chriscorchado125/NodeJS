@@ -4,6 +4,7 @@ const MAX_ITEMS_PER_PAGE = 50;
 
 const params = new URLSearchParams(window.location.search);
 const searchBox = document.getElementById("searchSite")! as HTMLInputElement;
+const searchSubmit = document.getElementById("searchSubmit")! as HTMLInputElement;
 const searchBtn = document.getElementById("searchBtn")! as HTMLElement;
 
 /**
@@ -57,33 +58,11 @@ const formSubmitted = (seconds: number) => {
 };
 
 /**
- * Debounce search requests in order to improve performance
- * @param {any} function
- * @param {number} wait - time to wait in milliseconds before invoking search
- * @return {function} - as long as it continues to be invoked the function will not be triggered.
+ * Triggered search
  */
-const debounce = (func: any, wait: number) => {
-  let timeout: any;
-
-  return function executedFunction(...args: any) {
-    // callback to be executed
-    const later = () => {
-      timeout = null; // indicate the debounce ended
-      func(...args); // execute the callback
-    };
-
-    clearTimeout(timeout); // on every function execution
-    timeout = setTimeout(later, wait); // restart the waiting period timeout
-  };
-};
-
-/**
- * Triggered on the keyup event within search input box
- */
-const debounceMe = debounce(() => {
-  window.location.href =
-    window.location.href.split("?")[0] + "?q=" + searchBox.value.replace(/[^\w\s]/gi, "");
-}, 500);
+const search = () => {
+  window.location.href = window.location.href.split("?")[0] + "?q=" + searchBox.value.replace(/[^\w\s]/gi, "");
+}
 
 /**
  * Manage the URL for search and paging
@@ -137,21 +116,21 @@ const manageURL = (action: string, value?: string) => {
 const addProfiles = (id: string) => {
   document.getElementById(id).innerHTML = `
   <div class="icon" id="pdf-resume">
-    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" tabindex="7">
+    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank">
       <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
       <span>Resume</span>
     </a>
   </div>
 
   <div class="icon" id="profile-linkedin">
-    <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank" tabindex="8">
+    <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank">
       <img alt="Link to LinkedIn Profile" title="Link to LinkedIn Profile" src="https://chriscorchado.com/images/linkedInIcon.jpg" />
       <span>LinkedIn</span>
     </a>
   </div>
 
   <div class="icon" id="profile-azure">
-    <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank" tabindex="9">
+    <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank">
       <img alt="Link to Azure Profile" title="Link to Azure Profile" src="https://chriscorchado.com/images/azureIcon.png" />
       <span>Azure</span>
     </a>
@@ -217,13 +196,31 @@ function nodePage() {
     if (pageIsSearchable) {
       document.getElementById("search-container").style.display = "block";
 
-      if (params.get("clear") !== null) searchBox.focus();
+      if (params.get("clear") !== null) {
+        searchBox.focus();
+        history.pushState(null, null, window.location.protocol + "//" + window.location.host + window.location.pathname);
+      }
 
-      // wait for user to pause typing before initiating a search
-      searchBox.addEventListener("keyup", (event) => {
-        if (event.key !== "Tab" && event.key !== "Enter") debounceMe();
+      // only allow the alphabet and spaces when searching
+      const re = new RegExp(('[a-zA-Z \s]'));
+
+      searchBox.addEventListener("keydown", (event) => {
+       if (re.exec(event.key) == null) {
+          event.preventDefault();
+          return false;
+        }
       });
-      searchBtn.addEventListener("click", (event) => manageURL("clearSearch"));
+
+
+      searchSubmit.addEventListener("click", (event) => {
+        event.preventDefault();
+        search();
+      });
+
+      searchBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        manageURL("clearSearch");
+      });
 
       // setup record counts
       let recordCount;
@@ -295,3 +292,8 @@ function nodePage() {
 }
 
 window.onload = nodePage;
+
+// add focus to skip link once loaded
+window.addEventListener('DOMContentLoaded', (event) => {
+   document.getElementById("skip-links").focus();
+});

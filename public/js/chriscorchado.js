@@ -2,6 +2,7 @@
 const MAX_ITEMS_PER_PAGE = 50;
 const params = new URLSearchParams(window.location.search);
 const searchBox = document.getElementById("searchSite");
+const searchSubmit = document.getElementById("searchSubmit");
 const searchBtn = document.getElementById("searchBtn");
 const getCurrentPage = () => {
     let thisPage = window.location.pathname
@@ -33,21 +34,9 @@ const formSubmitted = (seconds) => {
         }
     }, 1000);
 };
-const debounce = (func, wait) => {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            timeout = null;
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+const search = () => {
+    window.location.href = window.location.href.split("?")[0] + "?q=" + searchBox.value.replace(/[^\w\s]/gi, "");
 };
-const debounceMe = debounce(() => {
-    window.location.href =
-        window.location.href.split("?")[0] + "?q=" + searchBox.value.replace(/[^\w\s]/gi, "");
-}, 500);
 const manageURL = (action, value) => {
     let thisURL = window.location.href.split("?");
     switch (action) {
@@ -84,21 +73,21 @@ const manageURL = (action, value) => {
 const addProfiles = (id) => {
     document.getElementById(id).innerHTML = `
   <div class="icon" id="pdf-resume">
-    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" tabindex="7">
+    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank">
       <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
       <span>Resume</span>
     </a>
   </div>
 
   <div class="icon" id="profile-linkedin">
-    <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank" tabindex="8">
+    <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank">
       <img alt="Link to LinkedIn Profile" title="Link to LinkedIn Profile" src="https://chriscorchado.com/images/linkedInIcon.jpg" />
       <span>LinkedIn</span>
     </a>
   </div>
 
   <div class="icon" id="profile-azure">
-    <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank" tabindex="9">
+    <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank">
       <img alt="Link to Azure Profile" title="Link to Azure Profile" src="https://chriscorchado.com/images/azureIcon.png" />
       <span>Azure</span>
     </a>
@@ -148,13 +137,25 @@ function nodePage() {
         }
         if (pageIsSearchable) {
             document.getElementById("search-container").style.display = "block";
-            if (params.get("clear") !== null)
+            if (params.get("clear") !== null) {
                 searchBox.focus();
-            searchBox.addEventListener("keyup", (event) => {
-                if (event.key !== "Tab" && event.key !== "Enter")
-                    debounceMe();
+                history.pushState(null, null, window.location.protocol + "//" + window.location.host + window.location.pathname);
+            }
+            const re = new RegExp(('[a-zA-Z \s]'));
+            searchBox.addEventListener("keydown", (event) => {
+                if (re.exec(event.key) == null) {
+                    event.preventDefault();
+                    return false;
+                }
             });
-            searchBtn.addEventListener("click", (event) => manageURL("clearSearch"));
+            searchSubmit.addEventListener("click", (event) => {
+                event.preventDefault();
+                search();
+            });
+            searchBtn.addEventListener("click", (event) => {
+                event.preventDefault();
+                manageURL("clearSearch");
+            });
             let recordCount;
             if (document.getElementById("recordCount")) {
                 recordCount = parseInt(document.getElementById("recordCount").innerText);
@@ -209,3 +210,6 @@ function nodePage() {
     }, 125);
 }
 window.onload = nodePage;
+window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById("skip-links").focus();
+});

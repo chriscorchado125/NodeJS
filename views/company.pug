@@ -4,22 +4,20 @@ block content
 
   div.container.company
 
-    - let counter = 20
-
     each company in data
 
       div.company-container.col.shadow
 
-        div.company-name(tabindex=counter++) !{utility.highlightSearch(company.name, searched)}
-        
-        div.company-job-title(tabindex=counter++) !{utility.highlightSearch(company.job_title, searched)}
+        div.company-name !{utility.highlightSearch(company.name, searched)}
 
-        div.body-container(tabindex=counter++) !{utility.highlightSearch(company.description, searched)}
+        div.company-job-title !{utility.highlightSearch(company.job_title, searched)}
+
+        div.body-container !{utility.highlightSearch(company.description, searched)}
 
         div.screenshot-container
-          img(loading='lazy' src=company.screenshots class="company-screenshot" alt=company.name tabindex=counter++)
+          img(loading='lazy' src=company.screenshots class="company-screenshot" alt=company.name)
 
         if company.end_date
-          div.employment-dates(tabindex=counter++) #{utility.getMonthYear(company.start_date)} - #{utility.getMonthYear(company.end_date)}
+          div.employment-dates #{utility.getMonthYear(company.start_date)} - #{utility.getMonthYear(company.end_date)}
         else
-          div.employment-dates(tabindex=counter++) #{utility.getMonthYear(company.start_date)} - null
+          div.employment-dates #{utility.getMonthYear(company.start_date)} - null

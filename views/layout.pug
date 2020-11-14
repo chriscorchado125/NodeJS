@@ -38,7 +38,7 @@ html(lang='en')
   body
     - let counter = 2
 
-    a#skip-links.screen-reader(href='#content' tabindex=1 style="position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;") Skip Navigation
+    a#skip-links.screen-reader(href='#content' style="position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;") Skip Navigation
 
     header#navigation
 
@@ -46,13 +46,13 @@ html(lang='en')
         div#navbarCollapse.navbar-collapse
           div#navbar-nav.navbar-nav.show(role="navigation" aria-label="Main")
 
-            a#logo.navbar-brand(href="index" tabindex=counter++)
+            a#logo.navbar-brand(href="index")
               img#logo-image(loading='lazy' src="https://chriscorchado.com/images/chriscorchado-initials-logo.png" title="Home" alt="Chris Corchado Logo")
 
-            a#companies-link.nav-item.nav-link(href="companies" tabindex=counter++) History
-            a#courses-link.nav-item.nav-link(href="courses" tabindex=counter++) Courses
-            a#projects-link.nav-item.nav-link(href="projects" tabindex=counter++) Projects
-            a#contact-link.nav-item.nav-link(href="contact" tabindex=counter++) Contact
+            a#companies-link.nav-item.nav-link(href="companies") History
+            a#courses-link.nav-item.nav-link(href="courses") Courses
+            a#projects-link.nav-item.nav-link(href="projects") Projects
+            a#contact-link.nav-item.nav-link(href="contact") Contact
 
           div#profiles
 
@@ -66,15 +66,19 @@ html(lang='en')
             form#search-container(role="search" class=paginationClass)
 
               span#searchCount
-                span#paging-info(aria-label="Record Counts" tabindex=counter++)
+                span#paging-info(aria-label="Record Counts")
 
               label(for=searchSite)
                 span.screen-reader Search
-                input#searchSite.ccBtn(type="text" placeholder="Search items" title="Enter something to search for" aria-label="Search" tabindex=counter++)
+                input#searchSite(type="search" placeholder="Search items" title="Enter something to search for" aria-label="Search")
+
+              label(for=searchBtn)
+                span.screen-reader Search
+                button#searchSubmit.searchBtn(title="Search" aria-label="Search" role='button') Search
 
               label(for=searchBtn)
                 span.screen-reader Clear Search
-                button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search" tabindex=counter++  role='button') clear
+                button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search"  role='button') Clear
 
               - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
               if checkPager
@@ -82,21 +86,21 @@ html(lang='en')
                 div#pagination
 
                   if page > 1
-                    a.pager-navigation(href="#" id="prevLink" title="View the previous page" tabindex=counter++ role='button') Prev
+                    a.pager-navigation(href="#" id="prevLink" title="View the previous page" role='button') Prev
                   else
-                    span.pager-navigation.disabled(title="There is no previous page available" tabindex=counter++  role='button') Prev
+                    span.pager-navigation.disabled(title="There is no previous page available" role='button') Prev
 
                   if  ((count == maxItemsPerPage) && (page > 0))
-                    a.pager-navigation(href="#" id="nextLink" title="View the next page" tabindex=counter++  role='button') Next
+                    a.pager-navigation(href="#" id="nextLink" title="View the next page" role='button') Next
                   else
-                    span.pager-navigation.disabled(title="There is no next page available" tabindex=counter++  role='button') Next
+                    span.pager-navigation.disabled(title="There is no next page available" role='button') Next
 
     // CONTENT
     if count > 0
 
       main.container(role="main")
 
-        h1(id='content' tabindex="12") #{page_title}
+        h1(id='content') #{page_title}
 
         block content
 
