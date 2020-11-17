@@ -81,7 +81,7 @@ exports.index = function (req, res, next) {
       });
 
       res.render('project', {
-        title: 'Chris Corchado - Projects - Portfolio and Resume',
+        title: 'Chris Corchado - Project Samples',
         data: objArr,
         count: objArr.length,
         searched: req.query.q,

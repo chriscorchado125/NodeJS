@@ -80,7 +80,7 @@ exports.index = function (req, res, next) {
       res.cookie("recordCount", data.length);
 
       res.render("course", {
-        title: "Chris Corchado - Courses - Portfolio and Resume",
+        title: "Chris Corchado - Courses Taken",
         data: data,
         count: data.length,
         first: firstID,

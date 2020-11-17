@@ -5,7 +5,7 @@ exports.index = function (req, res, next) {
 
   getContactForm('https://chriscorchado.com/drupal8/contact/feedback').then((data) => {
     res.render('contact', {
-      title: ' Chris Corchado - Contact - Portfolio and Resume',
+      title: ' Chris Corchado - Contact Me',
       titlePage: 'Contact',
       count: 1,
       data: data,
