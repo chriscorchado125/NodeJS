@@ -116,21 +116,21 @@ const manageURL = (action: string, value?: string) => {
 const addProfiles = (id: string) => {
   document.getElementById(id).innerHTML = `
   <div class="icon" id="pdf-resume">
-    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank">
+    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" rel="noopener" title="Opening a new window">
       <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
       <span>Resume</span>
     </a>
   </div>
 
   <div class="icon" id="profile-linkedin">
-    <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank">
+    <a href="https://www.linkedin.com/in/chriscorchado/" target="_blank" rel="noopener" title="Opening a new window">
       <img alt="Link to LinkedIn Profile" title="Link to LinkedIn Profile" src="https://chriscorchado.com/images/linkedInIcon.jpg" />
       <span>LinkedIn</span>
     </a>
   </div>
 
   <div class="icon" id="profile-azure">
-    <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank">
+    <a href="https://docs.microsoft.com/en-us/users/corchadochrisit-2736/" target="_blank" rel="noopener" title="Opening a new window">
       <img alt="Link to Azure Profile" title="Link to Azure Profile" src="https://chriscorchado.com/images/azureIcon.png" />
       <span>Azure</span>
     </a>
@@ -210,7 +210,6 @@ function nodePage() {
           return false;
         }
       });
-
 
       searchSubmit.addEventListener("click", (event) => {
         event.preventDefault();
@@ -292,8 +291,3 @@ function nodePage() {
 }
 
 window.onload = nodePage;
-
-// add focus to skip link once loaded
-window.addEventListener('DOMContentLoaded', (event) => {
-   document.getElementById("skip-links").focus();
-});

@@ -1,4 +1,8 @@
-@import './../variables.scss';
+@import "./../variables.scss";
+
+a {
+  color: $main_color;
+}
 
 .home {
   border: 1px dashed $main_color;

@@ -21,11 +21,11 @@ block content
 
           span.course-links
 
-            a(href=course.certificate_pdf target='_blank')
+            a(href=course.certificate_pdf target='_blank' rel='noopener' title="Opening a new window")
               img(loading='lazy' src="https://chriscorchado.com/images/pdfIcon.jpg" height="25" title="View the PDF Certificate" alt="PDF Icon")
 
           if course.track_image
             span.course-links
 
-              a(href=course.track_image target='_blank' data-featherlight="image")
+              a(href=course.track_image target='_blank' data-featherlight="image" rel='noopener' title="Opening a lightbox")
                 img(loading='lazy' src="https://chriscorchado.com/images/linkedIn-track.png" height="25" title="View the Courses in the Track" alt="Trophy Icon")

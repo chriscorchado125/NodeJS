@@ -40,6 +40,10 @@
   }
 } // .navbar
 
+.navbar-light .navbar-nav a {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
 @media (max-width: 700px) {
   .navbar-nav {
     justify-content: space-between;

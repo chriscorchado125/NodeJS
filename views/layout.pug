@@ -4,13 +4,14 @@ html(lang='en')
     title= title
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='Chris Corchado - Portfolio and Resume')
 
-    link(rel='shortcut icon', type="image/x-icon", href='https://chriscorchado.com/images/chrisCorchado.ico')
+    link(rel='shortcut icon', type='image/x-icon', href='https://chriscorchado.com/images/chrisCorchado.ico')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
 
     if needs_lighbox
-      link(rel='stylesheet', href='//cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.min.css')
-      link(rel='stylesheet', href='//cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.gallery.min.css')
+      link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.min.css')
+      link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.gallery.min.css')
 
     link(rel='stylesheet', href='/css/chriscorchado.css')
 
@@ -36,23 +37,22 @@ html(lang='en')
       link(rel='stylesheet', href='/css/header/pagination.css')
 
   body
-    - let counter = 2
 
-    a#skip-links.screen-reader(href='#content' style="position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;") Skip Navigation
+    a#skip-links.screen-reader(href='#content' style='position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;') Skip Navigation
 
     header#navigation
 
       nav.navbar.navbar-light.bg-light.fixed-top.navbar-fixed-top.shadow
         div#navbarCollapse.navbar-collapse
-          div#navbar-nav.navbar-nav.show(role="navigation" aria-label="Main")
+          div#navbar-nav.navbar-nav.show(role='navigation' aria-label='Main')
 
-            a#logo.navbar-brand(href="index")
-              img#logo-image(loading='lazy' src="https://chriscorchado.com/images/chriscorchado-initials-logo.png" title="Home" alt="Chris Corchado Logo")
+            a#logo.navbar-brand(href='index')
+              img#logo-image(loading='lazy' src='https://chriscorchado.com/images/chriscorchado-initials-logo.png' title='Home' alt='Chris Corchado Logo')
 
-            a#companies-link.nav-item.nav-link(href="companies") History
-            a#courses-link.nav-item.nav-link(href="courses") Courses
-            a#projects-link.nav-item.nav-link(href="projects") Projects
-            a#contact-link.nav-item.nav-link(href="contact") Contact
+            a#companies-link.nav-item.nav-link(href='companies') History
+            a#courses-link.nav-item.nav-link(href='courses') Courses
+            a#projects-link.nav-item.nav-link(href='projects') Projects
+            a#contact-link.nav-item.nav-link(href='contact') Contact
 
           div#profiles
 
@@ -63,22 +63,22 @@ html(lang='en')
             if showMe || page > 1
               - paginationClass = 'paginationYes'
 
-            form#search-container(role="search" class=paginationClass)
+            form#search-container(role='search' class=paginationClass)
 
               span#searchCount
-                span#paging-info(aria-label="Record Counts")
+                span#paging-info(aria-label='Record Counts')
 
               label(for=searchSite)
                 span.screen-reader Search
-                input#searchSite(type="search" placeholder="Search items" title="Enter something to search for" aria-label="Search")
+                input#searchSite(type='search' placeholder='Search items' title='Enter something to search for' aria-label='Search')
 
               label(for=searchBtn)
                 span.screen-reader Search
-                button#searchSubmit.searchBtn(title="Search" aria-label="Search" role='button') Search
+                button#searchSubmit.searchBtn(title='Search' aria-label='Search' role='button') Search
 
               label(for=searchBtn)
                 span.screen-reader Clear Search
-                button#searchBtn.searchBtn(title="Clear the search" aria-label="Clear Search"  role='button') Clear
+                button#searchBtn.searchBtn(title='Clear the search' aria-label='Clear Search'  role='button') Clear
 
               - let checkPager = page > 1 || ((count == maxItemsPerPage) && (page > 0))
               if checkPager
@@ -86,19 +86,19 @@ html(lang='en')
                 div#pagination
 
                   if page > 1
-                    a.pager-navigation(href="#" id="prevLink" title="View the previous page" role='button') Prev
+                    a.pager-navigation(href='#' id='prevLink' title='View the previous page' role='button') Prev
                   else
-                    span.pager-navigation.disabled(title="There is no previous page available" role='button') Prev
+                    span.pager-navigation.disabled(title='There is no previous page available' role='button') Prev
 
                   if  ((count == maxItemsPerPage) && (page > 0))
-                    a.pager-navigation(href="#" id="nextLink" title="View the next page" role='button') Next
+                    a.pager-navigation(href='#' id='nextLink' title='View the next page' role='button') Next
                   else
-                    span.pager-navigation.disabled(title="There is no next page available" role='button') Next
+                    span.pager-navigation.disabled(title='There is no next page available' role='button') Next
 
     // CONTENT
     if count > 0
 
-      main.container(role="main")
+      main.container(role='main')
 
         h1(id='content') #{page_title}
 
@@ -122,40 +122,40 @@ html(lang='en')
 
     if needs_lighbox
       script(src='https://code.jquery.com/jquery-3.5.0.min.js')
-      script(src='//cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.min.js')
-      script(src='//cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.gallery.min.js')
-      script(src='//cdnjs.cloudflare.com/ajax/libs/detect_swipe/2.1.1/jquery.detect_swipe.min.js')
+      script(src='https://cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.min.js')
+      script(src='https://cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.gallery.min.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/detect_swipe/2.1.1/jquery.detect_swipe.min.js')
       script(src='/js/lightboxConfig.js')
 
     script(src='/js/chriscorchado.js')
 
     footer(id='footer')
-      div.site-version(aria-label="Icons of the technology used on this site and link to Github")
+      div.site-version(aria-label='Icons of the technology used on this site and link to Github')
 
         div
-          img(loading='lazy' alt="nodeJS Icon" title="nodeJS for the platform"  src="https://chriscorchado.com/images/nodejs.png")
+          img(loading='lazy' alt='nodeJS Icon' title='nodeJS for the platform'  src='https://chriscorchado.com/images/nodejs.png')
 
         div
-          img(loading='lazy' alt="Express Icon" title="Express for the backend framework"  src="https://chriscorchado.com/images/express.png")
+          img(loading='lazy' alt='Express Icon' title='Express for the backend framework'  src='https://chriscorchado.com/images/express.png')
 
         div
-          img(loading='lazy' alt="mongoDB Icon" title="mongoDB for the database"  src="https://chriscorchado.com/images/mongodb.png")
+          img(loading='lazy' alt='mongoDB Icon' title='mongoDB for the database'  src='https://chriscorchado.com/images/mongodb.png')
 
         div
-          img(loading='lazy' alt="mongoose Icon" title="mongoose to connect to the mongoDB database"  src="https://chriscorchado.com/images/mongoose.png")
+          img(loading='lazy' alt='mongoose Icon' title='mongoose to connect to the mongoDB database'  src='https://chriscorchado.com/images/mongoose.png')
 
         div
-          img(loading='lazy' alt="TypeScript Icon" title="TypeScript for Javascript functionality"  src="https://chriscorchado.com/images/typescript.png")
+          img(loading='lazy' alt='TypeScript Icon' title='TypeScript for Javascript functionality'  src='https://chriscorchado.com/images/typescript.png')
 
         div
-          img(loading='lazy' alt="Sass Icon" title="SASS for the CSS look and feel styles"  src="https://chriscorchado.com/images/sass.png")
+          img(loading='lazy' alt='Sass Icon' title='SASS for the CSS look and feel styles'  src='https://chriscorchado.com/images/sass.png')
 
         div
-          img(loading='lazy' alt="pugjs Icon" title="Pug for the HTML content templates"  src="https://chriscorchado.com/images/pugjs.png")
+          img(loading='lazy' alt='pugjs Icon' title='Pug for the HTML content templates'  src='https://chriscorchado.com/images/pugjs.png')
 
         div
-          img(loading='lazy' alt="HTML5 Icon" title="HTML5 for overall structure"  src="https://chriscorchado.com/images/html5.png")
+          img(loading='lazy' alt='HTML5 Icon' title='HTML5 for overall structure'  src='https://chriscorchado.com/images/html5.png')
 
         div
-          a(href="https://github.com/chriscorchado125/NodeJS" target="_blank")
-            img(loading='lazy' alt="Github Icon" title="View the code on GitHub"  src="https://chriscorchado.com/images/github.jpg")
+          a(href='https://github.com/chriscorchado125/NodeJS' target='_blank' rel='noopener' title='Opening a new window')
+            img(loading='lazy' alt='Github Icon' title='View the code on GitHub'  src='https://chriscorchado.com/images/github.jpg')
