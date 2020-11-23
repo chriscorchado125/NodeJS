@@ -238,7 +238,7 @@ function nodePage() {
       let firstNumberRange;
 
       if (currentPageNumber > 1) {
-        firstNumberRange = (currentPageNumber - 1) * MAX_ITEMS_PER_PAGE;
+        firstNumberRange = ((currentPageNumber - 1) * MAX_ITEMS_PER_PAGE) + 1;
       } else {
         firstNumberRange = 1;
       }
@@ -260,7 +260,7 @@ function nodePage() {
             }`;
           } else {
             pagingText.innerHTML = `Items ${firstNumberRange}-${
-              firstNumberRange + recordCount
+              (firstNumberRange + recordCount) - 1
             }`;
           }
         } else {
