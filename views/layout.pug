@@ -32,7 +32,11 @@ html(lang='en')
     if page_name == 'project'
       link(rel='stylesheet', href='/css/pages/project.css')
 
-    if page_name !== 'home' && page_name !== 'contact'
+    if page_name == 'resume'
+      link(rel='stylesheet', href='/css/pages/resume.css')
+      link(rel='stylesheet', href='/css/header/profile.css')
+
+    if page_name !== 'home' && page_name !== 'contact' && page_name !== 'resume'
       link(rel='stylesheet', href='/css/header/search.css')
       link(rel='stylesheet', href='/css/header/pagination.css')
 
@@ -56,7 +60,7 @@ html(lang='en')
 
           div#profiles
 
-          if page_name !== 'home' && page_name !== 'contact'
+          if page_name !== 'home' && page_name !== 'contact' && page_name !== 'resume'
             - let showMe = count == 50
             - let paginationClass = 'paginationNo'
 

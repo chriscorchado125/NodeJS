@@ -72,9 +72,9 @@ const manageURL = (action, value) => {
 };
 const addProfiles = (id) => {
     document.getElementById(id).innerHTML = `
-  <div class="icon" id="pdf-resume">
-    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" rel="noopener" title="Opening a new window">
-      <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
+  <div class="icon" id="html-resume">
+    <a href="/resume">
+      <img alt="Link to HTML Resume with PDF and Word options" src="https://chriscorchado.com/images/htmlIcon.jpg" />
       <span>Resume</span>
     </a>
   </div>
@@ -92,6 +92,23 @@ const addProfiles = (id) => {
       <span>Azure</span>
     </a>
   </div>`;
+};
+const addResumes = (id) => {
+    document.getElementById(id).innerHTML = `
+  <div class="icon" id="pdf-resume">
+    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" rel="noopener" title="Opening a new window">
+      <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" />
+      <span>PDF</span>
+    </a>
+  </div>
+
+  <div class="icon" id="word-resume">
+    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.docx" title="File will download">
+      <img alt="Link to MS Word Resume" src="https://chriscorchado.com/images/wordIcon.jpg" />
+      <span>Word</span>
+    </a>
+  </div>
+`;
 };
 function nodePage() {
     let currentNavItem = "";
@@ -131,8 +148,11 @@ function nodePage() {
                     document.getElementById("edit-mail").focus();
                 }
                 break;
+            case "resume":
+                addResumes("profiles");
+                break;
         }
-        if (getCurrentPage() !== "about") {
+        if (getCurrentPage() !== "about" && getCurrentPage() !== "resume") {
             document.getElementById(currentNavItem).className += " nav-item-active";
         }
         if (pageIsSearchable) {

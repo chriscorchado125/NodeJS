@@ -115,9 +115,9 @@ const manageURL = (action: string, value?: string) => {
  */
 const addProfiles = (id: string) => {
   document.getElementById(id).innerHTML = `
-  <div class="icon" id="pdf-resume">
-    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" rel="noopener" title="Opening a new window">
-      <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" title="Link to PDF Resume" />
+  <div class="icon" id="html-resume">
+    <a href="/resume">
+      <img alt="Link to HTML Resume with PDF and Word options" src="https://chriscorchado.com/images/htmlIcon.jpg" />
       <span>Resume</span>
     </a>
   </div>
@@ -135,6 +135,28 @@ const addProfiles = (id: string) => {
       <span>Azure</span>
     </a>
   </div>`;
+};
+
+/**
+ * Add PDF and Word resume links
+ * @param {string} id - ID of element to insert into
+ */
+const addResumes = (id: string) => {
+  document.getElementById(id).innerHTML = `
+  <div class="icon" id="pdf-resume">
+    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf" target="_blank" rel="noopener" title="Opening a new window">
+      <img alt="Link to PDF Resume" src="https://chriscorchado.com/images/pdfIcon.jpg" />
+      <span>PDF</span>
+    </a>
+  </div>
+
+  <div class="icon" id="word-resume">
+    <a href="https://chriscorchado.com/resume/Chris-Corchado-resume-2020.docx" title="File will download">
+      <img alt="Link to MS Word Resume" src="https://chriscorchado.com/images/wordIcon.jpg" />
+      <span>Word</span>
+    </a>
+  </div>
+`;
 };
 
 // TODO check attributes inside pug = div([innerHtml]="example")
@@ -186,10 +208,14 @@ function nodePage() {
           document.getElementById("edit-mail").focus();
         }
         break;
+
+      case "resume":
+        addResumes("profiles");
+        break;
     }
 
     // the home/about link is an image and not text
-    if (getCurrentPage() !== "about") {
+    if (getCurrentPage() !== "about" && getCurrentPage() !== "resume") {
       document.getElementById(currentNavItem).className += " nav-item-active";
     }
 
