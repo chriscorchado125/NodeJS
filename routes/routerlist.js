@@ -1,21 +1,21 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-var record_controller = require('../controllers/recordController');
-var home_controller = require('../controllers/homeController');
-var company_controller = require('../controllers/companyController');
-var course_controller = require('../controllers/courseController');
-var project_controller = require('../controllers/projectController');
-var contact_controller = require('../controllers/contactController');
-var resume_controller = require('../controllers/resumeController');
+const recordController = require('../controllers/recordController')
+const homeController = require('../controllers/homeController')
+const companyController = require('../controllers/companyController')
+const courseController = require('../controllers/courseController')
+const projectController = require('../controllers/projectController')
+const contactController = require('../controllers/contactController')
+const resumeController = require('../controllers/resumeController')
 
-router.get('/', home_controller.index);
-router.get('/index', home_controller.index);
-router.get('/companies', company_controller.index);
-router.get('/courses', course_controller.index);
-router.get('/projects', project_controller.index);
-router.get('/contact', contact_controller.index);
-router.get('/resume', resume_controller.index);
-router.get('/recordcount', record_controller.record_count);
+router.get('/', homeController.index)
+router.get('/index', homeController.index)
+router.get('/companies', companyController.index)
+router.get('/courses', courseController.index)
+router.get('/projects', projectController.index)
+router.get('/contact', contactController.index)
+router.get('/resume', resumeController.index)
+router.get('/recordcount', recordController.record_count)
 
-module.exports = router;
+module.exports = router

@@ -1,31 +1,32 @@
-var Company = require('../models/company');
-var Course = require('../models/course');
-var Project = require('../models/project');
+const Company = require('../models/company')
+const Course = require('../models/course')
+const Project = require('../models/project')
 
-var async = require('async');
+const async = require('async')
 
-exports.record_count = function (req, res) {
+exports.record_count = function (req, res, next) {
   async.parallel(
     {
       company_count: function (callback) {
-        Company.countDocuments({}, callback);
+        Company.countDocuments({}, callback)
       },
 
       course_count: function (callback) {
-        Course.countDocuments({}, callback);
+        Course.countDocuments({}, callback)
       },
 
       project_count: function (callback) {
-        Project.countDocuments({}, callback);
-      },
+        Project.countDocuments({}, callback)
+      }
     },
 
     function (err, data) {
-      if (err) return next(err);
+      if (err) return next(err)
+
       res.render('record_count', {
         title: 'Record Counts',
-        data: data,
-      });
+        data: data
+      })
     }
-  );
-};
+  )
+}

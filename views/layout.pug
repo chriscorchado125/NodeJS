@@ -20,8 +20,8 @@ html(lang='en')
       link(rel='stylesheet', href='/css/pages/home.css')
 
     if page_name == 'contact'
-      link(rel='stylesheet', href='/css/pages/contact.css')
       link(rel='stylesheet', href='/css/header/profile.css')
+      link(rel='stylesheet', href='/css/pages/contact.css')
 
     if page_name == 'company'
       link(rel='stylesheet', href='/css/pages/company.css')
@@ -108,11 +108,6 @@ html(lang='en')
 
         span#paging(data-first=first data-last=last)
         span#recordCount #{count}
-    else
-      if searched
-        div#noRecords No matches found for '#{searched}'
-      else
-        div#noRecords No Records Found
 
     if needs_lighbox
       script(src='https://code.jquery.com/jquery-3.5.0.min.js')
@@ -121,9 +116,9 @@ html(lang='en')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/detect_swipe/2.1.1/jquery.detect_swipe.min.js')
       script(src='/js/lightboxConfig.js')
 
-    script(src='/js/chriscorchado.js')
-    script(src='/js/utilities.js')
-    script(src='/js/search.js')
+    script(src='/js/chriscorchado.js' type='module')
+    script(src='/js/utilities.js' type='module')
+    script(src='/js/search.js' type='module')
 
     footer(id='footer')
       div.site-version(aria-label='Icons of the technology used on this site and link to Github')

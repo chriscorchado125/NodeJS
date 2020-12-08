@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-var CourseSchema = new Schema({
+const CourseSchema = new Schema({
   name: { type: String, required: true },
   // technology_reference: {
   //   type: Schema.Types.ObjectId,
@@ -14,7 +14,7 @@ var CourseSchema = new Schema({
   track_image: { type: String },
   course_date: { type: Date },
   created: { type: Date, default: Date.now },
-  modified: { type: Date },
-});
+  modified: { type: Date }
+})
 
-module.exports = mongoose.model('Course', CourseSchema);
+module.exports = mongoose.model('Course', CourseSchema)

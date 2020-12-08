@@ -1,4 +1,12 @@
-const animateLogo = (logoID, animationID) => {
+export const showMessage = (msg) => {
+    const userMsg = document.getElementById('user-message');
+    userMsg.innerHTML = msg;
+};
+export const clearMessage = () => {
+    const userMsg = document.getElementById('user-message');
+    userMsg.innerHTML = '';
+};
+export const animateLogo = (logoID, animationID) => {
     const logoElement = document.getElementById(logoID);
     const checkExist = setInterval(function () {
         if (logoElement) {
@@ -12,4 +20,3 @@ const animateLogo = (logoID, animationID) => {
         }
     }, 100);
 };
-const MAX_ITEMS_PER_PAGE = 50;

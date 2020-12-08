@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-var Resume = new Schema({
+const Resume = new Schema({
   description: { type: String, required: true },
-  modified: { type: Date },
-});
+  modified: { type: Date }
+})
 
-module.exports = mongoose.model('ResumeHtml', Resume);
+module.exports = mongoose.model('ResumeHtml', Resume)

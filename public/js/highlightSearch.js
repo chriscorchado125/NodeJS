@@ -1,7 +1,8 @@
+"use strict";
 const highlightSearch = (itemToHighlight, searchedFor) => {
     let dataToReturn = '';
     if (searchedFor) {
-        let searchTerm = new RegExp(searchedFor, 'gi');
+        const searchTerm = new RegExp(searchedFor, 'gi');
         let results = '';
         let searchString = '';
         let searchStringArray = [];
@@ -10,7 +11,7 @@ const highlightSearch = (itemToHighlight, searchedFor) => {
         }
         if (searchString.indexOf('<ul>') !== -1) {
             let listItem = '';
-            let searchWithHTML = searchString.replace('<ul>', '').replace('</ul>', '');
+            const searchWithHTML = searchString.replace('<ul>', '').replace('</ul>', '');
             searchStringArray = searchWithHTML.split('<li>');
             searchStringArray.forEach((element) => {
                 if (element.length > 3) {

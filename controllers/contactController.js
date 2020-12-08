@@ -1,18 +1,16 @@
-var async = require('async');
+exports.index = async function (req, res, next) {
+  const getContactForm = require('../public/js/getContactForm')
 
-exports.index = function (req, res, next) {
-  const getContactForm = require('../public/js/getContactForm');
-
-  getContactForm('https://chriscorchado.com/drupal8/contact/feedback').then((data) => {
+  await getContactForm('https://chriscorchado.com/drupal8/contact/feedback').then((data) => {
     res.render('contact', {
-      title: 'Contact Me | Chris Corchado',
+      title: 'Chris Corchado - Contact Me',
       titlePage: 'Contact',
       count: 1,
       data: data,
       page_name: 'contact',
-      page_title: 'Contact Me',
+      page_title: 'Contact',
       needs_lighbox: false,
-      submitted: req.query.submitted,
-    });
-  });
-};
+      submitted: req.query.submitted
+    })
+  })
+}

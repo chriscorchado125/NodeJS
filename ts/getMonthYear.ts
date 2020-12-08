@@ -4,13 +4,9 @@
  * @return {string} - month and year - example: January 2020
  */
 const getMonthYear = (dateString: string) => {
-  let newDate = new Date(dateString);
+  const newDate = new Date(dateString)
 
-  return (
-    newDate.toLocaleString('default', { month: 'long' }) +
-    ' ' +
-    newDate.getFullYear().toString()
-  );
-};
+  return (`${newDate.toLocaleString('default', { month: 'long' })} ${newDate.getFullYear().toString()}`)
+}
 
-module.exports = getMonthYear;
+module.exports = getMonthYear

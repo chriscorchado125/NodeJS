@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-var CompanySchema = new Schema({
+const CompanySchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   logo: { type: String },
@@ -15,8 +15,8 @@ var CompanySchema = new Schema({
   start_date: { type: Date },
   end_date: { type: Date },
   created: { type: Date, default: Date.now },
-  modified: { type: Date },
-  //project_reference: { type: Schema.Types.ObjectId, ref: 'Technology', required: true },
-});
+  modified: { type: Date }
+  // Project_reference: { type: Schema.Types.ObjectId, ref: 'Technology', required: true },
+})
 
-module.exports = mongoose.model('Company', CompanySchema);
+module.exports = mongoose.model('Company', CompanySchema)

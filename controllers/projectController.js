@@ -1,30 +1,29 @@
-var Project = require('../models/project');
-var async = require('async');
+const Project = require('../models/project')
 
 exports.index = function (req, res, next) {
-  const highlightSearch = require('../public/js/highlightSearch');
+  const highlightSearch = require('../public/js/highlightSearch')
 
-  let search = { $regex: new RegExp(req.query.q, 'i') };
+  const search = { $regex: new RegExp(req.query.q, 'i') }
 
-  let queryParams = {
+  const queryParams = {
     $or: [
       {
-        name: search,
+        name: search
       },
       {
-        description: search,
+        description: search
       },
       {
-        company_name: search,
+        company_name: search
       },
       {
-        technology: search,
+        technology: search
       },
       {
-        screenshots: search,
-      },
-    ],
-  };
+        screenshots: search
+      }
+    ]
+  }
 
   Project.find(
     queryParams,
@@ -32,28 +31,28 @@ exports.index = function (req, res, next) {
   )
     .sort({ _id: 1, project_date: 1, name: 1, created: 1 })
     .exec(function (err, data) {
-      if (err) return next(err);
+      if (err) return next(err)
 
-      const checkSearch = RegExp(req.query.q, 'i');
-      let newData = {};
-      let objArr = [];
-      let screenshotText = '';
-      let addRecord;
-      let screenshotArr;
+      const checkSearch = RegExp(req.query.q, 'i')
+      let newData = {}
+      const objArr = []
+      let screenshotText = ''
+      let addRecord
+      let screenshotArr
 
       data.forEach((item, count) => {
-        addRecord = false;
-        screenshotArr = [];
+        addRecord = false
+        screenshotArr = []
 
         // need to filter the data for records which match a screenshot image path including the name
         if (item.screenshots.length > 0) {
           item.screenshots.forEach((item, count) => {
-            screenshotText = item.split(',');
+            screenshotText = item.split(',')
 
-            if (checkSearch.test(screenshotText[0])) addRecord = true;
+            if (checkSearch.test(screenshotText[0])) addRecord = true
 
-            screenshotArr.push(`${screenshotText[0]}, ${screenshotText[1]}`);
-          });
+            screenshotArr.push(`${screenshotText[0]}, ${screenshotText[1]}`)
+          })
 
           if (
             checkSearch.test(item.name) ||
@@ -61,7 +60,7 @@ exports.index = function (req, res, next) {
             checkSearch.test(item.company_name) ||
             checkSearch.test(item.technology)
           ) {
-            addRecord = true;
+            addRecord = true
           }
 
           if (addRecord) {
@@ -73,12 +72,12 @@ exports.index = function (req, res, next) {
               company_name: item.company_name,
               video: item.videos || '',
               technology: item.technology,
-              project_date: item.project_date,
-            };
-            objArr.push(newData);
+              project_date: item.project_date
+            }
+            objArr.push(newData)
           }
         }
-      });
+      })
 
       res.render('project', {
         title: 'Project Samples | Chris Corchado',
@@ -89,8 +88,8 @@ exports.index = function (req, res, next) {
         page_title: 'Project Samples',
         needs_lighbox: true,
         utility: {
-          highlightSearch,
-        },
-      });
-    });
-};
+          highlightSearch
+        }
+      })
+    })
+}

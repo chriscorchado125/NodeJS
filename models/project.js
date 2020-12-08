@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-var ProjectSchema = new Schema({
+const ProjectSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   company_name: { type: String },
@@ -20,7 +20,7 @@ var ProjectSchema = new Schema({
   //   required: true,
   // },
   created: { type: Date, default: Date.now },
-  modified: { type: Date },
-});
+  modified: { type: Date }
+})
 
-module.exports = mongoose.model('Project', ProjectSchema);
+module.exports = mongoose.model('Project', ProjectSchema)
