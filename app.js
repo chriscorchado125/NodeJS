@@ -15,7 +15,7 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'default-src': ['\'self\'', 'chriscorchado.com'],
+      'default-src': ['self', 'chriscorchado.com'],
       'style-src': [
         '\'self\'',
         'stackpath.bootstrapcdn.com',
@@ -23,13 +23,13 @@ app.use(
         'chriscorchado.com'
       ],
       'script-src': [
-        '\'self\'',
+        'self',
         'code.jquery.com',
         'cdn.jsdelivr.net',
         'cdnjs.cloudflare.com',
         'chriscorchado.com'
       ],
-      'img-src': ['\'self\'', 'chriscorchado.com']
+      'img-src': ['self', 'chriscorchado.com']
     }
   })
 )
