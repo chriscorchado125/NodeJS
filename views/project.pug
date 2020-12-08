@@ -2,35 +2,39 @@ extends layout
 
 block content
 
-  div.container.project-container.row
+  div.container
 
-    each project in data
+    h1(id='content') #{page_title}
 
-      div.project.col
+    div.container.project-container.row
 
-        div.project-title !{utility.highlightSearch(project.name, searched)}
+      each project in data
 
-        div.project-company !{utility.highlightSearch(project.company_name, searched)} #[span.project-date (#{project.project_date.getFullYear()})]
+        div.project.col
 
-        div.body-container !{utility.highlightSearch(project.description, searched)}
+          div.project-title !{utility.highlightSearch(project.name, searched)}
 
-        - var cleanProjectName = project.name.replace(/(<([^>]+)>)/gi, '')
-        section(class=`project-item-grid project-items${project.screenshots.length}` data-featherlight-gallery="" data-featherlight-filter="a")
+          div.project-company !{utility.highlightSearch(project.company_name, searched)} #[span.project-date (#{project.project_date.getFullYear()})]
 
-          each screenshot in project.screenshots
-            - var screens = screenshot.split(',')
+          div.body-container !{utility.highlightSearch(project.description, searched)}
 
-              div.project-item.shadow(title=cleanProjectName)
+          - var cleanProjectName = project.name.replace(/(<([^>]+)>)/gi, '')
+          section(class=`project-item-grid project-items${project.screenshots.length}` data-featherlight-gallery="" data-featherlight-filter="a")
 
-                a.gallery(href=screens[1])
-                  div.project-item-desc !{utility.highlightSearch(screens[0], searched)}
-                  img(loading="lazy" src=screens[1] alt=project.company_name + ' ' + screens[0] title=screens[0])
+            each screenshot in project.screenshots
+              - var screens = screenshot.split(',')
 
-        if project.video
-          span(title="Play Video")
-            - let encodedName = encodeURIComponent(project.name);
-            a.play-video(href=`https://chriscorchado.com/video.html?url=${project.video}&name=${encodedName}` target="_blank" rel='noopener' title="Opening a new window") Play Video
-              img(loading="lazy" src="https://chriscorchado.com/images/play_video_new_window_icon.png" alt="Play Video Icon" width="20")
+                div.project-item.shadow(title=cleanProjectName)
+
+                  a.gallery(href=screens[1])
+                    div.project-item-desc !{utility.highlightSearch(screens[0], searched)}
+                    img(loading="lazy" src=screens[1] alt=project.company_name + ' ' + screens[0] title=screens[0])
+
+          if project.video
+            span(title="Play Video")
+              - let encodedName = encodeURIComponent(project.name);
+              a.play-video(href=`https://chriscorchado.com/video.html?url=${project.video}&name=${encodedName}` target="_blank" rel='noopener' title="Opening a new window") Play Video
+                img(loading="lazy" src="https://chriscorchado.com/images/play_video_new_window_icon.png" alt="Play Video Icon" width="20")
 
 
-        div.project-technology !{utility.highlightSearch(project.technology, searched)}
+          div.project-technology !{utility.highlightSearch(project.technology, searched)}

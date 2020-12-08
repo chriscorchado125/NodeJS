@@ -2,22 +2,25 @@ extends layout
 
 block content
 
-  div.container.company
+  div.container
+    h1(id='content') #{page_title}
 
-    each company in data
+    div.company.container
 
-      div.company-container.col.shadow
+      each company in data
 
-        div.company-name !{utility.highlightSearch(company.name, searched)}
+        div.company-container.col.shadow
 
-        div.company-job-title !{utility.highlightSearch(company.job_title, searched)}
+          div.company-name !{utility.highlightSearch(company.name, searched)}
 
-        div.body-container !{utility.highlightSearch(company.description, searched)}
+          div.company-job-title !{utility.highlightSearch(company.job_title, searched)}
 
-        div.screenshot-container
-          img(loading='lazy' src=company.screenshots class="company-screenshot" alt=company.name)
+          div.body-container !{utility.highlightSearch(company.description, searched)}
 
-        if company.end_date
-          div.employment-dates #{utility.getMonthYear(company.start_date)} - #{utility.getMonthYear(company.end_date)}
-        else
-          div.employment-dates #{utility.getMonthYear(company.start_date)} - null
+          div.screenshot-container
+            img(loading='lazy' src=company.screenshots class="company-screenshot" alt=company.name)
+
+          if company.end_date
+            div.employment-dates #{utility.getMonthYear(company.start_date)} - #{utility.getMonthYear(company.end_date)}
+          else
+            div.employment-dates #{utility.getMonthYear(company.start_date)} - null
