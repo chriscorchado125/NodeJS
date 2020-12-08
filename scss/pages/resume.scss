@@ -1,11 +1,11 @@
 @import "./../variables.scss";
 
-.container {
-  padding-bottom: 50px !important;
+#search-container {
+  display: none;
+}
 
-  h1 {
-    margin-top: 100px;
-  }
+.container {
+  padding-bottom: 100px;
 
   .resume {
     font-family: Calibri, "Trebuchet MS", sans-serif;
@@ -14,47 +14,48 @@
     margin: auto;
     text-align: left;
 
-    /* FULL STACK DEVELOPER */
+    // FULL STACK DEVELOPER
     h2 {
       color: #3a4261;
-      margin-bottom: 0;
+      margin: 30px auto 0 auto;
       font-size: 26px;
       text-align: center;
       font-weight: bold;
     }
 
-    /* WEBSITE DEVELOPMENT • INFORMATION TECHNOLOGY • PROCESS IMPROVEMENT • PROBLEM SOLVING */
+    // WEBSITE DEVELOPMENT • INFORMATION TECHNOLOGY • PROCESS IMPROVEMENT • PROBLEM SOLVING
     #tech_pillars {
       width: 100%;
       text-align: center;
-      margin: 0px 0 15px 0;
-      border-top: 1px solid black;
+      margin: 0 0 15px 0;
+      border-top: 1px solid #000;
       font-weight: bold;
       padding-top: 5px;
     }
 
-    /* Sections: ACCOMPLISHMENTS | SKILLS AND EXPERTISE | PROFESSIONAL EXPERIENCE | EDUCATION */
+    // Sections: ACCOMPLISHMENTS | SKILLS AND EXPERTISE | PROFESSIONAL EXPERIENCE | EDUCATION
     h3 {
       text-align: center;
       color: #2a61a8;
-      border-top: 1px solid black;
-      border-bottom: 1px solid black;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 15px;
     }
 
-    /* Company, City, State - Years */
+    // Company, City, State - Years
     h4 {
       margin: 0;
       font-size: 18px;
       font-weight: bold;
+
       .years {
         float: right;
       }
     }
 
-    /* Type of Company */
+    // Type of Company
     h5 {
       margin: 5px 0 10px 0;
       font-size: 14px;
@@ -62,52 +63,30 @@
       font-weight: bold;
     }
 
-    /* Education certificate, diploma */
+    // Education certificate, diploma
     h4 + div {
       margin-bottom: 10px;
     }
 
-    /* Job Title */
+    // Job Title
     h6 {
-      margin: 0;
+      margin: 0; /* no unit */
       font-size: 14px;
       font-weight: bold;
     }
 
     p {
-      margin: 0;
-      padding: 0;
+      margin: 0; /* no unit */
+      padding: 0; /* no unit */
     }
 
-    /* paragraph after job title */
+    // paragraph after job title
     h6 + p {
       margin-bottom: 10px;
     }
 
     p:first-of-type {
       margin-bottom: 10px;
-    }
-
-    #skills_experise_ul_wrapper {
-      #two_cols {
-        display: none;
-      }
-
-      margin-bottom: 15px;
-      text-align: center;
-
-      ul {
-        display: inline-block;
-        min-width: 210px;
-        padding: 0;
-        margin: 0 0 0 50px;
-
-        li {
-          font-size: 14px;
-          line-height: 20px;
-          text-align: left;
-        }
-      }
     }
 
     .professional_experience_header {
@@ -118,6 +97,28 @@
       div {
         display: inline-block;
       }
+    }
+  }
+}
+
+#skills_experise_ul_wrapper {
+  .two_cols {
+    display: none !important;
+  }
+
+  margin-bottom: 15px;
+  text-align: center;
+
+  ul {
+    display: inline-block;
+    min-width: 210px;
+    padding: 0; /* no unit */
+    margin: 0 0 0 50px;
+
+    li {
+      font-size: 14px;
+      line-height: 20px;
+      text-align: left;
     }
   }
 }
@@ -150,12 +151,13 @@
           vertical-align: top;
         }
 
-        /* Toggles skills and experience to make the list responsive */
-        #two_cols {
-          display: block;
+        // Toggles skills and experience to make the list responsive
+        .two_cols {
+          display: inline-block !important;
           margin-left: 80px;
         }
-        #three_cols {
+
+        .three_cols {
           display: none;
         }
       }
@@ -198,7 +200,8 @@
 @media (max-width: 520px) {
   .container {
     .resume {
-      padding: 0 0;
+      padding: 0; /* no unit */
+
       h4 {
         text-align: center;
         font-size: 13px;
@@ -208,7 +211,8 @@
           margin-left: 20px;
         }
       }
-      /* Education certificate, diploma */
+
+      // Education certificate, diploma
       h4 + div {
         font-size: 13px;
         text-align: center;
@@ -230,11 +234,13 @@
       margin-top: 105px;
     }
   }
+
   #profiles {
     .icon {
-      width: 35px !important;
+      width: 35px;
+
       img {
-        height: 25px;
+        height: 15px;
       }
     }
   }

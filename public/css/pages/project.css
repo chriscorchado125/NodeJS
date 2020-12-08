@@ -1,21 +1,9 @@
-.container > h1 {
-  margin-top: 100px; }
-
-.container {
-  padding: 20px 5px 40px 5px; }
-
-/* page container */
 .project-container {
   display: grid;
   grid-template-columns: 30% 30% 30%;
   align-items: stretch;
   justify-content: space-evenly;
-  font-size: 12px;
-  /* individual project container */
-  /* project description */
-  /* text above thumbnails */
-  /* thumbnail */
-  /* layout for thumbnails */ }
+  font-size: 12px; }
   .project-container .project {
     padding: 0 0 30px 0;
     border-radius: 10px;
@@ -24,12 +12,12 @@
     margin: 15px 0 15px 0;
     max-width: 330px; }
   .project-container .project-title {
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba(0, 0, 0, 0.7);
     padding: 10px 0 10px 0;
     background-color: #e2eafb;
     border-radius: 10px 10px 0 0; }
   .project-container .project-company {
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba(0, 0, 0, 0.7);
     padding: 5px;
     font-style: italic;
     background-color: #f8f4f4; }
@@ -41,15 +29,13 @@
     padding: 0 15px; }
   .project-container .project-item-desc {
     padding: 5px;
-    color: rgba(0, 0, 0, 0.9); }
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7); }
   .project-container .project-item {
     margin: 10px;
     max-width: 150px;
     min-width: 50px;
     border: 1px solid #8cabed; }
-    .project-container .project-item a {
-      font-size: 12px;
-      color: rgba(0, 0, 0, 0.9); }
   .project-container .gallery img {
     padding: 10px;
     max-width: 90%; }
@@ -68,7 +54,7 @@
     width: 130px;
     margin: auto;
     margin: 20px auto;
-    color: rgba(0, 0, 0, 0.9) !important;
+    color: rgba(0, 0, 0, 0.7) !important;
     border: 1px solid #8cabed; }
     .project-container .play-video img {
       margin: 0 0 5px 5px; }
@@ -79,6 +65,7 @@
     padding: 5px;
     position: absolute;
     bottom: 0;
+    /* no unit */
     border-radius: 0 0 10px 10px;
     background-color: #e2eafb;
     font-size: 10px; }
@@ -102,13 +89,10 @@
   .container {
     grid-template-columns: 1fr; } }
 @media (max-width: 700px) {
-  .container > h1 {
-    margin-top: 140px; } }
-@media (max-width: 500px) {
-  .container > h1 {
-    margin: 130px 0 10px 0; } }
+  .container .project {
+    width: 90%; } }
 @media (max-width: 400px) {
-  .container > h1 {
-    margin: 105px 0 0 0; } }
+  .project {
+    margin-top: 0 !important; } }
 
 /*# sourceMappingURL=project.css.map */

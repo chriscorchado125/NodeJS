@@ -1,14 +1,27 @@
 @import "./../variables.scss";
 
-.container > h1 {
-  margin-top: 100px;
+h1 {
+  margin-bottom: 30px;
+}
+
+// Submit button
+#edit-submit {
+  padding: 2px;
+  font-size: 12px;
+  margin-left: 0; // no unit
+}
+
+#edit-submit:hover {
+  color: #fff;
+  box-shadow: 0 0 #fff;
+  background-color: $main_color;
 }
 
 #contact-message-feedback-form {
-  margin: auto;
   background-color: $main_color_light;
   padding: 10px 10px 30px 10px;
   text-align: center !important;
+  margin: 20px auto 50px auto;
   max-width: 600px;
   border-radius: 10px;
 
@@ -20,12 +33,12 @@
     margin-top: 50px;
   }
 
-  /* holds the current page url */
+  // Holds the current page url
   #edit-field-site-wrapper {
     display: none;
   }
 
-  /* subject align */
+  // Subject align
   .form-text {
     display: inline !important;
   }
@@ -39,6 +52,12 @@
     margin-bottom: 50px;
   }
 
+  // Display the name and email fiels next to each other
+  .js-form-item-name,
+  .js-form-item-mail {
+    display: inline-block !important;
+  }
+
   #edit-subject-0-value {
     max-width: 90%;
   }
@@ -47,7 +66,6 @@
     max-width: 95%;
   }
 
-  // send message button
   #edit-actions {
     margin-top: 30px;
   }
@@ -62,24 +80,45 @@
   max-width: 250px;
 }
 
+// Stack name and email fields
+@media (max-width: 800px) {
+  .container {
+    margin-top: 50px;
+    padding: 10px 10px 20px 10px;
+
+    #contact-message-feedback-form {
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+
+  .js-form-item-name {
+    display: block !important;
+  }
+
+  .js-form-item-mail {
+    display: block !important;
+  }
+}
+
 @media (max-width: 700px) {
-  .container > h1 {
-    margin: 140px 0 20px 0;
+  .container {
+    h1 {
+      margin: 90px 0 35px 0;
+    }
   }
 }
 
 @media (max-width: 500px) {
-  .container > h1 {
-    margin: 130px 0 10px 0;
-  }
-
   #edit-message-0-value {
     height: 150px;
   }
 }
 
 @media (max-width: 400px) {
-  .container > h1 {
-    margin: 105px 0 0 0;
+  .container {
+    h1 {
+      margin: 60px 0 35px 0;
+    }
   }
 }

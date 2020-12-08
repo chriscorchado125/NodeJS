@@ -1,14 +1,6 @@
 @import "./../variables.scss";
 
-.container > h1 {
-  margin-top: 100px;
-}
-
-.container {
-  padding: 20px 5px 40px 5px;
-}
-
-/* page container */
+// Page container
 .project-container {
   display: grid;
   grid-template-columns: 30% 30% 30%;
@@ -16,7 +8,7 @@
   justify-content: space-evenly;
   font-size: 12px;
 
-  /* individual project container */
+  // Individual project container
   .project {
     padding: 0 0 30px 0;
     border-radius: 10px;
@@ -40,7 +32,7 @@
     background-color: $item_bg_color;
   }
 
-  /* project description */
+  // Project description
   .body-container {
     max-width: 320px;
     margin: 10px auto;
@@ -49,22 +41,19 @@
     padding: 0 15px;
   }
 
-  /* text above thumbnails */
+  // Text above thumbnails
   .project-item-desc {
     padding: 5px;
+    font-size: 14px;
     color: $item_text;
   }
 
-  /* thumbnail */
+  // Thumbnail
   .project-item {
     margin: 10px;
     max-width: 150px;
     min-width: 50px;
     border: 1px solid lighten($main_color, 20%);
-    a {
-      font-size: 12px;
-      color: $item_text;
-    }
   }
 
   .gallery img {
@@ -72,7 +61,7 @@
     max-width: 90%;
   }
 
-  /* layout for thumbnails */
+  // Layout for thumbnails
   .project-item-grid {
     display: grid;
     justify-items: center;
@@ -110,7 +99,7 @@
     width: 100%;
     padding: 5px;
     position: absolute;
-    bottom: 0;
+    bottom: 0; /* no unit */
     border-radius: 0 0 10px 10px;
     background-color: $main_color_light;
     font-size: 10px;
@@ -122,6 +111,7 @@
     text-align: center;
     margin: 0 1px;
     font-size: 10px;
+
     .project-technology-icon {
       height: 30px;
       display: block;
@@ -133,6 +123,7 @@
 @media (max-width: 1000px) {
   .project-container {
     grid-template-columns: 1fr 1fr;
+
     .project {
       margin: 15px auto;
     }
@@ -146,19 +137,15 @@
 }
 
 @media (max-width: 700px) {
-  .container > h1 {
-    margin-top: 140px;
-  }
-}
-
-@media (max-width: 500px) {
-  .container > h1 {
-    margin: 130px 0 10px 0;
+  .container {
+    .project {
+      width: 90%;
+    }
   }
 }
 
 @media (max-width: 400px) {
-  .container > h1 {
-    margin: 105px 0 0 0;
+  .project {
+    margin-top: 0 !important;
   }
 }

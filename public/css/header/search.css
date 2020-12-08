@@ -1,28 +1,44 @@
-@charset "UTF-8";
+::-ms-clear {
+  display: none; }
+
+.highlightSearchText {
+  background-color: yellow; }
+
+#no-records {
+  font-size: 36px;
+  max-width: 700px;
+  border-radius: 5px;
+  color: #346adf;
+  background-color: #f8f9fa;
+  padding: 15px;
+  text-align: center;
+  margin: auto;
+  margin-top: 150px;
+  box-shadow: 2px 2px 15px 2px #888; }
+
 #search-container {
   float: right;
-  margin: -65px 0 0 0;
-  padding: 0px;
-  width: 330px;
+  padding: 0;
+  /* no unit */
+  width: 340px;
   text-align: center;
-  /* search textbox */
-  /* remove IE “clear field or cross” X button from inputs field */
-  /* search button */ }
-  #search-container #searchCount {
+  display: none; }
+  #search-container label {
+    display: inline-block; }
+  #search-container #search-count {
     font-size: 12px;
     text-align: right;
     margin-right: 5px;
     display: inline-block;
     width: 85px; }
-  #search-container #searchSite {
+  #search-container #search-site {
     width: 150px; }
-  #search-container ::-ms-clear {
-    display: none; }
-  #search-container .searchBtn {
+  #search-container .search-btn {
     padding: 2px;
     font-size: 12px;
-    margin-left: 3px; }
-  #search-container .searchBtn:hover {
+    margin-left: 0;
+    /* no unit */ }
+  #search-container .search-btn:hover {
     color: #fff;
     box-shadow: 0 0 #fff;
     background-color: #346adf; }
@@ -31,23 +47,36 @@
   #search-container {
     float: none;
     width: 100%;
-    padding: 2px 0;
-    margin-top: 0px; } }
+    padding-bottom: 2px; }
+
+  #no-records {
+    font-size: 30px;
+    max-width: 500px; } }
 @media (max-width: 500px) {
-  #search-container #searchSite {
+  #search-container #search-site {
     width: 105px; }
-  #search-container #searchBtn {
+  #search-container #search-btn {
     margin-left: 5px; }
-  #search-container #searchCount {
-    width: 80px; } }
+  #search-container #search-count {
+    width: 80px; }
+
+  #no-records {
+    font-size: 18px;
+    max-width: 95%;
+    margin-top: 130px; } }
+@media (max-width: 400px) {
+  #search-container {
+    margin: -5px 0 10px 0 !important; } }
 @media (max-width: 350px) {
-  #search-container #searchSite {
+  #search-container #search-site {
     width: 95px;
     font-size: 12px; }
-  #search-container #searchCount {
-    width: 75px; } }
-/* remove IE “clear field or cross” X button from inputs field */
-::-ms-clear {
-  display: none; }
+  #search-container #search-btn {
+    margin-left: 0;
+    /* no unit */ }
+  #search-container .search-btn {
+    font-size: 11px; }
+  #search-container #search-count {
+    width: 70px; } }
 
 /*# sourceMappingURL=search.css.map */

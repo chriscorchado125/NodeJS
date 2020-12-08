@@ -1,9 +1,4 @@
 "use strict";
-const MAX_ITEMS_PER_PAGE = 50;
-const params = new URLSearchParams(window.location.search);
-const searchBox = document.getElementById("searchSite");
-const searchSubmit = document.getElementById("searchSubmit");
-const searchBtn = document.getElementById("searchBtn");
 const getCurrentPage = () => {
     let thisPage = window.location.pathname
         .split("/")
@@ -33,42 +28,6 @@ const formSubmitted = (seconds) => {
             window.location.replace(location.href.substring(0, location.href.lastIndexOf("/") + 1));
         }
     }, 1000);
-};
-const search = () => {
-    window.location.href = window.location.href.split("?")[0] + "?q=" + searchBox.value.replace(/[^\w\s]/gi, "");
-};
-const manageURL = (action, value) => {
-    let thisURL = window.location.href.split("?");
-    switch (action) {
-        case "clearSearch":
-            window.location.href = thisURL[0] + "?clear";
-            break;
-        case "sync":
-            if (params.get("q") !== null) {
-                searchBox.value = params
-                    .get("q")
-                    .replace(/[^\w\s]/gi, "")
-                    .replace("20", " ");
-                searchBox.focus();
-                searchBtn.style.visibility = "visible";
-            }
-            break;
-        case "paging":
-            let searched = "";
-            if (params.get("q"))
-                searched = "q=" + params.get("q") + "&";
-            let pageID = document.querySelector("#paging");
-            let pageNumber = 2;
-            if (params.get("page"))
-                pageNumber = parseInt(params.get("page")) - 1;
-            if (value === "next") {
-                if (params.get("page"))
-                    pageNumber = parseInt(params.get("page")) + 1;
-            }
-            window.location.href =
-                thisURL[0].replace("#", "") + "?page=" + pageNumber + searched + "&dir=" + value;
-            break;
-    }
 };
 const addProfiles = (id) => {
     document.getElementById(id).innerHTML = `
@@ -113,6 +72,7 @@ const addResumes = (id) => {
 function nodePage() {
     let currentNavItem = "";
     let pageIsSearchable = false;
+    animateLogo('logo-image', 'spin');
     setTimeout(function () {
         switch (getCurrentPage()) {
             case "/":
@@ -172,7 +132,7 @@ function nodePage() {
                 event.preventDefault();
                 search();
             });
-            searchBtn.addEventListener("click", (event) => {
+            searchClear.addEventListener("click", (event) => {
                 event.preventDefault();
                 manageURL("clearSearch");
             });
@@ -199,16 +159,8 @@ function nodePage() {
             if (document.getElementById("nextLink") ||
                 currentRecords >= MAX_ITEMS_PER_PAGE ||
                 currentPageNumber > 1) {
-                if (recordCount < currentRecords) {
-                    if (recordCount === 1) {
-                        pagingText.innerHTML = `Item ${firstNumberRange + recordCount}-${firstNumberRange + recordCount}`;
-                    }
-                    else {
-                        pagingText.innerHTML = `Items ${firstNumberRange}-${(firstNumberRange + recordCount) - 1}`;
-                    }
-                }
-                else {
-                    pagingText.innerHTML = `Items ${firstNumberRange}-${currentRecords}`;
+                if (recordCount !== 1) {
+                    pagingText.innerHTML = `Items ${firstNumberRange}-${(firstNumberRange + recordCount) - 1}`;
                 }
             }
             else {
@@ -226,7 +178,7 @@ function nodePage() {
             }
             manageURL("sync");
         }
-        document.getElementById("preloadContainer").style.display = "none";
+        animateLogo('logo-image', '');
     }, 125);
 }
 window.onload = nodePage;

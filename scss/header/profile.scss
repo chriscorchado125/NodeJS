@@ -5,7 +5,7 @@
   max-width: 380px;
   font-size: 12px;
   text-align: center;
-  margin-top: -60px;
+  margin-top: -55px;
 
   .icon {
     display: inline-block;
@@ -17,6 +17,7 @@
       height: 30px;
     }
   }
+
   a span {
     color: $main_color;
   }
@@ -40,7 +41,8 @@
 
 @media (max-width: 400px) {
   #profiles {
-    margin: -6px 0 5px 0;
+    margin: -6px 0 5px 0 !important;
+
     .icon {
       img {
         height: 15px;

@@ -3,7 +3,7 @@
   max-width: 380px;
   font-size: 12px;
   text-align: center;
-  margin-top: -60px; }
+  margin-top: -55px; }
   #profiles .icon {
     display: inline-block;
     width: 50px;
@@ -25,7 +25,7 @@
       height: 25px; } }
 @media (max-width: 400px) {
   #profiles {
-    margin: -6px 0 5px 0; }
+    margin: -6px 0 5px 0 !important; }
     #profiles .icon img {
       height: 15px; } }
 

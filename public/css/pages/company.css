@@ -1,16 +1,9 @@
-.container > h1 {
-  margin-top: 100px; }
-
-.container {
-  padding: 20px 5px 50px 5px; }
-
 .company {
   display: grid;
   grid-template-columns: 30% 30% 30%;
   align-items: stretch;
   justify-content: space-evenly; }
 
-/* individual company container */
 .company-container {
   border: 1px solid #d1d0d0;
   padding: 0 0 20px 0;
@@ -22,7 +15,7 @@
   align-items: center;
   justify-content: center;
   height: 40px;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.7);
   padding: 10px 0 10px 0;
   background-color: #e2eafb; }
 
@@ -35,7 +28,6 @@
   font-size: 14px;
   background-color: #f8f4f4; }
 
-/* body text - the bullet items */
 .body-container {
   max-width: 400px;
   margin: 20px auto;
@@ -51,6 +43,7 @@
   position: absolute;
   width: 100%;
   bottom: 0;
+  /* no unit */
   font-size: 12px;
   padding: 10px;
   background-color: #e2eafb; }
@@ -60,7 +53,7 @@
   font-style: italic; }
 
 @media (max-width: 1200px) {
-  .company {
+  .container {
     grid-template-columns: 45% 45%; }
 
   .company-container {
@@ -72,20 +65,14 @@
   .company {
     grid-template-columns: 90%; } }
 @media (max-width: 700px) {
-  .container > h1 {
-    margin-top: 140px; }
-
   .company p {
     padding: 5px 20px; } }
 @media (max-width: 500px) {
-  .container > h1 {
-    margin: 130px 0 10px 0; }
-
   .company-screenshot {
     max-width: 250px; } }
 @media (max-width: 400px) {
-  .container > h1 {
-    margin: 105px 0 0 0; }
+  .container .company {
+    padding-top: 10px; }
 
   .company-screenshot {
     max-width: 200px; } }
