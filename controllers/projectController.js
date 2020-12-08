@@ -81,12 +81,12 @@ exports.index = function (req, res, next) {
       });
 
       res.render('project', {
-        title: 'Chris Corchado - Project Samples',
+        title: 'Project Samples | Chris Corchado',
         data: objArr,
         count: objArr.length,
         searched: req.query.q,
         page_name: 'project',
-        page_title: 'Projects',
+        page_title: 'Project Samples',
         needs_lighbox: true,
         utility: {
           highlightSearch,

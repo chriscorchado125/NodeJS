@@ -51,7 +51,7 @@ exports.index = function (req, res, next) {
     queryParams,
     "name certificate_pdf certificate_image track_image course_date"
   )
-    .sort({ _id: 1, created: 1 })
+    .sort({ _id: 1, course_date: 1 })
     .skip(recordsToSkip)
     // the max is 50 but we use 51 in order to check for more records and be able to set the 'Next' pagination link
     .limit(MAX_ITEMS_PER_PAGE + 1)
@@ -80,7 +80,7 @@ exports.index = function (req, res, next) {
       res.cookie("recordCount", data.length);
 
       res.render("course", {
-        title: "Chris Corchado - Courses Taken",
+        title: "Courses and Awards | Chris Corchado",
         data: data,
         count: data.length,
         first: firstID,
@@ -90,7 +90,7 @@ exports.index = function (req, res, next) {
         searched: req.query.q,
         showPager: nextLink,
         page_name: "course",
-        page_title: "Courses",
+        page_title: "Courses and Awards",
         needs_lighbox: true,
         utility: {
           getMonthYear,

@@ -27,12 +27,12 @@ exports.index = function (req, res, next) {
       if (err) return next(err);
 
       res.render("company", {
-        title: "Chris Corchado - Work History",
+        title: "Work History | Chris Corchado",
         data: data,
         count: data.length,
         searched: req.query.q,
         page_name: "company",
-        page_title: "History",
+        page_title: "Work History",
         needs_lighbox: false,
         utility: {
           getMonthYear,
