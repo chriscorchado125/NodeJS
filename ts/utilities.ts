@@ -1,59 +1,22 @@
-// https://gist.github.com/alirezas/c4f9f43e9fe1abba9a4824dd6fc60a55
 /**
- * Pure JS fade in using opacity
- * @param {any} HTML element
+ * Animate logo as a way to show loading, paging or any other processing
+ * @param {string} logoID - ID of the HTML image tag
+ * @param {string} animationID - options [spin, spin-reverse, breath] or empty string '' to disable
  */
-const fadeOut = (el: any) => {
-  el.style.opacity = 1;
+const animateLogo = (logoID: string, animationID: string): void => {
+  const logoElement = document.getElementById(logoID) as HTMLElement
 
-  (function fade() {
-    if ((el.style.opacity -= 0.1) < 0) {
-      el.style.display = 'none';
-    } else {
-      requestAnimationFrame(fade);
+  const checkExist = setInterval(function () {
+    if (logoElement) {
+      if (animationID) {
+        logoElement.setAttribute('src', `https://chriscorchado.com/images/chriscorchado-initials-logo-animated-${animationID}.gif`)
+      } else {
+        logoElement.setAttribute('src', 'https://chriscorchado.com/images/chriscorchado-initials-logo.png')
+      }
+
+      clearInterval(checkExist)
     }
-  })();
-};
+  }, 100)
+}
 
-/**
- * Pure JS fade out using opacity
- * @param {any} HTML element
- */
-const fadeIn = (el: any) => {
-  el.style.opacity = 0;
-
-  (function fade() {
-    var val = parseFloat(el.style.opacity);
-
-    if (!((val += 0.1) > 1)) {
-      el.style.opacity = val;
-      requestAnimationFrame(fade);
-    }
-  })();
-};
-
-/**
- * Toggle content and preloader
- * @param {boolean} loadingStatus
- */
-
-const setLoading = (loadingStatus: boolean) => {
-  if (loadingStatus) {
-    let preloader = document.createElement('div');
-
-    preloader.innerHTML = `
-      <div class="preloadAnimation" id="preloadAnimation">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-        <br />Loading
-      </div>`;
-
-    document.body.append(preloader);
-  } else {
-    document.getElementById('preloadAnimation').remove();
-    fadeIn(document.getElementsByClassName('container')[0]);
-  }
-};
-
-module.exports = { fadeOut, fadeIn, setLoading };
+const MAX_ITEMS_PER_PAGE = 50;
