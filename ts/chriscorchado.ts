@@ -2,27 +2,6 @@ import * as utilityJS from './utilities.js'
 import * as searchJS from './search.js'
 
 /**
- * Get the current page name
- * @return {string} - page name
- */
-const getCurrentPage = () => {
-  const thisPage = window.location.pathname
-    .split('/')
-    .filter(function (pathnamePieces) {
-      return pathnamePieces.length
-    })
-    .pop()
-
-  let pageName = 'about'
-
-  if (thisPage) pageName = thisPage.split('.')[0]
-
-  if (pageName === 'index' || pageName === 'nodejs') pageName = 'about'
-
-  return pageName
-}
-
-/**
  * After the contact form is submitted set a thank you message
  * with a countdown that then forwards to the homepage
  * @param {number} second - number of seconds to count down
@@ -54,63 +33,6 @@ const formSubmitted = (seconds: number) => {
   }, 1000)
 }
 
-/**
- * Add profile links
- * @param {string} id - ID of element to insert into
- */
-const addProfiles = (id: string) => {
-  const baseDir = window.location.toString().toLocaleLowerCase().indexOf('/nodejs') !== -1 ? '/nodejs' : ''
-  let docEl:any = HTMLInputElement
-  if (document.getElementById(id)) {
-    docEl = document.getElementById(id)! as HTMLInputElement
-  }
-  docEl.innerHTML = `
-  <div class='icon' id='html-resume'>
-    <a href='${baseDir}/resume'>
-      <img alt='Link to HTML Resume with PDF and Word options' src='https://chriscorchado.com/images/htmlIcon.jpg' />
-      <span>Resume</span>
-    </a>
-  </div>
-
-  <div class='icon' id='profile-linkedin'>
-    <a href='https://www.linkedin.com/in/chriscorchado/' target='_blank' rel='noopener' title='Opening a new window'>
-      <img alt='LinkedIn Icon' title='Link to LinkedIn Profile' src='https://chriscorchado.com/images/linkedInIcon.jpg' />
-      <span>LinkedIn</span>
-    </a>
-  </div>
-
-  <div class='icon' id='profile-azure'>
-    <a href='https://docs.microsoft.com/en-us/users/corchadochrisit-2736/' target='_blank' rel='noopener' title='Opening a new window'>
-      <img alt='Azure Icon' title='Link to Azure Profile' src='https://chriscorchado.com/images/azureIcon.png' />
-      <span>Azure</span>
-    </a>
-  </div>`
-}
-
-/**
- * Add PDF and Word resume links
- * @param {string} id - ID of element to insert into
- */
-const addResumes = (): void => {
-  if (document.getElementById('profiles')) {
-    const docEl = document.getElementById('profiles')! as HTMLInputElement
-    docEl.innerHTML = `
-    <div class='icon' id='pdf-resume'>
-      <a href='https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf' target='_blank' rel='noopener' title='Opening a new window'>
-        <img alt='Link to PDF Resume' src='https://chriscorchado.com/images/pdfIcon.jpg' />
-        <span>PDF</span>
-      </a>
-    </div>
-
-    <div class='icon' id='word-resume'>
-      <a href='https://chriscorchado.com/resume/Chris-Corchado-resume-2020.docx' title='File will download'>
-        <img alt='Link to MS Word Resume' src='https://chriscorchado.com/images/wordIcon.jpg' />
-        <span>Word</span>
-      </a>
-    </div>`
-  }
-}
-
 // TODO check attributes inside pug = div([innerHtml]="example")
 function nodePage () {
   let currentNavItem = ''
@@ -123,7 +45,7 @@ function nodePage () {
   const params = new URLSearchParams(window.location.search)
 
   setTimeout(function () {
-    switch (getCurrentPage()) {
+    switch (utilityJS.getCurrentPage()) {
       case '/':
       case 'about': // Homepage
         currentNavItem = 'about-link'
@@ -131,7 +53,7 @@ function nodePage () {
         // Add a border to the site logo
         docLogo.getElementsByTagName('img')[0].style.border = '1px dashed #7399EA'
 
-        addProfiles('profiles')
+        utilityJS.addProfiles('profiles')
         break
       case 'companies':
         currentNavItem = 'companies-link'
@@ -148,7 +70,7 @@ function nodePage () {
       case 'contact':
         currentNavItem = 'contact-link'
 
-        addProfiles('profiles')
+        utilityJS.addProfiles('profiles')
 
         if (params.get('submitted') === 'true') {
           formSubmitted(5) // set 5 second countdown
@@ -170,12 +92,12 @@ function nodePage () {
         }
         break
       case 'resume':
-        addResumes()
+        utilityJS.addResumes()
         break
       default:
     }
 
-    if (getCurrentPage() !== 'about' && getCurrentPage() !== 'resume') {
+    if (utilityJS.getCurrentPage() !== 'about' && utilityJS.getCurrentPage() !== 'resume') {
       const docCurrentNavItem = document.getElementById(currentNavItem)! as HTMLInputElement
       docCurrentNavItem.className += ' nav-item-active'
     }

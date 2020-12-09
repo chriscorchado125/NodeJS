@@ -1,19 +1,5 @@
 import * as utilityJS from './utilities.js';
 import * as searchJS from './search.js';
-const getCurrentPage = () => {
-    const thisPage = window.location.pathname
-        .split('/')
-        .filter(function (pathnamePieces) {
-        return pathnamePieces.length;
-    })
-        .pop();
-    let pageName = 'about';
-    if (thisPage)
-        pageName = thisPage.split('.')[0];
-    if (pageName === 'index' || pageName === 'nodejs')
-        pageName = 'about';
-    return pageName;
-};
 const formSubmitted = (seconds) => {
     const countDown = document.createElement('div');
     countDown.style.padding = '50px';
@@ -32,53 +18,6 @@ const formSubmitted = (seconds) => {
         }
     }, 1000);
 };
-const addProfiles = (id) => {
-    const baseDir = window.location.toString().toLocaleLowerCase().indexOf('/nodejs') !== -1 ? '/nodejs' : '';
-    let docEl = HTMLInputElement;
-    if (document.getElementById(id)) {
-        docEl = document.getElementById(id);
-    }
-    docEl.innerHTML = `
-  <div class='icon' id='html-resume'>
-    <a href='${baseDir}/resume'>
-      <img alt='Link to HTML Resume with PDF and Word options' src='https://chriscorchado.com/images/htmlIcon.jpg' />
-      <span>Resume</span>
-    </a>
-  </div>
-
-  <div class='icon' id='profile-linkedin'>
-    <a href='https://www.linkedin.com/in/chriscorchado/' target='_blank' rel='noopener' title='Opening a new window'>
-      <img alt='LinkedIn Icon' title='Link to LinkedIn Profile' src='https://chriscorchado.com/images/linkedInIcon.jpg' />
-      <span>LinkedIn</span>
-    </a>
-  </div>
-
-  <div class='icon' id='profile-azure'>
-    <a href='https://docs.microsoft.com/en-us/users/corchadochrisit-2736/' target='_blank' rel='noopener' title='Opening a new window'>
-      <img alt='Azure Icon' title='Link to Azure Profile' src='https://chriscorchado.com/images/azureIcon.png' />
-      <span>Azure</span>
-    </a>
-  </div>`;
-};
-const addResumes = () => {
-    if (document.getElementById('profiles')) {
-        const docEl = document.getElementById('profiles');
-        docEl.innerHTML = `
-    <div class='icon' id='pdf-resume'>
-      <a href='https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf' target='_blank' rel='noopener' title='Opening a new window'>
-        <img alt='Link to PDF Resume' src='https://chriscorchado.com/images/pdfIcon.jpg' />
-        <span>PDF</span>
-      </a>
-    </div>
-
-    <div class='icon' id='word-resume'>
-      <a href='https://chriscorchado.com/resume/Chris-Corchado-resume-2020.docx' title='File will download'>
-        <img alt='Link to MS Word Resume' src='https://chriscorchado.com/images/wordIcon.jpg' />
-        <span>Word</span>
-      </a>
-    </div>`;
-    }
-};
 function nodePage() {
     let currentNavItem = '';
     let pageIsSearchable = false;
@@ -87,12 +26,12 @@ function nodePage() {
     const params = new URLSearchParams(window.location.search);
     setTimeout(function () {
         var _a, _b;
-        switch (getCurrentPage()) {
+        switch (utilityJS.getCurrentPage()) {
             case '/':
             case 'about':
                 currentNavItem = 'about-link';
                 docLogo.getElementsByTagName('img')[0].style.border = '1px dashed #7399EA';
-                addProfiles('profiles');
+                utilityJS.addProfiles('profiles');
                 break;
             case 'companies':
                 currentNavItem = 'companies-link';
@@ -108,7 +47,7 @@ function nodePage() {
                 break;
             case 'contact':
                 currentNavItem = 'contact-link';
-                addProfiles('profiles');
+                utilityJS.addProfiles('profiles');
                 if (params.get('submitted') === 'true') {
                     formSubmitted(5);
                 }
@@ -125,11 +64,11 @@ function nodePage() {
                 }
                 break;
             case 'resume':
-                addResumes();
+                utilityJS.addResumes();
                 break;
             default:
         }
-        if (getCurrentPage() !== 'about' && getCurrentPage() !== 'resume') {
+        if (utilityJS.getCurrentPage() !== 'about' && utilityJS.getCurrentPage() !== 'resume') {
             const docCurrentNavItem = document.getElementById(currentNavItem);
             docCurrentNavItem.className += ' nav-item-active';
         }
