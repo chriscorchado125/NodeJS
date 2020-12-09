@@ -15,21 +15,21 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "default-src": ["'self'", "chriscorchado.com"],
-      "style-src": [
+      'default-src': ["'self'", 'chriscorchado.com'],
+      'style-src': [
         "'self'",
-        "stackpath.bootstrapcdn.com",
-        "cdn.jsdelivr.net",
-        "chriscorchado.com"
+        'stackpath.bootstrapcdn.com',
+        'cdn.jsdelivr.net',
+        'chriscorchado.com'
       ],
-      "script-src": [
+      'script-src': [
         "'self'",
-        "code.jquery.com",
-        "cdn.jsdelivr.net",
-        "cdnjs.cloudflare.com",
-        "chriscorchado.com"
+        'code.jquery.com',
+        'cdn.jsdelivr.net',
+        'cdnjs.cloudflare.com',
+        'chriscorchado.com'
       ],
-      "img-src": ["'self'", "chriscorchado.com"]
+      'img-src': ["'self'", 'chriscorchado.com']
     }
   })
 )
