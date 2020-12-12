@@ -11,7 +11,7 @@ export const searchClear = document.getElementById('search-clear-btn')! as HTMLI
  */
 export const search = () => {
   if (!searchBox.value) {
-    utilityJS.showMessage('Please enter something to search for')
+    // Do nothing
   } else {
     utilityJS.animateLogo('logo-image', 'spin')
     window.location.href = `${window.location.href.split('?')[0]}?q=${searchBox.value.replace(/[^\w\s]/gi, '')}`

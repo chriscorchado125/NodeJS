@@ -6,7 +6,6 @@ export const searchSubmit = document.getElementById('search-submit');
 export const searchClear = document.getElementById('search-clear-btn');
 export const search = () => {
     if (!searchBox.value) {
-        utilityJS.showMessage('Please enter something to search for');
     }
     else {
         utilityJS.animateLogo('logo-image', 'spin');
