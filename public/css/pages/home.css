@@ -18,7 +18,8 @@
   .homepage-wrapper .how-it-works-text-wrapper {
     text-align: left !important; }
   .homepage-wrapper li {
-    text-align: left !important; }
+    text-align: left !important;
+    padding: 5px; }
   .homepage-wrapper .homepage-icon {
     max-width: 70%;
     min-width: 60px; }
@@ -37,6 +38,7 @@
       box-shadow: 1px 1px 15px 1px #888;
       margin: 10px; }
   .homepage-wrapper .target-site-versions {
+    font-size: 12px;
     display: grid;
     justify-items: center;
     grid-template-columns: 1fr 1fr;
