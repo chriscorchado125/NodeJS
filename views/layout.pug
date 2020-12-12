@@ -52,7 +52,7 @@ html(lang='en')
           div#navbar-nav.navbar-nav.show(role='navigation' aria-label='Navigation')
 
             a#logo.navbar-brand(href='index')
-              img#logo-image(loading='lazy' src='https://chriscorchado.com/images/chriscorchado-initials-logo.png' title='Home' alt='Chris Corchado Logo')
+              img#logo-image(loading='lazy' src='https://chriscorchado.com/images/chriscorchado-initials-logo.png' alt='Home')
 
             a#companies-link.nav-item.nav-link(href='companies') Work
             a#courses-link.nav-item.nav-link(href='courses') Courses
@@ -101,13 +101,27 @@ html(lang='en')
 
     // CONTENT
     if count > 0
+      - let mainClass = ''
 
-      main(role='main')
+      if page_name == 'home' || page_name == 'index'
+        main(role='main' class="homepage")
 
-        block content
+      if page_name == 'company'
+        main(role='main' class="")
 
-        span#paging(data-first=first data-last=last)
-        span#recordCount #{count}
+      if page_name == 'course'
+        main(role='main' class=" course")
+
+      if page_name == 'project'
+        main(role='main' class="")
+
+      if page_name == 'resume'
+        main(role='main' class="resume")
+
+      block content
+
+      span#paging(data-first=first data-last=last)
+      span#recordCount #{count}
 
     if needs_lighbox
       script(src='https://code.jquery.com/jquery-3.5.0.min.js')

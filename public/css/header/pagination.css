@@ -2,10 +2,10 @@ label {
   margin-bottom: 2px; }
 
 .pagination-yes {
-  margin: -57px 0 0 0 !important; }
+  margin: -63px 0 0 0 !important; }
 
 .pagination-no {
-  margin: -45px 0 0 0 !important; }
+  margin: -51px 0 0 0 !important; }
 
 #pagination {
   text-align: center;
@@ -17,7 +17,7 @@ label {
     text-shadow: 1px 1px #000; }
   #pagination .pager-navigation {
     background-color: #346adf;
-    margin: 0 3px;
+    margin: 0 5px;
     padding: 3px 10px;
     font-size: 12px; }
   #pagination .disabled {

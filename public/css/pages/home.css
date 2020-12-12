@@ -1,48 +1,50 @@
-.container {
-  padding: 20px 45px 20px 45px; }
-  .container h1 {
-    margin: 100px auto 30px auto; }
-
-.about p {
-  text-align: left; }
-
 .homepage-wrapper {
-  max-width: 1100px;
-  margin: 0 auto 50px auto; }
+  padding: 20px 60px 80px 60px; }
+  .homepage-wrapper .about-headline {
+    text-align: center; }
   .homepage-wrapper p {
     text-align: center; }
-  .homepage-wrapper ul li {
-    padding: 5px;
-    text-align: left; }
-  .homepage-wrapper h2 {
+  .homepage-wrapper h2,
+  .homepage-wrapper h3 {
     text-align: center;
     font-size: 20px;
     font-weight: bold; }
-  .homepage-wrapper h3 {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center; }
   .homepage-wrapper h4 {
     font-size: 16px;
-    font-weight: bold;
-    text-align: center; }
+    font-weight: bold; }
   .homepage-wrapper .home-hrclass {
     background-color: #000 !important;
     height: 2px !important; }
-
-a {
-  color: #658ee7; }
-
-.homepage-icon {
-  max-width: 70%;
-  min-width: 60px; }
-
-.jira-versions {
-  text-align: center; }
-  .jira-versions img {
-    max-width: 185px;
-    box-shadow: 1px 1px 15px 1px #888;
-    margin: 10px; }
+  .homepage-wrapper .how-it-works-text-wrapper {
+    text-align: left !important; }
+  .homepage-wrapper li {
+    text-align: left !important; }
+  .homepage-wrapper .homepage-icon {
+    max-width: 70%;
+    min-width: 60px; }
+  .homepage-wrapper .here-hand {
+    margin-top: 10px !important;
+    height: 50px;
+    display: none; }
+  .homepage-wrapper .site-type {
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: bold;
+    text-align: center; }
+  .homepage-wrapper .jira-versions {
+    text-align: center; }
+    .homepage-wrapper .jira-versions img {
+      max-width: 185px;
+      box-shadow: 1px 1px 15px 1px #888;
+      margin: 10px; }
+  .homepage-wrapper .target-site-versions {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    max-width: 400px;
+    text-align: center;
+    padding-top: 10px;
+    margin: auto; }
 
 .site-versions {
   display: grid;
@@ -58,90 +60,18 @@ a {
     text-align: center; }
   .site-versions i {
     font-size: 12px; }
-  .site-versions .here-hand {
-    display: none;
-    padding-top: 10px; }
-  .site-versions .noLink {
-    pointer-events: none; }
-  .site-versions .shadow-version img {
-    margin: auto; }
-  .site-versions .shadow-version a img {
-    box-shadow: 5px 5px 15px 2px #888; }
 
-.target-site-versions {
-  display: grid;
-  justify-items: center;
-  grid-template-columns: 1fr 1fr;
-  max-width: 400px;
-  text-align: center;
-  margin: auto; }
-
-.site-versions-text-wrapper p {
-  text-align: center; }
-  .site-versions-text-wrapper p i {
-    display: block;
-    font-size: 14px;
-    margin-top: 5px; }
-
-.how-it-works-text-wrapper {
-  text-align: left !important; }
-
-.site-type {
-  margin-top: 5px;
-  font-weight: bold;
-  text-align: center; }
-
-.target-sites {
-  font-size: 12px; }
-
-@media (max-width: 990px) {
-  .site-versions {
-    grid-template-columns: 1fr 1fr;
-    font-size: 12px; }
-
-  .homepage-icon {
-    max-width: 55%; }
-
-  .jira-versions img {
-    max-width: 140px; } }
 @media (max-width: 800px) {
-  .about-headline,
-  .site-versions-text-wrapper {
-    text-align: left; } }
-@media (max-width: 700px) {
-  .container {
-    max-width: 540px; }
-    .container h1 {
-      margin-top: 135px; }
-
-  .about {
-    padding: 15px 35px; }
-    .about p {
-      text-align: left !important; }
-    .about .about-headline {
-      text-align: center !important; }
-
   .jira-versions {
     text-align: center; }
     .jira-versions img {
-      max-width: 185px;
+      max-width: 185px !important;
       box-shadow: 1px 1px 15px 1px #888;
       margin: 10px; } }
-@media (max-width: 650px) {
-  .site-versions-text-wrapper {
-    text-align: left !important; } }
-@media (max-width: 600px) {
-  .site-versions div {
-    padding: 0; }
-
-  .shadow-version a img {
-    box-shadow: 1px 1px 10px 2px #888 !important; }
-
-  .here-hand {
-    height: 50px; } }
-@media (max-width: 400px) {
-  .container h1 {
-    margin-top: 105px; } }
+@media (max-width: 700px) {
+  .container {
+    max-width: 540px;
+    padding: 20px 0 20px 0 !important; } }
 #nodeJS div .here-hand {
   display: block;
   margin: auto; }
