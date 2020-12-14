@@ -8,7 +8,7 @@ exports.index = async function (req, res, next) {
       count: 1,
       data: data,
       page_name: 'contact',
-      page_title: 'Contact',
+      page_title: 'Contact Me',
       needs_lighbox: false,
       submitted: req.query.submitted
     })
