@@ -110,6 +110,9 @@
 
   .jira-versions img {
     max-width: 100px; } }
+@media (max-width: 600px) {
+  .container h1 {
+    margin-top: 120px !important; } }
 ul li {
   text-align: left !important; }
 
