@@ -80,12 +80,13 @@ export const manageURL = (action: string, value?: string) => {
     case 'clearSearch':
       document.getElementById('no-records')?.remove()
       window.location.href = `${thisURL[0]}?clear`
+      searchBox.focus()
       break
     case 'sync':
       // sync querystring and search input box values while searching
       if (params && params.get('q') !== null) {
         searchBox.value = searchedFor
-        searchBox.focus()
+        searchBox.select()
       }
       break
     case 'paging':

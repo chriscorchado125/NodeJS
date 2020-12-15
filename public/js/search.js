@@ -43,11 +43,12 @@ export const manageURL = (action, value) => {
         case 'clearSearch':
             (_a = document.getElementById('no-records')) === null || _a === void 0 ? void 0 : _a.remove();
             window.location.href = `${thisURL[0]}?clear`;
+            searchBox.focus();
             break;
         case 'sync':
             if (params && params.get('q') !== null) {
                 searchBox.value = searchedFor;
-                searchBox.focus();
+                searchBox.select();
             }
             break;
         case 'paging':
