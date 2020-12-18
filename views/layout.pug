@@ -4,7 +4,32 @@ html(lang='en')
     title= title
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='description', content='Chris Corchado - Portfolio and Resume')
+
+    if page_name == 'home' || page_name == 'index'
+      meta(name='title', content='About Me | Chris Corchado')
+      meta(name='description', content='Accessibility minded full stack web developer with a graphic design background that enjoys problem solving, learning, ideating and creating.')
+
+    if page_name == 'contact'
+      meta(name='title', content='Contact Me | Chris Corchado')
+      meta(name='description', content='Contact me if you have any question or comments')
+
+    if page_name == 'company'
+      meta(name='title', content='Work History | Chris Corchado')
+      meta(name='description', content='Work history along with descriptions and screenshots')
+
+    if page_name == 'course'
+      meta(name='title', content='Courses and Awards | Chris Corchado')
+      meta(name='description', content='Courses taken and awards received within the Information Technology field')
+
+    if page_name == 'project'
+      meta(name='title', content='Project Samples | Chris Corchado')
+      meta(name='description', content='Project samples to showcase some of my programming, design and animation skills"')
+
+    if page_name == 'resume'
+      meta(name='title', content='Resume | Chris Corchado')
+      meta(name='description', content='Resume in HTML format along with PDF and MS Word download options')
+
+    meta(name='keywords', content='Chris Corchado, Christian Corchado, Full Stack, Front End, Back End, Website, Web Application, UI, UX, User Interface, User Experience, Architect, Engineer, Programmer, Developer, Designer, Portfolio, Resume')
 
     link(rel='shortcut icon', type='image/x-icon', href='https://chriscorchado.com/images/chrisCorchado.ico')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')
