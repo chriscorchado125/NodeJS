@@ -18,19 +18,14 @@ app.use(
       'default-src': ["'self'", 'chriscorchado.com'],
       'style-src': [
         "'self'",
-        'stackpath.bootstrapcdn.com',
-        'cdn.jsdelivr.net',
         'chriscorchado.com'
       ],
       'script-src': [
         "'self'",
-        'code.jquery.com',
-        'cdn.jsdelivr.net',
-        'cdnjs.cloudflare.com',
         'chriscorchado.com',
-        'googletagmanager.com'
+        'googletagmanager.com',
       ],
-      'img-src': ["'self'", 'chriscorchado.com']
+      'img-src': ["'self'", 'chriscorchado.com', 'googletagmanager.com'],
     }
   })
 )
