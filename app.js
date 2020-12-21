@@ -27,7 +27,8 @@ app.use(
         'code.jquery.com',
         'cdn.jsdelivr.net',
         'cdnjs.cloudflare.com',
-        'chriscorchado.com'
+        'chriscorchado.com',
+        'googletagmanager.com'
       ],
       'img-src': ["'self'", 'chriscorchado.com']
     }
