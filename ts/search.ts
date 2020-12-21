@@ -14,8 +14,14 @@ export const search = () => {
     // Do nothing
   } else {
     utilityJS.animateLogo('logo-image', 'spin')
-    window.location.href = `${window.location.href.split('?')[0]}?q=${searchBox.value.replace(/[^\w\s]/gi, '')}`
+
+    const thisPage = window.location.href.split('?')[0]
+    const thisSearch = searchBox.value.replace(/[^\w\s]/gi, '')
+
+    ga('send', 'pageview', `/${thisPage}?q=${thisSearch}`)
+    window.location.href = `${thisPage}?q=${thisSearch}`
     searchBox.select()
+
     utilityJS.animateLogo('logo-image', '')
   }
 }
