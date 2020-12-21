@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "main": "app.js",
+  "jest": {
+    "verbose": true
+  },
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
+    "test" : "jest ",
     "csslint": "npx stylelint **/*.scss",
     "jspuglint": "npx eslint **/*.ts"
   },
