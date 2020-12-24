@@ -119,12 +119,14 @@ html(lang='en')
               if checkPager
 
                 div#pagination
+                  span &nbsp
 
                   if page > 1
                     a.pager-navigation(href='#' id='prevLink' title='View the previous page' role='button') Prev
                   else
                     span.pager-navigation.disabled(title='There is no previous page available' role='button') Prev
 
+                  span &nbsp
                   if  ((count == maxItemsPerPage) && (page > 0))
                     a.pager-navigation(href='#' id='nextLink' title='View the next page' role='button') Next
                   else
