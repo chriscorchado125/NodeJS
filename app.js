@@ -24,7 +24,7 @@ app.use(
         "'self' 'unsafe-inline'",
         'chriscorchado.com',
         'https://www.googletagmanager.com',
-        'https://www.google-analytics.com/analytics.js'
+        'https://www.google-analytics.com'
       ],
       'img-src': ["'self' 'unsafe-inline'", 'chriscorchado.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com']
     }
