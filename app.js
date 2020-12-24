@@ -24,8 +24,9 @@ app.use(
         "'self'",
         'chriscorchado.com',
         'googletagmanager.com',
+        'google-analytics.com'
       ],
-      'img-src': ["'self'", 'chriscorchado.com', 'googletagmanager.com'],
+      'img-src': ["'self'", 'chriscorchado.com', 'googletagmanager.com', 'google-analytics.com'],
     }
   })
 )
