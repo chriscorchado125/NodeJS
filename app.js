@@ -15,18 +15,18 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'default-src': ["'self'", 'chriscorchado.com'],
+      'default-src': ["'self' 'unsafe-inline'", 'chriscorchado.com'],
       'style-src': [
-        "'self'",
+        "'self' 'unsafe-inline'",
         'chriscorchado.com'
       ],
-      'script-src': [
-        "'self'",
+      'script-src-elem': [
+        "'self' 'unsafe-inline'",
         'chriscorchado.com',
-        'googletagmanager.com',
-        'google-analytics.com'
+        'https://www.googletagmanager.com',
+        'https://www.google-analytics.com/analytics.js'
       ],
-      'img-src': ["'self'", 'chriscorchado.com', 'googletagmanager.com', 'google-analytics.com'],
+      'img-src': ["'self' 'unsafe-inline'", 'chriscorchado.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com']
     }
   })
 )
