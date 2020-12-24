@@ -26,7 +26,7 @@ app.use(
         'https://www.googletagmanager.com',
         'https://www.google-analytics.com'
       ],
-      'img-src data:image/svg+xml;charset=utf-8,%3Csvg': ["'self' 'unsafe-inline'", 'chriscorchado.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com']
+      'img-src': ["'self' 'unsafe-inline'", 'chriscorchado.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com', 'http://www.w3.org/2000/svg']
     }
   })
 )
