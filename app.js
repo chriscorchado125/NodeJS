@@ -15,13 +15,13 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'default-src': ["'self' 'unsafe-inline'", 'chriscorchado.com'],
+      'default-src': ["'self'", 'chriscorchado.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com'],
       'style-src': [
-        "'self' 'unsafe-inline'",
+        "'self'",
         'chriscorchado.com'
       ],
       'script-src': [
-        "'self' 'unsafe-inline'",
+        "'self'",
         'chriscorchado.com',
         'https://www.googletagmanager.com',
         'https://www.google-analytics.com'
