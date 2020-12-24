@@ -16,11 +16,11 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       'default-src': ["'self'", 'chriscorchado.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com'],
-      'style-src': [
+      'style-src nonce-<base64-value>': [
         "'self'",
         'chriscorchado.com'
       ],
-      'script-src': [
+      'script-src nonce-<base64-value>': [
         "'self'",
         'chriscorchado.com',
         'https://www.googletagmanager.com',
