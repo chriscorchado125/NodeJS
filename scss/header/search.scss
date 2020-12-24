@@ -44,16 +44,15 @@
   // Search textbox
   #search-site {
     width: 150px;
-    padding: 2px;
     font-size: 12px;
-    margin-left: 4px;
+    margin-left: 0; /* no unit */
   }
 
   // Search button
   .search-btn {
     padding: 2px;
     font-size: 12px;
-    margin-left: 4px;
+    margin-left: 2px;
   }
 
   .search-btn:hover {
@@ -67,7 +66,7 @@
   #search-container {
     float: none;
     width: 100%;
-    margin: -5px 0 10px 0 !important;
+    margin: 0 0 8px 0 !important;
   }
 
   #no-records {
@@ -79,7 +78,7 @@
 @media (max-width: 500px) {
   #search-container {
     #search-site {
-      width: 105px;
+      width: 100px;
     }
 
     #search-btn {
@@ -98,20 +97,22 @@
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 400px) {
   #search-container {
     #search-site {
-      width: 95px;
+      width: 85px !important;
     }
+  }
+}
 
-    #search-btn {
-      margin-left: 2px;
-      font-size: 11px;
+@media (max-width: 350px) {
+  #search-container {
+    .search-btn {
+      margin-left: 3px;
     }
 
     #search-count {
-      width: 70px;
-      font-size: 11px;
+      margin-right: 1px;
     }
   }
 }

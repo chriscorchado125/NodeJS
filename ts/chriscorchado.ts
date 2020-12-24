@@ -167,14 +167,14 @@ function nodePage () {
         currentPageNumber > 1
       ) {
         if (pagingText && recordCount !== 1) {
-          pagingText.innerHTML = `Items ${firstNumberRange}-${
+          pagingText.innerHTML = `Items&nbsp;${firstNumberRange}-${
             (firstNumberRange + recordCount) - 1
           }`
         }
       } else {
         // no paging
         if (pagingText) {
-          pagingText.innerHTML = `${recordCount} ${recordText}`
+          pagingText.innerHTML = `${recordCount}&nbsp;${recordText}`
         }
       }
 
