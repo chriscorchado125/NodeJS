@@ -20,7 +20,7 @@ app.use(
         "'self' 'unsafe-inline'",
         'chriscorchado.com'
       ],
-      'script-src-elem': [
+      'script-src': [
         "'self' 'unsafe-inline'",
         'chriscorchado.com',
         'https://www.googletagmanager.com',
