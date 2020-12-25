@@ -92,9 +92,43 @@ function nodePage () {
         }
         break
       case 'resume':
+        currentNavItem = 'resume-link'
         utilityJS.addResumes()
         break
       default:
+    }
+
+    // setup 404 page not found
+    if (currentNavItem === '') {
+      // create the message
+      const header = document.createElement('h1')
+      const headerText = document.createTextNode('Page not found')
+      header.appendChild(headerText)
+
+      const paraText = document.createTextNode('The requested page could not be found')
+      const breakLine = document.createElement('br')
+      const redirectingText = document.createTextNode('Redirecting Home...')
+
+      const para = document.createElement('p')
+      para.appendChild(paraText)
+      para.appendChild(breakLine)
+      para.appendChild(redirectingText)
+
+      const container = document.createElement('div')
+      container.className = 'container'
+      container.appendChild(header)
+      container.appendChild(para)
+
+      const element = document.getElementById('navigation')
+      if (element) {
+        // add message to the page
+        element.after(container)
+
+        // redirect to the homepage after 3 seconds
+        setTimeout(function () {
+          window.location.href = window.location.origin
+        }, 3000)
+      }
     }
 
     if (utilityJS.getCurrentPage() !== 'about' && utilityJS.getCurrentPage() !== 'resume') {
