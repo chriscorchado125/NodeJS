@@ -30,7 +30,7 @@
     "jquery": "^3.5.1",
     "mongoose": "^5.10.2",
     "morgan": "~1.10.0",
-    "pug": "3.0.0",
+    "pug": "3.0.1",
     "pug-cli": "^1.0.0-alpha6",
     "stylelint-scss": "^3.18.0",
     "tslib": "^2.0.3"
