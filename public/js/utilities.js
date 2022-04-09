@@ -25,14 +25,14 @@ export const addResumes = () => {
         const docEl = document.getElementById('profiles');
         docEl.innerHTML = `
     <div class='icon' id='pdf-resume'>
-      <a href='https://chriscorchado.com/resume/Chris-Corchado-resume-2020.pdf' target='_blank' rel='noopener' title='Opening a new window'>
+      <a href='https://chriscorchado.com/resume/Chris-Corchado.pdf' target='_blank' rel='noopener' title='Opening a new window'>
         <img alt='Link to PDF Resume' src='https://chriscorchado.com/images/pdfIcon.jpg' />
         <span>PDF</span>
       </a>
     </div>
 
     <div class='icon' id='word-resume'>
-      <a href='https://chriscorchado.com/resume/Chris-Corchado-resume-2020.docx' title='File will download'>
+      <a href='https://chriscorchado.com/resume/Chris-Corchado.docx' title='File will download'>
         <img alt='Link to MS Word Resume' src='https://chriscorchado.com/images/wordIcon.jpg' />
         <span>Word</span>
       </a>
@@ -65,6 +65,11 @@ export const addProfiles = (id) => {
       <img alt='Azure Icon' title='Link to Azure Profile' src='https://chriscorchado.com/images/azureIcon.png' />
       <span>Azure</span>
     </a>
+
+    <!--a href='https://chriscorchado.com/resume/ChrisCorchadoIT-2736_microsoft-en-us-users.pdf' target='_blank' rel='noopener' title='Opening a new window'>
+    <img alt='Azure Icon' title='Link to Azure Profile PDF' src='https://chriscorchado.com/images/azureIcon.png' />
+    <span>Azure</span>
+  </!--a>
   </div>`;
 };
 export const animateLogo = (logoID, animationID) => {
