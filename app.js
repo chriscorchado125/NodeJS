@@ -15,21 +15,31 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'default-src': ["'self'", 'chriscorchado.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com'],
-      'style-src': [
-        "'self' 'unsafe-inline'",
-        'chriscorchado.com'
+      'default-src': [
+        "'self'",
+        'chriscorchado.com',
+        'https://www.googletagmanager.com',
+        'https://www.google-analytics.com',
       ],
+      'style-src': ["'self' 'unsafe-inline'", 'chriscorchado.com'],
       'script-src': [
         "'self' 'unsafe-inline'",
         'chriscorchado.com',
         'https://www.googletagmanager.com',
-        'https://www.google-analytics.com'
+        'https://www.google-analytics.com',
       ],
-      'img-src': ["'self' data:", 'chriscorchado.com', 'https://www.googletagmanager.com', 'https://www.google-analytics.com', 'http://www.w3.org', 'https://fonts.gstatic.com']
-    }
+      'img-src': [
+        "'self' data:",
+        'chriscorchado.com',
+        'https://www.googletagmanager.com',
+        'https://www.google-analytics.com',
+        'http://www.w3.org',
+        'https://fonts.gstatic.com',
+        'https://live-chriscorchadod8.pantheonsite.io',
+      ],
+    },
   })
-)
+);
 
 // Set up mongoose connection
 const mongoose = require('mongoose')
